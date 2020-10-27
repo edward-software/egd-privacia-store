@@ -14,7 +14,7 @@
 
 .top-bar {
   z-index: 9999;
-  background-color: #2c4491;
+  background-color: #71b24e;
 
   &__top-contact {
     display: flex;
@@ -84,7 +84,7 @@
   }
 
   .active > a {
-    color: #2c4491 !important;
+    color: #71b24e !important;
   }
 
   & .navbar-nav {
@@ -121,7 +121,7 @@
     background-color: #fff;
     background-clip: padding-box;
     border: 1px solid #f7f7f7;
-    border-bottom: 4px solid #2c4491;
+    border-bottom: 4px solid #71b24e;
     padding: 10px 0;
     top: 40px;
 
@@ -138,7 +138,7 @@
         &:active {
           color: #fff !important;
           text-decoration: none;
-          background-color: #2c4491;
+          background-color: #71b24e;
         }
     }
 
