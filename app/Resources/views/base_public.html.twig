@@ -86,45 +86,6 @@
                 <!-- Top Flags -->
                 <div class="col-6 col-md-3 pr-0">
                     {#<div class="col-md-3 col-lg-2 text-center">#}
-                    <div class="top-bar__top-social-flags">
-                        <ul>
-                            {% set loc = '/' ~ locale ~ '/' %}
-                            <li>
-                                <a href="{% if app.request.get('_route') %}{{ path(app.request.get('_route'),app.request.get('_route_params'))|replace({(loc): '/de/'}) }}{% endif %}">
-                                    <img src="{{ absolute_url(asset('/build/static/de.gif'))}}" alt="Germany" title="">
-                                </a>
-                            </li>
-                            <li class="lang-active">
-                                <a href="{% if app.request.get('_route') %}{{ path(app.request.get('_route'),app.request.get('_route_params'))|replace({(loc): '/fr/'}) }}{% endif %}">
-                                    <img src="{{ absolute_url(asset('/build/static/fr.gif'))}}" alt="French" title="">
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <img src="{{ absolute_url(asset('/build/static/it.gif'))}}" class="top-bar__top-social-flags--disabled" alt="It"
-                                         title="">
-                                </a>
-                            </li>
-                            <li>
-                                <a>
-                                    <img src="{{ absolute_url(asset('/build/static/en.gif'))}}" class="top-bar__top-social-flags--disabled" alt="En"
-                                         title="">
-                                </a>
-                            </li>
-                            <li>
-{#                                <a href="https://www.youtube.com/channel/UCH8kRN0OFEvKsvd55JG-ZAg"#}
-{#                                   target="_blank" rel="noopener noreferrer">#}
-{#                                    <img height="25" src="{{ asset('/build/static/social-youtube.svg') }}" alt="" class="mt-1">#}
-{#                                </a>#}
-                            </li>
-                            <li>
-{#                                <a href="https://www.linkedin.com/showcase/reisswolf-aktenvernichtung-schweiz/"#}
-{#                                   target="_blank" rel="noopener noreferrer">#}
-{#                                    <img height="25" src="{{ asset('/build/static/social-linkedin.svg') }}" alt="" class="mt-1">#}
-{#                                </a>#}
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </div>
         </div>
@@ -135,7 +96,7 @@
         <div class="container menu pt-4 pb-4">
             <a class="navbar-brand" href="{{ reisswolf_public_site_url }}">
                 {#<img src="/build/static/reisswolf_logo.png" alt="">#}
-                <img height="100" src="{{ asset('/build/static/logo-reisswolf.svg') }}" alt="">
+                <img height="100" src="{{ asset('/build/static/logo-groupe.png') }}" alt="">
             </a>
             <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
