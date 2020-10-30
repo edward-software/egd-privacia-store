@@ -3,9 +3,17 @@ select {
   -webkit-appearance: none !important;
   -moz-appearance: none !important;
   appearance: none !important;
-  background: url('/build/static/arrow-down.svg') 125%/65% no-repeat;
+  background: url('/build/static/arrow-down-icon.svg') 125%/65% no-repeat;
   padding: 0 20px 0 8px;
-  border-radius: 0;
+  border-radius: $border-radius-xs;
+  background-color: $white;
+  opacity: 1;
+  &:focus {
+    outline: 0 !important;
+  }
+}
+input:focus {
+  outline: 0px !important;
 }
 
 .page-section {
@@ -41,18 +49,22 @@ select {
     }
 
     &:hover:not(.round-btn--disable) {
-      color: #fff !important;
-      background-color: rgba(255, 196, 0, 0.8) !important;
+      //color: #fff !important;
+      //background-color: rgba(255, 196, 0, 0.8) !important;
+      //background-color: $primary;
     }
 
     &--blue {
       color: #FFFFFF;
-      background-color: #2C4491;
+      background-color: $secondary;
     }
 
     &--disable {
       background-color: #dedede;
       cursor: default;
+      i {
+        color: $white !important;
+      }
     }
   }
 
@@ -63,18 +75,20 @@ select {
     padding-left: 30px;
 
     &__block {
-      background-color: #F2F2F2;
-      padding: 10px;
+      background-color: $lightgray;
+      padding: 20px;
       min-height: 250px;
-      //height: 250px;
 
       & select {
-        border: none !important;
         background: none !important;
-        background-color: transparent !important;
+        background-color: white !important;
+        border-radius: $border-radius-xs;
+        border: 1px solid #979797 !important;
+        padding: 0 0 0 10px;
+        width: 32px;
 
         &:disabled {
-          color: black;
+          color: $darkgray;
         }
       }
 
@@ -84,9 +98,8 @@ select {
     }
 
     &__label {
-      font-size: 16px;
-      font-weight: bold;
-      line-height: 27px;
+      font-weight: $font-bold;
+      line-height: 22px;
     }
 
     &__ value {
@@ -115,25 +128,19 @@ select {
     &__quantity {
       text-align: left;
       margin-top: 20px;
-      color: #4A4A4A;
-      font-size: 14px;
-      font-weight: $font-bold;
 
-      .round-btn:first-child {
-        margin-left: 15px;
-        margin-right: 25px !important;
+      button {
+        margin-right: 10px;
       }
-
-      .btn {
+      .round-btn:first-child {
         margin-left: 20px;
       }
     }
   }
 
   .devis {
-    background-color: $lightgray;
-    padding: 15px;
-    //height: 250px;
+    background-color: #004A8E;
+    color: $white;
     min-height: 250px;
 
     h3 {
@@ -158,9 +165,15 @@ select {
       flex-direction: column;
 
       button {
-        margin-top: 20px;
-        align-self: flex-end;
+        align-self: flex-start;
         margin-top: auto;
+        text-transform: uppercase;
+        font-family: $font-family-1;
+        font-size: 16px;
+        &:hover {
+          background-color: $secondary;
+          color: $white;
+        }
       }
 
       &__content {
@@ -176,27 +189,47 @@ select {
       margin-top: 15px;
       margin-bottom: 20px;
 
-      select:first-child {
-        margin-right: 10px;
+      select {
+        background-size: 26%;
+        background-position: 95%;
+        width: 90px;
+        margin-left: 10px;
+        height: 25px;
+        border: 1px solid #979797 !important;
+        &:disabled {
+          color: $darkgray;
+        }
       }
 
-      select:last-child {
-        background-size: 28%;
-        background-position: 107%;
-        margin-left: 10px;
+       &__button {
+          i {
+            //color: $primary;
+          }
+       }
+      .round-btn--blue {
+        i {
+          color: $primary;
+        }
       }
 
       .catalog-frequency-input {
-        border: none;
-        background: transparent;
         -webkit-appearance: none !important;
         -moz-appearance: none !important;
         appearance: none !important;
+        background: none !important;
+        background-color: white !important;
+        border: 1px solid #979797 !important;
+        border-radius: $border-radius-xs;
+        padding: 0 ;
+        margin: 0 10px;
+        width: 32px;
+        &:disabled {
+          color: $darkgray;
+        }
       }
 
       &__times {
-        line-height: 30px;
-        margin-bottom: -5px;
+        padding-top: 2px;
       }
     }
 
@@ -204,6 +237,11 @@ select {
       color: #fff;
       border-color: $secondary;
       background-color: $secondary;
+      box-shadow: none !important;
+    }
+
+    .border-right {
+      border: 1px solid #1A5C99 !important;
     }
   }
 }
