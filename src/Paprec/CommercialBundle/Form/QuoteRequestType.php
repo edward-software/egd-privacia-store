@@ -37,7 +37,6 @@ class QuoteRequestType extends AbstractType
             ->add('locale', ChoiceType::class, array(
                 'choices' => $options['locales']
             ))
-            ->add('canton')
             ->add('businessName')
             ->add('civility', ChoiceType::class, array(
                 'choices' => array(

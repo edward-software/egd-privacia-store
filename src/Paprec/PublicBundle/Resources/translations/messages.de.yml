@@ -81,7 +81,6 @@ Public:
         Civility: Anrede
         LastName: Nachname
         FirstName: Vorname
-        Canton: Kanton
         Email: E-mail
         Phone: Telefonnummer
         PhoneNumberInfo: "Bitte folgendes Format verwenden : +41 01 234 56 78"

@@ -87,14 +87,6 @@ class QuoteRequest
     /**
      * @var string
      *
-     * @ORM\Column(name="canton", type="string", length=255, nullable=true)
-     * @Assert\NotBlank(groups={"public"})
-     */
-    private $canton;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="businessName", type="string", length=255, nullable=true)
      * @Assert\NotBlank(groups={"public"})
      */
@@ -451,30 +443,6 @@ class QuoteRequest
     public function getDeleted()
     {
         return $this->deleted;
-    }
-
-    /**
-     * Set canton.
-     *
-     * @param string|null $canton
-     *
-     * @return QuoteRequest
-     */
-    public function setCanton($canton = null)
-    {
-        $this->canton = $canton;
-
-        return $this;
-    }
-
-    /**
-     * Get canton.
-     *
-     * @return string|null
-     */
-    public function getCanton()
-    {
-        return $this->canton;
     }
 
     /**

@@ -26,7 +26,6 @@ Public:
     Civility: Civility
     LastName: Last name
     FirstName: First name
-    Canton: Canton
     Email: Email
     Phone: Phone
     CoworkerNumber: Number of employees

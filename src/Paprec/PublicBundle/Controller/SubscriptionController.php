@@ -20,7 +20,7 @@ class SubscriptionController extends Controller
      */
     public function redirectToIndex0Action(Request $request)
     {
-        return $this->redirectToRoute('paprec_public_type_index', array('locale' => 'de'));
+        return $this->redirectToRoute('paprec_public_type_index', array('locale' => 'fr'));
 
     }
 

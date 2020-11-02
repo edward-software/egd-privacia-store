@@ -414,10 +414,8 @@ class QuoteRequestManager
                 return false;
             }
 
-            $locale = 'DE';
-            if (strtolower($quoteRequest->getPostalCode()->getRegion()->getName()) === 'geneve') {
-                $locale = 'FR';
-            }
+            $locale = 'FR';
+
 
             $translator = $this->container->get('translator');
 
@@ -483,10 +481,7 @@ class QuoteRequestManager
                 return false;
             }
 
-            $locale = 'DE';
-            if (strtolower($quoteRequest->getPostalCode()->getRegion()->getName()) === 'geneve') {
-                $locale = 'FR';
-            }
+            $locale = 'FR';
 
             $message = \Swift_Message::newInstance()
                 ->setSubject(

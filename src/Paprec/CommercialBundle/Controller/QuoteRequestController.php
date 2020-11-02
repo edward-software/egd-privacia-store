@@ -202,7 +202,6 @@ class QuoteRequestController extends Controller
             'User update',
             'Locale',
             'Number',
-            'Canton',
             'Business name',
             'Civility',
             'Last name',
@@ -247,7 +246,6 @@ class QuoteRequestController extends Controller
                 $quoteRequest->getUserUpdate(),
                 $quoteRequest->getLocale(),
                 $quoteRequest->getNumber(),
-                $quoteRequest->getCanton(),
                 $quoteRequest->getBusinessName(),
                 $quoteRequest->getCivility(),
                 $quoteRequest->getLastName(),
@@ -740,10 +738,7 @@ class QuoteRequestController extends Controller
         $user = $this->getUser();
         $pdfTmpFolder = $pdfFolder . '/';
 
-        $locale = 'de';
-        if (strtolower($quoteRequest->getPostalCode()->getRegion()->getName()) === 'geneve') {
-            $locale = 'fr';
-        }
+        $locale = 'fr';
 
         $file = $quoteRequestManager->generatePDF($quoteRequest, $locale);
 

@@ -24,11 +24,6 @@
                                 Champ non renseigné
                             </div>
                         </div>
-                        <div class="form-group select-container">
-                            <label>{{ 'Public.Contact.Canton'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.canton, {'attr': {'class': 'form-control'}}) }}
-                            {{ form_errors(form.canton) }}
-                        </div>
                         <div class="form-group">
                             <label>{{ 'Public.Contact.Civility'| trans({}, "messages", locale) }}* :</label>
                             {{ form_widget(form.civility, {'attr': {'class': 'form-check form-check-inline radio-form'}}) }}

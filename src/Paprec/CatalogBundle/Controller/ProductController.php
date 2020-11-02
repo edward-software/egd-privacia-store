@@ -319,7 +319,7 @@ class ProductController extends Controller
         $form1 = $this->createForm(ProductType::class, $product);
         $form2 = $this->createForm(ProductLabelType::class, $productLabel, array(
             'languages' => $languages,
-            'language' => 'EN'
+            'language' => 'FR'
         ));
 
         $form1->handleRequest($request);

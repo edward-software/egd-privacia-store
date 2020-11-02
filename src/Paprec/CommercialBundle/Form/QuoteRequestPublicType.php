@@ -32,7 +32,6 @@ class QuoteRequestPublicType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('canton')
             ->add('businessName')
             ->add('civility', ChoiceType::class, array(
                 'choices' => array(

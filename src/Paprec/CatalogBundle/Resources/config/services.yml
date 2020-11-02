@@ -74,11 +74,7 @@ parameters:
 
 
   paprec_languages:
-    - DE
     - FR
-    - IT
-    - EN
-
 
   paprec_custom_area_codes:
     - catalog_top
