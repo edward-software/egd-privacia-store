@@ -77,14 +77,16 @@
 
 
 .navbar {
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+    //box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
   a {
-    font-weight: $font-light;
-    color: #444444 !important;
+    color: $primary !important;
+    font-family: $font-family-3;
+    font-size: 13px;
+    text-transform: uppercase;
   }
 
   .active > a {
-    color: #71b24e !important;
+    color: $secondary !important;
   }
 
   & .navbar-nav {

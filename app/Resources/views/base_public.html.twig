@@ -16,8 +16,10 @@
     <title>{% block title %}{% endblock %}</title>
     <link rel="stylesheet" href="{{ asset('build/public.css') }}">
     <link rel="icon" type="image/png" href="{{ asset('build/static/favicon.png') }}">
-    <link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Oswald:300,400,500&display=swap&subset=latin-ext"
-          rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Raleway:wght@400;700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    {#<link href="https://fonts.googleapis.com/css?family=Arimo:400,700|Oswald:300,400,500&display=swap&subset=latin-ext"
+          rel="stylesheet">#}
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
           integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
     <!--Font awesome-->
@@ -93,10 +95,10 @@
 
     {#Navigation#}
     <nav class="navbar navbar-expand-md navbar-light static-top">
-        <div class="container menu pt-4 pb-4">
+        <div class="container menu">
             <a class="navbar-brand" href="{{ reisswolf_public_site_url }}">
                 {#<img src="/build/static/reisswolf_logo.png" alt="">#}
-                <img height="100" src="{{ asset('/build/static/logo-groupe.png') }}" alt="">
+                <img class="img-fluid" width="260" src="{{ asset('/build/static/logo-groupe.png') }}" alt="">
             </a>
             <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse"
                     data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
@@ -212,15 +214,15 @@
 </header>
 <section class="breadcrumb">
     <div class="container">
-        <div class="breadcrumb__title">
+        {#<div class="breadcrumb__title">
             {% block breadcrumb_title %}{% endblock %}
-        </div>
+        </div>#}
         <div class="breadcrumb__content">
             <a class="breadcrumb__content__link"
                href="{{ reisswolf_public_site_url }}">{{ 'Public.Home'| trans({}, "messages", locale) }}</a>
-            / <a class="breadcrumb__content__link"
+            > <a class="breadcrumb__content__link"
                  href="{{ path('paprec_public_devis_home', {locale: locale}) }}">{{ 'Public.Quote'| trans({}, "messages", locale) }}</a>
-            / <span class="breadcrumb__content__last">{% block breadcrumb_content %}{% endblock %}</span>
+            > <span class="breadcrumb__content__last">{% block breadcrumb_content %}{% endblock %}</span>
 
         </div>
     </div>
