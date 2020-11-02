@@ -40,9 +40,6 @@
   .product__image {
     margin-top: 10px;
   }
-  .devis__frequency-container button {
-    align-self: center !important;
-  }
   .product__quantity {
     margin-bottom: 20px;
   }
@@ -86,14 +83,6 @@
   .devis__frequence {
     select {
       max-height: 30px;
-    }
-  }
-
-  /* Header */
-
-  .navbar-brand {
-    img {
-      max-height: 60px;
     }
   }
 
@@ -154,9 +143,18 @@
     padding-top: 5px !important;
     padding-bottom: 5px !important;
   }
+  h1 {
+    font-size: 28px !important;
+    line-height: 35px !important;
+  }
 }
 
 @media (max-width: 425px) {
+  .navbar-brand {
+    img {
+      width: 200px;
+    }
+  }
   h2 {
     font-size: 21px;
   }

@@ -11,31 +11,25 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-lg-6 col-12">
-                    <h2>{{ 'Public.Catalog.Title'| trans({}, "messages", locale) }}
-                    </h2>
+                    <h1>{{ 'Public.Catalog.Title'| trans({}, "messages", locale) }}
+                    </h1>
                     <div class="divider"></div>
                 </div>
             </div>
             {% set customArea = paprec_customizable_area('catalog_top', locale) %}
             {% if customArea is not null %}
-                <div class="row mb-5">
+                <div class="row m-b-40">
                     <div class="col-xl-6">
-
                         <div class="mytext">{% autoescape false %}{{ customArea.leftContent }}{% endautoescape %}</div>
-
-
                         <div class="image">
                             {% if customArea.leftPictures and customArea.leftPictures|length > 0 %}
-                                <img src="{{ asset('uploads/pictos/' ~ customArea.leftPictures[0].path) }}"
+                                <img src="{{ asset('uploads/pictos/' ~ customArea.leftPictures[0].path) }}" class="img-fluid"
                                      alt="Image block left">
                             {% endif %}
                         </div>
                     </div>
                     <div class="col-xl-6">
-
                         <div class="mytext">{% autoescape false %}{{ customArea.rightContent }}{% endautoescape %}</div>
-
-
                         <div class="image">
                             {% if customArea.rightPictures and customArea.rightPictures|length > 0 %}
                                 <img src="{{ asset('uploads/pictos/' ~ customArea.rightPictures[0].path) }}"
@@ -45,6 +39,8 @@
                     </div>
                 </div>
             {% endif %}
+
+            <hr class="m-b-40">
 
             <div class="row product-container">
                 {% for product in products %}
@@ -58,32 +54,32 @@
                             </div>
                             <div class="col-xl-8">
                                 <div class="product__title">
-                                    <h3>{{ product|productLabelTranslation(locale) }}</h3>
+                                    <h2 class="color-secondary m-b-20">{{ product|productLabelTranslation(locale) }}</h2>
                                 </div>
                                 <div class="product__description">
                                     <div class="paprec-flex space-between">
-                                        <div class="product__label">{{ 'Catalog.Product.Capacity'|trans({}, "messages", app.request.locale) }}</div>
+                                        <div class="product__label">{{ 'Catalog.Product.Capacity'|trans({}, "messages", app.request.locale) }} :</div>
                                         <div class="product__value">{{ product.capacity }} {{ product.capacityUnit }}</div>
                                     </div>
                                     <div class="paprec-flex space-between">
-                                        <div class="product__label">{{ 'Catalog.Product.FolderNumber'|trans({}, "messages", app.request.locale) }}</div>
+                                        <div class="product__label">{{ 'Catalog.Product.FolderNumber'|trans({}, "messages", app.request.locale) }} :</div>
                                         <div class="product__value">{{ product.folderNumber }}</div>
                                     </div>
                                     <div class="paprec-flex space-between">
-                                        <div class="product__label">{{ 'Catalog.Product.Dimensions'|trans({}, "messages", app.request.locale) }}</div>
+                                        <div class="product__label">{{ 'Catalog.Product.Dimensions'|trans({}, "messages", app.request.locale) }} :</div>
                                         <div class="product__value">{{ product.dimensions }}</div>
                                     </div>
                                     <div class="paprec-flex space-between">
-                                        <div class="product__label">{{ 'Catalog.ProductLabel.Version'|trans({}, "messages", app.request.locale) }}</div>
+                                        <div class="product__label">{{ 'Catalog.ProductLabel.Version'|trans({}, "messages", app.request.locale) }} :</div>
                                         <div class="product__value">{{ product|productLabelTranslation(locale, 'version') }} </div>
                                     </div>
                                     <div class="paprec-flex space-between">
-                                        <div class="product__label">{{ 'Catalog.ProductLabel.Lock'|trans({}, "messages", app.request.locale) }}</div>
+                                        <div class="product__label">{{ 'Catalog.ProductLabel.Lock'|trans({}, "messages", app.request.locale) }} :</div>
                                         <div class="product__value">{{ product|productLabelTranslation(locale,'lockType') }}</div>
                                     </div>
                                 </div>
                                 <div class="product__quantity paprec-flex">
-                                    <div>
+                                    <div class="paprec-flex">
                                         {{ 'Public.Catalog.Quantity'| trans({}, "messages", locale) }} :
                                         {% set qtty = '' %}
                                         {% for item in cart.content %}
@@ -91,9 +87,21 @@
                                                 {% set qtty = item['qtty'] %}
                                             {% endif %}
                                         {% endfor %}
+                                        <div class="paprec-flex">
+                                            <button class="addOneToCartButton round-btn round-btn--blue mr-2"
+                                                    id="addOneToCartButton{{ product.id }}"
+                                                    data-url="{{ path('paprec_public_catalog_addOneContent', {locale: locale, cartUuid: cart.id, productId: product.id}) }}">
+                                                <i class="fas fa-plus"></i>
+                                            </button>
+                                            <button class="removeOneToCartButton round-btn round-btn--blue  {% if qtty == 0 %}round-btn--disable{% endif %}"
+                                                    id="removeOneToCartButton{{ product.id }}"
+                                                    data-url="{{ path('paprec_public_catalog_removeOneContent', {locale: locale, cartUuid: cart.id, productId: product.id}) }}">
+                                                <i class="fas fa-minus"></i>
+                                            </button>
+                                        </div>
                                         <select name=""
                                                 disabled="disabled"
-                                                class="quantityProductSelect ml-2"
+                                                class="quantityProductSelect"
                                                 data-url="{{ path('paprec_public_catalog_addContent', {locale: locale, cartUuid: cart.id}) }}"
                                                 data-product="{{ product.id }}"
                                                 id="quantityProductSelect_{{ product.id }}">
@@ -107,18 +115,7 @@
                                             {% endfor %}
                                         </select>
                                     </div>
-                                    <div class="paprec-flex">
-                                        <button class="addOneToCartButton round-btn round-btn--blue mr-2"
-                                                id="addOneToCartButton{{ product.id }}"
-                                                data-url="{{ path('paprec_public_catalog_addOneContent', {locale: locale, cartUuid: cart.id, productId: product.id}) }}">
-                                            <i class="fas fa-plus"></i>
-                                        </button>
-                                        <button class="removeOneToCartButton round-btn round-btn--blue  {% if qtty == 0 %}round-btn--disable{% endif %}"
-                                                id="removeOneToCartButton{{ product.id }}"
-                                                data-url="{{ path('paprec_public_catalog_removeOneContent', {locale: locale, cartUuid: cart.id, productId: product.id}) }}">
-                                            <i class="fas fa-minus"></i>
-                                        </button>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -127,9 +124,9 @@
                 <div class="col-md-6 product">
                     <div class="row devis">
 
-                        <div class="col-xl-5">
+                        <div class="col-xl-4 p-20 border-right">
                             <div class="devis__products-container">
-                                <h3>{{ 'Public.Catalog.Quote'| trans({}, "messages", locale) }}</h3>
+                                <h2 class="m-b-20">{{ 'Public.Catalog.Quote'| trans({}, "messages", locale) }}</h2>
 
                                 <div class="devis__recap" id="devis-recap">
                                     {% for product in products %}
@@ -146,8 +143,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xl-7 devis__frequency-container pr-0">
-                            <h3>{{ 'Public.Catalog.Collect-frequency'| trans({}, "messages", locale) }}</h3>
+                        <div class="col-xl-8 devis__frequency-container p-20">
+                            <h2 class="m-b-20">{{ 'Public.Catalog.Collect-frequency'| trans({}, "messages", locale) }}</h2>
 
                             <div class="devis__frequency-container__content paprec-flex column">
                                 <!-- Group of default radios - option 1 -->
@@ -167,7 +164,7 @@
                                            name="groupOfDefaultRadios">
                                     <label class="custom-control-label"
                                            for="frequencyButton2">{{ 'Public.Catalog.Regular'| trans({}, "messages", locale) }}
-                                        : </label>
+                                    </label>
                                 </div>
 
                                 <div class="devis__frequence paprec-flex">
@@ -177,18 +174,18 @@
                                                 id="addFrequencyButton">
                                             <i class="fas fa-plus"></i>
                                         </button>
-                                        <input class="catalog-frequency-select catalog-frequency-input text-center"
-                                               disabled="disabled"
-                                               size="1"
-                                               id="catalog_frequency_times_select" value="0"/>
                                         <button class="round-btn round-btn--blue devis__frequence__button round-btn--disable ml-1"
                                                 disabled
                                                 id="removeFrequencyButton">
                                             <i class="fas fa-minus"></i>
                                         </button>
+                                        <input class="catalog-frequency-select catalog-frequency-input text-center"
+                                               disabled="disabled"
+                                               size="1"
+                                               id="catalog_frequency_times_select" value="0"/>
                                     </div>
-                                    <span class="devis__frequence__times ml-2">{{ 'Public.Catalog.Times'| trans({}, "messages", locale) }}</span>
-                                    <select class="catalog-frequency-select ml-2"
+                                    <span class="devis__frequence__times">{{ 'Public.Catalog.Times'| trans({}, "messages", locale) }}</span>
+                                    <select class="catalog-frequency-select"
                                             disabled
                                             id="catalog_frequency_interval_select">
                                         <option value="week"

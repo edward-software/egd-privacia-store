@@ -1,7 +1,7 @@
 /*COLOR
 ------------------*/
-$primary: #444444;
-$secondary: #71b24e;
+$primary: #004A9B; /*bleu*/
+$secondary: #71b24e; /*vert*/
 $lightgray: #F2F2F2;
 $mdgray: #D8D8D8;
 $darkgray:#4A4A4A;
@@ -13,8 +13,9 @@ $black: #000;
 /*----------------
       FONTS
 ------------------ */
-$font-family-1: 'Oswald', sans-serif;
-$font-family-2: 'Arimo', sans-serif;
+$font-family-1: 'Raleway', sans-serif;
+$font-family-2: 'Roboto', sans-serif;
+$font-family-3: 'Montserrat', sans-serif;
 $font-light: 300;
 $font-regular: 400;
 $font-medium: 500;
@@ -30,6 +31,6 @@ $border-radius-lg: 50px;
 // /*----------------
 //       FONTS-SIZE
 // ------------------ */
-$font-title: 28px;
+$font-title: 32px;
 $font-sub-title: 18px;
-$font-text: 16px;
+$font-text: 12px;
