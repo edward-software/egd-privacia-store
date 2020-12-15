@@ -35,7 +35,6 @@ Catalog:
     UserInCharge:           Commercial en charge
     DisabledUser:           (Compte non actif)
     DeletedUser:            (Compte supprimé)
-    Region:                 Région
     System-information:     Informations système
 
   Picture:
@@ -97,20 +96,6 @@ Catalog:
     Version: Version
     Information: Informations
     Remove: Supprimer
-
-  Region:
-    Regions: Régions
-    Name: Nom
-    Email: Email contact
-    List: Liste des régions
-    Add: Ajouter une région
-    Export: Exporter les régions
-    View: Vue de la région
-    Edit: Modifier région
-    Remove: Supprimer région
-    Informations: Informations
-    System-informations: Informations système
-    PostalCodes: Codes postaux
 
   CustomArea:
     CustomAreas: Zones personnalisables

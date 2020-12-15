@@ -103,10 +103,6 @@ Public:
         SignatoryFirstName1: Vorname des Unterzeichners 1
         SignatoryLastName1: Nachname des Unterzeichners 1
         SignatoryTitle1: Titel des Unterzeichners 1
-        SignatoryFirstName2: Vorname des Unterzeichners 2
-        SignatoryLastName2: Nachname des Unterzeichners 2
-        SignatoryTitle2: Titel des Unterzeichners 2
-        IsSingleSignatory: Einzelner Unterzeichner
 
     SignatoryConfirm:
         Title: Wir haben diese informationen berücksichtigt und sie werden bald ihren vertrag zur unterschrift erhalten. Wir danken ihnen für ihr vertrauen.

@@ -323,11 +323,9 @@ class QuoteRequestController extends Controller
         $quoteRequestManager = $this->get('paprec_commercial.quote_request_manager');
         $quoteRequestManager->isDeleted($quoteRequest, true);
 
-        $tmpLockProg = $this->getParameter('tmp_lock_prog');
 
         return $this->render('PaprecCommercialBundle:QuoteRequest:view.html.twig', array(
             'quoteRequest' => $quoteRequest,
-            'tmpLockProg' => $tmpLockProg
         ));
     }
 
@@ -665,7 +663,7 @@ class QuoteRequestController extends Controller
         $quoteRequestManager = $this->get('paprec_commercial.quote_request_manager');
         $quoteRequestManager->isDeleted($quoteRequest, true);
 
-        if ($quoteRequest->getPostalCode() && $quoteRequest->getPostalCode()->getRegion()) {
+        if ($quoteRequest->getPostalCode()) {
             $sendQuote = $quoteRequestManager->sendGeneratedQuoteEmail($quoteRequest);
             if ($sendQuote) {
                 $this->get('session')->getFlashBag()->add('success', 'generatedQuoteSent');
@@ -694,7 +692,7 @@ class QuoteRequestController extends Controller
         $quoteRequestManager = $this->get('paprec_commercial.quote_request_manager');
         $quoteRequestManager->isDeleted($quoteRequest, true);
 
-        if ($quoteRequest->getPostalCode() && $quoteRequest->getPostalCode()->getRegion()) {
+        if ($quoteRequest->getPostalCode()) {
             $sendContract = $quoteRequestManager->sendGeneratedContractEmail($quoteRequest);
             if ($sendContract) {
                 $this->get('session')->getFlashBag()->add('success', 'generatedContractSent');

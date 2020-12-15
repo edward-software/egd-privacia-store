@@ -68,10 +68,6 @@ Commercial:
         SignatoryFirstName1: Prénom signataire 1
         SignatoryLastName1: Nom signataire 1
         SignatoryTitle1: Titre signataire 1
-        SignatoryFirstName2: Prénom signataire 2
-        SignatoryLastName2: Nom signataire 2
-        SignatoryTitle2: Titre signataire 2
-        IsSingleSignatory: Signataire unique
 
     QuoteStatusList:
         CREATED: Créé
@@ -100,7 +96,6 @@ Commercial:
         ProductName: Nom du produit
         UnitPrice: Prix unitaire
         Quantity: Quantité
-        TmpLockProg: Programmation Serrure
         RentalPrice: Location
         SetUpPrice: Transport 1
         Transport: Transport 2

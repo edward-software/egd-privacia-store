@@ -20,18 +20,7 @@ class QuoteRequestSignatoryType extends AbstractType
         $builder
             ->add('signatoryFirstName1')
             ->add('signatoryLastName1')
-            ->add('signatoryTitle1')
-            ->add('signatoryFirstName2')
-            ->add('signatoryLastName2')
-            ->add('signatoryTitle2')
-            ->add('isSingleSignatory', ChoiceType::class, array(
-                "choices" => array(0, 1),
-                "choice_label" => function ($choiceValue, $key, $value) {
-                    return 'General.' . $choiceValue;
-                },
-                "data" => 0,
-                "expanded" => true,
-            ));
+            ->add('signatoryTitle1');
 
     }
 
@@ -42,13 +31,7 @@ class QuoteRequestSignatoryType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Paprec\CommercialBundle\Entity\QuoteRequest',
-            'validation_groups' => function (FormInterface $form) {
-                $data = $form->getData();
-                if ($data->getIsSingleSignatory() === 1) {
-                    return ['signatory'];
-                }
-                return ['signatory', 'signatory2'];
-            },
+            'validation_groups' => ['signatory'],
             'locale' => null
         ));
     }

@@ -103,10 +103,6 @@ Public:
         SignatoryFirstName1: Prénom signataire 1
         SignatoryLastName1: Nom signataire 1
         SignatoryTitle1: Titre signataire 1
-        SignatoryFirstName2: Prénom signataire 2
-        SignatoryLastName2: Nom signataire 2
-        SignatoryTitle2: Titre signataire 2
-        IsSingleSignatory: Signataire unique
 
     SignatoryConfirm:
         Title: Nous avons bien pris en compte ces informations et vous allez prochainement recevoir votre contrat pour signature. Nous vous remercions pour votre confiance

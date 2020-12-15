@@ -146,7 +146,6 @@ class ProductManager
     {
         $numberManager = $this->container->get('paprec_catalog.number_manager');
 
-        $tmpLockProg = $this->container->getParameter('tmp_lock_prog');
 
         return (
                 ((($quoteRequestLine->getSetUpPrice() == 0) ? 0 : $numberManager->denormalize($quoteRequestLine->getSetUpPrice()) + $numberManager->denormalize15($quoteRequestLine->getSetUpRate())) * (1 + $numberManager->denormalize($quoteRequestLine->getQuoteRequest()->getOverallDiscount() / 100)))
@@ -154,8 +153,7 @@ class ProductManager
                 + ((($quoteRequestLine->getTransportUnitPrice() == 0) ? 0 : $numberManager->denormalize($quoteRequestLine->getTransportUnitPrice()) + $numberManager->denormalize15($quoteRequestLine->getTransportRate())) * (1 + $numberManager->denormalize($quoteRequestLine->getQuoteRequest()->getOverallDiscount() / 100)))
                 + ((($quoteRequestLine->getTreatmentUnitPrice() == 0) ? 0 : $numberManager->denormalize($quoteRequestLine->getTreatmentUnitPrice()) + $numberManager->denormalize15($quoteRequestLine->getTreatmentRate())) * (1 + $numberManager->denormalize($quoteRequestLine->getQuoteRequest()->getOverallDiscount() / 100)))
                 + ((($quoteRequestLine->getTraceabilityUnitPrice() == 0) ? 0 : $numberManager->denormalize($quoteRequestLine->getTraceabilityUnitPrice()) + $numberManager->denormalize15($quoteRequestLine->getTraceabilityRate())) * (1 + $numberManager->denormalize($quoteRequestLine->getQuoteRequest()->getOverallDiscount() / 100)))
-                + $this->getAccesPrice($quoteRequestLine->getQuoteRequest())
-                + $tmpLockProg)
+                + $this->getAccesPrice($quoteRequestLine->getQuoteRequest()))
             * $quoteRequestLine->getQuantity();
 
     }

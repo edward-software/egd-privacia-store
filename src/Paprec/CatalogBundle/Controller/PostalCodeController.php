@@ -44,14 +44,12 @@ class PostalCodeController extends Controller
         $cols['id'] = array('label' => 'id', 'id' => 'pC.id', 'method' => array('getId'));
         $cols['code'] = array('label' => 'code', 'id' => 'pC.code', 'method' => array('getCode'));
         $cols['city'] = array('label' => 'city', 'id' => 'pC.city', 'method' => array('getCity'));
-        $cols['region'] = array('label' => 'region', 'id' => 'r.name', 'method' => array('getRegion', 'getName'));
         $cols['zone'] = array('label' => 'zone', 'id' => 'pC.zone', 'method' => array('getZone'));
 
         $queryBuilder = $this->getDoctrine()->getManager()->getRepository(PostalCode::class)->createQueryBuilder('pC');
 
 
         $queryBuilder->select(array('pC'))
-            ->leftJoin('pC.region', 'r')
             ->where('pC.deleted IS NULL');
 
         if (is_array($search) && isset($search['value']) && $search['value'] != '') {
@@ -113,8 +111,7 @@ class PostalCodeController extends Controller
             ->setCellValue('G1', 'Transport rate')
             ->setCellValue('H1', 'Treatment rate')
             ->setCellValue('I1', 'Treacability rate')
-            ->setCellValue('J1', 'Salesman in charge')
-            ->setCellValue('K1', 'Region');
+            ->setCellValue('J1', 'Salesman in charge');
 
         $phpExcelObject->getActiveSheet()->setTitle('Postal codes');
         $phpExcelObject->setActiveSheetIndex(0);
@@ -132,8 +129,7 @@ class PostalCodeController extends Controller
                 ->setCellValue('G' . $i, $numberManager->denormalize15($postalCode->getTransportRate()))
                 ->setCellValue('H' . $i, $numberManager->denormalize15($postalCode->getTreatmentRate()))
                 ->setCellValue('I' . $i, $numberManager->denormalize15($postalCode->getTraceabilityRate()))
-                ->setCellValue('J' . $i, ($postalCode->getUserInCharge()) ? $postalCode->getUserInCharge()->getEmail() : '')
-                ->setCellValue('K' . $i, ($postalCode->getRegion()) ? $postalCode->getRegion()->getName() : '');
+                ->setCellValue('J' . $i, ($postalCode->getUserInCharge()) ? $postalCode->getUserInCharge()->getEmail() : '');
             $i++;
         }
 

@@ -35,7 +35,6 @@ Catalog:
     UserInCharge:           Name Aussendienstmitarbeiter
     DisabledUser:           (Inaktives Konto)
     DeletedUser:            (Gelöschtes Konto)
-    Region:                 Region
     System-information:     Systeminformationen
 
   Picture:
@@ -97,20 +96,6 @@ Catalog:
     Version: Version
     Information: Informations
     Remove: Supprimer
-
-  Region:
-    Regions: Region
-    Name: Name
-    Email: E-Mail
-    List: Regionenliste
-    Add: Region hinzufügen
-    Export: Regionen exportieren
-    View: Regionansicht
-    Edit: Region ändern
-    Remove: Region löschen
-    Informations: Informationen
-    System-informations: Systeminformationen
-    PostalCodes: PLZ
 
   CustomArea:
     CustomAreas: Anpassbare Zonen

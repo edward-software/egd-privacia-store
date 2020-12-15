@@ -2,8 +2,6 @@
 
 namespace Paprec\CatalogBundle\Form;
 
-use Paprec\CatalogBundle\Entity\Region;
-use Paprec\CatalogBundle\Repository\RegionRepository;
 use Paprec\UserBundle\Entity\User;
 use Paprec\UserBundle\Repository\UserRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -45,18 +43,6 @@ class PostalCodeType extends AbstractType
             ))
             ->add('traceabilityRate', TextType::class, array(
                 "required" => true
-            ))
-            ->add('region', EntityType::class, array(
-                'class' => Region::class,
-                'choice_label' => 'name',
-                'multiple' => false,
-                'expanded' => false,
-                'query_builder' => function (RegionRepository $rr) {
-                    return $rr
-                        ->createQueryBuilder('r')
-                        ->where('r.deleted IS NULL')
-                        ->orderBy('r.name');
-                }
             ))
             ->add('userInCharge', EntityType::class, array(
                 'class' => User::class,

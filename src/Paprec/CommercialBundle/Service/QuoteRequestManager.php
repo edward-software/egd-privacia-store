@@ -473,7 +473,8 @@ class QuoteRequestManager
                 if ($quoteRequest->getIsMultisite()) {
                     $rcptTo = $this->container->getParameter('reisswolf_salesman_multisite_email');
                 } else {
-                    $quoteRequest->getPostalCode()->getRegion()->getEmail();
+                    // TODO
+//                    $rcptTo = $quoteRequest->getPostalCode()->getRegion()->getEmail();
                 }
             }
 
@@ -530,23 +531,7 @@ class QuoteRequestManager
      */
     public function generateReference(QuoteRequest $quoteRequest)
     {
-        $regionName = 'CH';
-        switch (strtolower($quoteRequest->getPostalCode()->getRegion()->getName())) {
-            case 'basel':
-                $regionName = 'BS';
-                break;
-            case 'geneve':
-                $regionName = 'GE';
-                break;
-            case 'zurich':
-            case 'zuerich':
-                $regionName = 'ZH';
-                break;
-            case 'luzern':
-                $regionName = 'LU';
-                break;
-        }
-
+        $regionName = 'FR';
 
         $reference = strtoupper($regionName) . $quoteRequest->getDateCreation()->format('ymd');
         $reference .= '-' . str_pad($this->getCountByReference($reference), 2, '0', STR_PAD_LEFT);
@@ -574,10 +559,7 @@ class QuoteRequestManager
                 return false;
             }
 
-            $localeFilename = 'DE';
-            if (strtolower($quoteRequest->getPostalCode()->getRegion()->getName()) === 'geneve') {
-                $localeFilename = 'FR';
-            }
+            $localeFilename = 'FR';
 
             $pdfFilename = $quoteRequest->getReference() . '-' . $this->container->get('translator')->trans('Commercial.GeneratedQuoteEmail.FileName',
                     array(), 'messages', strtolower($localeFilename)) . '-' . $quoteRequest->getBusinessName() . '.pdf';
@@ -652,10 +634,7 @@ class QuoteRequestManager
                 return false;
             }
 
-            $localeFilename = 'DE';
-            if (strtolower($quoteRequest->getPostalCode()->getRegion()->getName()) === 'geneve') {
-                $localeFilename = 'FR';
-            }
+            $localeFilename = 'FR';
 
             $pdfFilename = $quoteRequest->getReference() . '-' . $this->container->get('translator')->trans('Commercial.GeneratedContractEmail.FileName',
                     array(), 'messages', strtolower($localeFilename)) . '-' . $quoteRequest->getBusinessName() . '.pdf';
@@ -728,7 +707,8 @@ class QuoteRequestManager
                 if ($quoteRequest->getIsMultisite()) {
                     $rcptTo = $this->container->getParameter('reisswolf_salesman_multisite_email');
                 } else {
-                    $quoteRequest->getPostalCode()->getRegion()->getEmail();
+                    // TODO
+//                    $rcptTo = $quoteRequest->getPostalCode()->getRegion()->getEmail();
                 }
             }
 
@@ -736,10 +716,7 @@ class QuoteRequestManager
                 return false;
             }
 
-            $localeFilename = 'DE';
-            if (strtolower($quoteRequest->getPostalCode()->getRegion()->getName()) === 'geneve') {
-                $localeFilename = 'FR';
-            }
+            $localeFilename = 'FR';
 
             $pdfFilename = $quoteRequest->getReference() . '-' . $this->container->get('translator')->trans('Commercial.NewContractEmail.FileName',
                     array(), 'messages', strtolower($localeFilename)) . '-' . $quoteRequest->getBusinessName() . '.pdf';
@@ -825,24 +802,8 @@ class QuoteRequestManager
             $snappy->setOption('dpi', 72);
 //            $snappy->setOption('footer-html', $this->container->get('templating')->render('@PaprecCommercial/QuoteRequest/PDF/fr/_footer.html.twig'));
 
-            if ($quoteRequest->getPostalCode() && $quoteRequest->getPostalCode()->getRegion()) {
-                $templateDir = '@PaprecCommercial/QuoteRequest/PDF/';
-                switch (strtolower($quoteRequest->getPostalCode()->getRegion()->getName())) {
-                    case 'basel':
-                        $templateDir .= 'basel';
-                        break;
-                    case 'geneve':
-                        $templateDir .= 'geneve';
-                        break;
-                    case 'zurich':
-                    case 'zuerich':
-                        $templateDir .= 'zuerich';
-                        break;
-                    case 'luzern':
-                        $templateDir .= 'luzern';
-                        break;
-                }
-            }
+            $templateDir = '@PaprecCommercial/QuoteRequest/PDF/';
+
 
             if (!isset($templateDir) || !$templateDir || is_null($templateDir)) {
                 return false;
@@ -860,7 +821,6 @@ class QuoteRequestManager
                         $templateDir . '/printQuoteOffer.html.twig',
                         array(
                             'quoteRequest' => $quoteRequest,
-                            'tmpLockProg' => $this->container->getParameter('tmp_lock_prog'),
                             'date' => $today,
                             'locale' => $locale,
                             'products' => $products

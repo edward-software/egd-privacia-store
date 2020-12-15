@@ -294,38 +294,6 @@ class QuoteRequest
     private $signatoryTitle1;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="signatoryLastName2", type="string", length=255, nullable=true)
-     * @Assert\NotBlank(groups={"signatory2"})
-     */
-    private $signatoryLastName2;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="signatoryFirstName2", type="string", length=255, nullable=true)
-     * @Assert\NotBlank(groups={"signatory2"})
-     */
-    private $signatoryFirstName2;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="signatoryTitle2", type="string", length=255, nullable=true)
-     * @Assert\NotBlank(groups={"signatory2"})
-     */
-    private $signatoryTitle2;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="isSingleSignatory", type="boolean", nullable=true)
-     * @Assert\NotBlank(groups={"signatory"})
-     */
-    private $isSingleSignatory;
-
-    /**
      * #################################
      *              Relations
      * #################################
@@ -1262,101 +1230,6 @@ class QuoteRequest
         return $this->signatoryTitle1;
     }
 
-    /**
-     * Set signatoryLastName2.
-     *
-     * @param string|null $signatoryLastName2
-     *
-     * @return QuoteRequest
-     */
-    public function setSignatoryLastName2($signatoryLastName2 = null)
-    {
-        $this->signatoryLastName2 = $signatoryLastName2;
-
-        return $this;
-    }
-
-    /**
-     * Get signatoryLastName2.
-     *
-     * @return string|null
-     */
-    public function getSignatoryLastName2()
-    {
-        return $this->signatoryLastName2;
-    }
-
-    /**
-     * Set signatoryFirstName2.
-     *
-     * @param string|null $signatoryFirstName2
-     *
-     * @return QuoteRequest
-     */
-    public function setSignatoryFirstName2($signatoryFirstName2 = null)
-    {
-        $this->signatoryFirstName2 = $signatoryFirstName2;
-
-        return $this;
-    }
-
-    /**
-     * Get signatoryFirstName2.
-     *
-     * @return string|null
-     */
-    public function getSignatoryFirstName2()
-    {
-        return $this->signatoryFirstName2;
-    }
-
-    /**
-     * Set signatoryTitle2.
-     *
-     * @param string|null $signatoryTitle2
-     *
-     * @return QuoteRequest
-     */
-    public function setSignatoryTitle2($signatoryTitle2 = null)
-    {
-        $this->signatoryTitle2 = $signatoryTitle2;
-
-        return $this;
-    }
-
-    /**
-     * Get signatoryTitle2.
-     *
-     * @return string|null
-     */
-    public function getSignatoryTitle2()
-    {
-        return $this->signatoryTitle2;
-    }
-
-    /**
-     * Set isSingleSignatory.
-     *
-     * @param bool $isSingleSignatory
-     *
-     * @return QuoteRequest
-     */
-    public function setIsSingleSignatory($isSingleSignatory)
-    {
-        $this->isSingleSignatory = $isSingleSignatory;
-
-        return $this;
-    }
-
-    /**
-     * Get isSingleSignatory.
-     *
-     * @return bool
-     */
-    public function getIsSingleSignatory()
-    {
-        return $this->isSingleSignatory;
-    }
 
     /**
      * Retoune true si le signataires sont correctement définis, false sinon
@@ -1365,18 +1238,9 @@ class QuoteRequest
      */
     public function hasValidSignatories()
     {
-        if ($this->isSingleSignatory) {
-            return ($this->signatoryLastName1
-                && $this->signatoryFirstName1
-                && $this->signatoryTitle1);
-        }
-
         return ($this->signatoryLastName1
             && $this->signatoryFirstName1
-            && $this->signatoryTitle1
-            && $this->signatoryLastName2
-            && $this->signatoryFirstName2
-            && $this->signatoryTitle2);
+            && $this->signatoryTitle1);
     }
 
     /**

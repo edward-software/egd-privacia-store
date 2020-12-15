@@ -143,10 +143,6 @@ class PostalCode
      */
     private $userInCharge;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Paprec\CatalogBundle\Entity\Region", inversedBy="postalCodes")
-     */
-    private $region;
 
     /**
      * @ORM\OneToMany(targetEntity="Paprec\CommercialBundle\Entity\QuoteRequest", mappedBy="postalCode")
@@ -409,30 +405,6 @@ class PostalCode
     public function getUserInCharge()
     {
         return $this->userInCharge;
-    }
-
-    /**
-     * Set region.
-     *
-     * @param \Paprec\CatalogBundle\Entity\Region|null $region
-     *
-     * @return PostalCode
-     */
-    public function setRegion(\Paprec\CatalogBundle\Entity\Region $region = null)
-    {
-        $this->region = $region;
-
-        return $this;
-    }
-
-    /**
-     * Get region.
-     *
-     * @return \Paprec\CatalogBundle\Entity\Region|null
-     */
-    public function getRegion()
-    {
-        return $this->region;
     }
 
     /**

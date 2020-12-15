@@ -382,9 +382,10 @@
                         </div>
                         <div>
                             <p>
-                                {% if quoteRequest.postalCode is defined %}
-                                    {{ quoteRequest.postalCode.region.email }}
-                                {% endif %}
+                                {# TODO #}
+                                {# {% if quoteRequest.postalCode is defined %} #}
+                                {# {{ quoteRequest.postalCode.region.email }} #}
+                                {# {% endif %}#}
                             </p>
                         </div>
                     </div>
@@ -450,7 +451,6 @@
                     <tr>
                         <td class="bold">{{ product.capacity }}</td>
                         <td class="bold">{{ product|productLabelTranslation(locale,'lockType') }}</td>
-                        <td class="bold">{{ tmpLockProg }}</td>
                         <td class="bold">
                             {% set val = 0 %}
                             {% if product.rentalUnitPrice == 0 %}

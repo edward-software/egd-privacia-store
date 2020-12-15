@@ -34,7 +34,6 @@ Catalog:
     UserInCharge:           Salesman in charge
     DisabledUser:           (Compte non actif)
     DeletedUser:            (Compte supprimé)
-    Region:                 Region
     System-information:     System information
 
   Picture:
@@ -96,20 +95,6 @@ Catalog:
     Version:                Version
     Information:            Information
     Remove:                 Remove
-
-  Region:
-    Regions:                Regions
-    Name:                   Name
-    Email:                  Contact email
-    List:                   Regions list
-    Add:                    Add region
-    Export:                 Export regions
-    View:                   View region
-    Edit:                   Edit region
-    Remove:                 Delete region
-    Informations:           Information
-    System-informations:    System information
-    PostalCodes:            Postal codes
 
   CustomArea:
     CustomAreas:            Custom areas

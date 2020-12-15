@@ -271,22 +271,6 @@ $(function () {
         minLength: 1
     });
 
-    /****************************************
-     * SIGNATORY FORM
-     ***************************************/
-    /*
-    * Désactivation des champs Signataires 2 en Signataire unique vrai
-    */
-    $('input[name*="paprec_catalogbundle_quote_request_public[isSingleSignatory]"]').change(function () {
-
-        if (this.value == true) {
-            $('.signatory2-field').prop("disabled", true);
-            $('.signatory2-field').val('');
-        } else if (this.value == false) {
-            $('.signatory2-field').prop("disabled", false);
-        }
-    });
-
 });
 
 

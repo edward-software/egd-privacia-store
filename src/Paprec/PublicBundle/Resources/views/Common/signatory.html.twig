@@ -32,28 +32,8 @@
                             {{ form_widget(form.signatoryTitle1, {'attr': {'class': 'form-control'}}) }}
                             {{ form_errors(form.signatoryTitle1) }}
                         </div>
-                        <div class="form-group">
-                            <label>{{ 'Public.Signatory.IsSingleSignatory'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.isSingleSignatory, {'attr': {'class': 'form-check form-check-inline radio-form'}}) }}
-                            {{ form_errors(form.isSingleSignatory) }}
-                        </div>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group">
-                            <label>{{ 'Public.Signatory.SignatoryFirstName2'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.signatoryFirstName2, {'attr': {'class': 'form-control signatory2-field'}}) }}
-                            {{ form_errors(form.signatoryFirstName2) }}
-                        </div>
-                        <div class="form-group select-container">
-                            <label>{{ 'Public.Signatory.SignatoryLastName2'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.signatoryLastName2, {'attr': {'class': 'form-control signatory2-field'}}) }}
-                            {{ form_errors(form.signatoryLastName2) }}
-                        </div>
-                        <div class="form-group">
-                            <label>{{ 'Public.Signatory.SignatoryTitle2'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.signatoryTitle2, {'attr': {'class': 'form-control signatory2-field'}}) }}
-                            {{ form_errors(form.signatoryTitle2) }}
-                        </div>
                         <button type="submit"
                                 id="signatoryFormSubmitButton"
                                 data-key="{{ recaptcha_site_key }}"
