@@ -50,12 +50,6 @@ class QuoteRequestLine
      */
     private $productName;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="setUpPrice", type="integer", nullable=true)
-     */
-    private $setUpPrice;
 
     /**
      * @var int
@@ -84,13 +78,6 @@ class QuoteRequestLine
      * @ORM\Column(name="traceabilityUnitPrice", type="integer", nullable=true)
      */
     private $traceabilityUnitPrice;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="setUpRate", type="bigint")
-     */
-    private $setUpRate;
 
     /**
      * @var int
@@ -565,54 +552,6 @@ class QuoteRequestLine
     public function getTraceabilityRate()
     {
         return $this->traceabilityRate;
-    }
-
-    /**
-     * Set setUpPrice.
-     *
-     * @param int $setUpPrice
-     *
-     * @return QuoteRequestLine
-     */
-    public function setSetUpPrice($setUpPrice)
-    {
-        $this->setUpPrice = $setUpPrice;
-
-        return $this;
-    }
-
-    /**
-     * Get setUpPrice.
-     *
-     * @return int
-     */
-    public function getSetUpPrice()
-    {
-        return $this->setUpPrice;
-    }
-
-    /**
-     * Set setUpRate.
-     *
-     * @param int $setUpRate
-     *
-     * @return QuoteRequestLine
-     */
-    public function setSetUpRate($setUpRate)
-    {
-        $this->setUpRate = $setUpRate;
-
-        return $this;
-    }
-
-    /**
-     * Get setUpRate.
-     *
-     * @return int
-     */
-    public function getSetUpRate()
-    {
-        return $this->setUpRate;
     }
 
     /**

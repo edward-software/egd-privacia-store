@@ -106,12 +106,11 @@ class PostalCodeController extends Controller
             ->setCellValue('B1', 'Code')
             ->setCellValue('C1', 'Commune')
             ->setCellValue('D1', 'Tariff zone')
-            ->setCellValue('E1', 'Setup rate')
-            ->setCellValue('F1', 'Rental rate')
-            ->setCellValue('G1', 'Transport rate')
-            ->setCellValue('H1', 'Treatment rate')
-            ->setCellValue('I1', 'Treacability rate')
-            ->setCellValue('J1', 'Salesman in charge');
+            ->setCellValue('E1', 'Rental rate')
+            ->setCellValue('F1', 'Transport rate')
+            ->setCellValue('G1', 'Treatment rate')
+            ->setCellValue('H1', 'Treacability rate')
+            ->setCellValue('I1', 'Salesman in charge');
 
         $phpExcelObject->getActiveSheet()->setTitle('Postal codes');
         $phpExcelObject->setActiveSheetIndex(0);
@@ -124,12 +123,11 @@ class PostalCodeController extends Controller
                 ->setCellValue('B' . $i, $postalCode->getCode())
                 ->setCellValue('C' . $i, $postalCode->getCity())
                 ->setCellValue('D' . $i, $postalCode->getZone())
-                ->setCellValue('E' . $i, $numberManager->denormalize15($postalCode->getSetUpRate()))
-                ->setCellValue('F' . $i, $numberManager->denormalize15($postalCode->getRentalRate()))
-                ->setCellValue('G' . $i, $numberManager->denormalize15($postalCode->getTransportRate()))
-                ->setCellValue('H' . $i, $numberManager->denormalize15($postalCode->getTreatmentRate()))
-                ->setCellValue('I' . $i, $numberManager->denormalize15($postalCode->getTraceabilityRate()))
-                ->setCellValue('J' . $i, ($postalCode->getUserInCharge()) ? $postalCode->getUserInCharge()->getEmail() : '');
+                ->setCellValue('E' . $i, $numberManager->denormalize15($postalCode->getRentalRate()))
+                ->setCellValue('F' . $i, $numberManager->denormalize15($postalCode->getTransportRate()))
+                ->setCellValue('G' . $i, $numberManager->denormalize15($postalCode->getTreatmentRate()))
+                ->setCellValue('H' . $i, $numberManager->denormalize15($postalCode->getTraceabilityRate()))
+                ->setCellValue('I' . $i, ($postalCode->getUserInCharge()) ? $postalCode->getUserInCharge()->getEmail() : '');
             $i++;
         }
 
@@ -187,7 +185,6 @@ class PostalCodeController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
 
             $postalCode = $form->getData();
-            $postalCode->setSetUpRate($numberManager->normalize15($postalCode->getSetUpRate()));
             $postalCode->setRentalRate($numberManager->normalize15($postalCode->getRentalRate()));
             $postalCode->setTransportRate($numberManager->normalize15($postalCode->getTransportRate()));
             $postalCode->setTreatmentRate($numberManager->normalize15($postalCode->getTreatmentRate()));
@@ -224,7 +221,6 @@ class PostalCodeController extends Controller
         $postalCodeManager = $this->get('paprec_catalog.postal_code_manager');
         $postalCodeManager->isDeleted($postalCode, true);
 
-        $postalCode->setSetUpRate($numberManager->denormalize15($postalCode->getSetUpRate()));
         $postalCode->setRentalRate($numberManager->denormalize15($postalCode->getRentalRate()));
         $postalCode->setTransportRate($numberManager->denormalize15($postalCode->getTransportRate()));
         $postalCode->setTreatmentRate($numberManager->denormalize15($postalCode->getTreatmentRate()));
@@ -238,7 +234,6 @@ class PostalCodeController extends Controller
 
             $postalCode = $form->getData();
 
-            $postalCode->setSetUpRate($numberManager->normalize15($postalCode->getSetUpRate()));
             $postalCode->setRentalRate($numberManager->normalize15($postalCode->getRentalRate()));
             $postalCode->setTransportRate($numberManager->normalize15($postalCode->getTransportRate()));
             $postalCode->setTreatmentRate($numberManager->normalize15($postalCode->getTreatmentRate()));

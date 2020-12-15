@@ -87,7 +87,10 @@ class QuoteRequestPublicType extends AbstractType
                 'invalid_message' => 'Public.Contact.PostalCodeError'
             ))
             ->add('city', TextType::class)
-            ->add('comment', TextareaType::class);
+            ->add('comment', TextareaType::class)
+        ->add('signatoryFirstName1', TextType::class)
+        ->add('signatoryLastName1', TextType::class)
+        ->add('signatoryTitle1', TextType::class);
 
         $builder->get('postalCode')
             ->addModelTransformer($this->transformer);

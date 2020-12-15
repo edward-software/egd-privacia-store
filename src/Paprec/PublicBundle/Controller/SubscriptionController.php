@@ -31,7 +31,7 @@ class SubscriptionController extends Controller
      */
     public function redirectToIndexAction(Request $request, $locale)
     {
-        return $this->redirectToRoute('paprec_public_type_index', array('locale' => $locale));
+        return $this->redirectToRoute('paprec_public_type_index', array('locale' => 'fr'));
 
     }
 
@@ -70,15 +70,15 @@ class SubscriptionController extends Controller
             $cart->setType($type);
             $em->flush();
 
-            if ($type === 'SINGLE') {
+            if ($type === 'PONCTUAL') {
                 return $this->redirectToRoute('paprec_public_contact_index', array(
-                    'locale' => $locale,
+                    'locale' => 'fr',
                     'cartUuid' => $cart->getId()
                 ));
             }
 
             return $this->redirectToRoute('paprec_public_catalog_index', array(
-                'locale' => $locale,
+                'locale' => 'fr',
                 'cartUuid' => $cart->getId()
             ));
 

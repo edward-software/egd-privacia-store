@@ -95,6 +95,10 @@ Public:
         Comment: Message
         SendRequest: Envoyer la demande
         BreadcrumbContent: Coordonnées du client
+        Signatory: Signataire
+        SignatoryFirstName1: Prénom signataire
+        SignatoryLastName1: Nom signataire
+        SignatoryTitle1: Titre signataire
 
     Signatory:
         BreadcrumbTitle:            Définition des signataires

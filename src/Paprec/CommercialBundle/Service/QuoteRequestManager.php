@@ -230,7 +230,6 @@ class QuoteRequestManager
             $quoteRequestLine->setQuoteRequest($quoteRequest);
             $quoteRequest->addQuoteRequestLine($quoteRequestLine);
 
-            $quoteRequestLine->setSetUpPrice($quoteRequestLine->getProduct()->getSetUpPrice());
             $quoteRequestLine->setRentalUnitPrice($quoteRequestLine->getProduct()->getRentalUnitPrice());
             $quoteRequestLine->setTransportUnitPrice($quoteRequestLine->getProduct()->getTransportUnitPrice());
             $quoteRequestLine->setTreatmentUnitPrice($quoteRequestLine->getProduct()->getTreatmentUnitPrice());
@@ -241,7 +240,6 @@ class QuoteRequestManager
              * Si codePostal, on récupère tous les coefs de celui-ci et on les affecte au quoteRequestLine
              */
             if ($quoteRequest->getPostalCode()) {
-                $quoteRequestLine->setSetUpRate($quoteRequest->getPostalCode()->getSetUpRate());
                 $quoteRequestLine->setRentalRate($quoteRequest->getPostalCode()->getRentalRate());
                 $quoteRequestLine->setTransportRate($quoteRequest->getPostalCode()->getTransportRate());
                 $quoteRequestLine->setTreatmentRate($quoteRequest->getPostalCode()->getTreatmentRate());
@@ -250,7 +248,6 @@ class QuoteRequestManager
                 /**
                  * Si pas de code postal, on met tous les coefs à 1 par défaut
                  */
-                $quoteRequestLine->setSetUpRate($numberManager->normalize15(1));
                 $quoteRequestLine->setRentalRate($numberManager->normalize15(1));
                 $quoteRequestLine->setTransportRate($numberManager->normalize15(1));
                 $quoteRequestLine->setTreatmentRate($numberManager->normalize15(1));

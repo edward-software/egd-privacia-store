@@ -160,6 +160,28 @@ class QuoteRequestType extends AbstractType
                         ->orderBy('u.firstName');
                 }
             ))
+            ->add('ponctualDuration', ChoiceType::class, array(
+                'choices' => array(
+                    '' => '0',
+                    '1 mois' => '1',
+                    '2 mois' => '2',
+                    '3 mois' => '3',
+                    '4 mois' => '4'
+                ),
+                'expanded' => false,
+                'multiple' => false
+            ))
+            ->add('regularDuration', ChoiceType::class, array(
+                'choices' => array(
+                    '' => '0',
+                    '24 mois' => '24',
+                    '36 mois' => '36',
+                    '48 mois' => '48',
+                    '60 mois' => '60',
+                ),
+                'expanded' => false,
+                'multiple' => false
+            ))
             ->add('signatoryFirstName1')
             ->add('signatoryLastName1')
             ->add('signatoryTitle1');

@@ -40,7 +40,7 @@ parameters:
 
     paprec_quote_type:
         - REGULAR
-        - SINGLE
+        - PONCTUAL
 
     paprec_quote_access_price:
         stairs: 20
@@ -54,6 +54,18 @@ parameters:
         - '2150'
         - '51100'
         - '100+'
+
+    papre_quote_ponctual_duration:
+        - 1
+        - 2
+        - 3
+        - 4
+
+    papre_quote_regular_duration:
+        - 24
+        - 36
+        - 48
+        - 60
 
     paprec_quote_destruction_type:
         - DOCUMENT_DESTRUCTION

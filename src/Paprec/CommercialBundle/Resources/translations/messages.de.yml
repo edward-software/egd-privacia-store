@@ -98,7 +98,6 @@ Commercial:
         UnitPrice: Einheitspreis
         Quantity: Anzahl
         RentalPrice: Behältermiete
-        SetUpPrice: Transportkomponente 1
         Transport: Transportkomponente 2
         Treatment: Transportkomponente 3
         Traceability: Transportkomponente 4

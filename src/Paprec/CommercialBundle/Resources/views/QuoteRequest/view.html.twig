@@ -267,7 +267,22 @@
                                             {{ ('Commercial.QuoteStatusList.' ~ quoteRequest.quoteStatus)|trans }}
                                         </label>
                                     </div>
-
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label">{{ 'Commercial.QuoteRequest.RegularDuration'|trans }}</label>
+                                        <label class="col-form-label">
+                                            {% if quoteRequest.regularDuration %}
+                                                {{ ('Commercial.RegularDuration.' ~ quoteRequest.regularDuration)|trans }}
+                                            {% endif %}
+                                        </label>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label">{{ 'Commercial.QuoteRequest.PonctualDuration'|trans }}</label>
+                                        <label class="col-form-label">
+                                            {% if quoteRequest.ponctualDuration %}
+                                                {{ ('Commercial.PonctualDuration.' ~ quoteRequest.ponctualDuration)|trans }}
+                                            {% endif %}
+                                        </label>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
@@ -279,7 +294,7 @@
                                     <div class="form-group row">
                                         <label class="col-md-4 col-form-label">{{ 'Commercial.QuoteRequest.AnnualBudget'|trans }}</label>
                                         <label class="col-form-label">
-                                            {{ quoteRequest.annualBudget|formatAmount('CHF', app.request.locale) }}
+                                            {{ quoteRequest.annualBudget|formatAmount('EUR', app.request.locale) }}
                                         </label>
                                     </div>
                                     <div class="form-group row">
@@ -291,7 +306,7 @@
                                     <div class="form-group row">
                                         <label class="col-md-4 col-form-label">{{ 'Commercial.QuoteRequest.TotalAmount'|trans }}</label>
                                         <label class="col-form-label">
-                                            {{ quoteRequest.totalAmount|formatAmount('CHF', app.request.locale) }}
+                                            {{ quoteRequest.totalAmount|formatAmount('EUR', app.request.locale) }}
                                         </label>
                                     </div>
                                 </div>
@@ -322,7 +337,6 @@
                                         <th>{{ 'Commercial.QuoteRequestLine.ProductName'|trans }}</th>
                                         <th>{{ 'Commercial.QuoteRequestLine.Quantity'|trans }}</th>
                                         <th>{{ 'Commercial.QuoteRequestLine.RentalPrice'|trans }}</th>
-                                        <th>{{ 'Commercial.QuoteRequestLine.SetUpPrice'|trans }}</th>
                                         <th>{{ 'Commercial.QuoteRequestLine.Transport'|trans }}</th>
                                         <th>{{ 'Commercial.QuoteRequestLine.Treatment'|trans }} </th>
                                         <th>{{ 'Commercial.QuoteRequestLine.Traceability'|trans }}</th>
@@ -346,36 +360,28 @@
                                                 {% if quoteRequestLine.rentalUnitPrice == 0 %}
                                                     0
                                                 {% else %}
-                                                    {{ (((quoteRequestLine.rentalRate / 1000000000000000) + (quoteRequestLine.rentalUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
+                                                    {{ (((quoteRequestLine.rentalRate / 1000000000000000) * (quoteRequestLine.rentalUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
                                                 {% endif %}
                                             </td>
-                                            <td>
-                                                {% if quoteRequestLine.setUpPrice == 0 %}
-                                                    0
-                                                {% else %}
-                                                    {{ (((quoteRequestLine.setUpRate / 1000000000000000) + (quoteRequestLine.setUpPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
-                                                {% endif %}
-                                            </td>
-
                                             <td>
                                                 {% if quoteRequestLine.transportUnitPrice == 0 %}
                                                     0
                                                 {% else %}
-                                                    {{ (((quoteRequestLine.transportRate / 1000000000000000) + (quoteRequestLine.transportUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
+                                                    {{ (((quoteRequestLine.transportRate / 1000000000000000) * (quoteRequestLine.transportUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if quoteRequestLine.treatmentUnitPrice == 0 %}
                                                     0
                                                 {% else %}
-                                                    {{ (((quoteRequestLine.treatmentRate / 1000000000000000) + (quoteRequestLine.treatmentUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
+                                                    {{ (((quoteRequestLine.treatmentRate / 1000000000000000) * (quoteRequestLine.treatmentUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if quoteRequestLine.traceabilityUnitPrice == 0 %}
                                                     0
                                                 {% else %}
-                                                    {{ (((quoteRequestLine.traceabilityRate / 1000000000000000) + (quoteRequestLine.traceabilityUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
+                                                    {{ (((quoteRequestLine.traceabilityRate / 1000000000000000) * (quoteRequestLine.traceabilityUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
                                                 {% endif %}
                                             </td>
                                             <td>{{ quoteRequestLine.accessPrice|formatAmount('', app.request.locale)|round }}</td>
