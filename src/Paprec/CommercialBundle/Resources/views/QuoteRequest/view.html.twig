@@ -360,28 +360,28 @@
                                                 {% if quoteRequestLine.rentalUnitPrice == 0 %}
                                                     0
                                                 {% else %}
-                                                    {{ (((quoteRequestLine.rentalRate / 1000000000000000) + (quoteRequestLine.rentalUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000)) }}
+                                                    {{ (((quoteRequestLine.rentalRate / 1000000000000000) * (quoteRequestLine.rentalUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if quoteRequestLine.transportUnitPrice == 0 %}
                                                     0
                                                 {% else %}
-                                                    {{ (((quoteRequestLine.transportRate / 1000000000000000) + (quoteRequestLine.transportUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
+                                                    {{ (((quoteRequestLine.transportRate / 1000000000000000) * (quoteRequestLine.transportUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if quoteRequestLine.treatmentUnitPrice == 0 %}
                                                     0
                                                 {% else %}
-                                                    {{ (((quoteRequestLine.treatmentRate / 1000000000000000) + (quoteRequestLine.treatmentUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
+                                                    {{ (((quoteRequestLine.treatmentRate / 1000000000000000) * (quoteRequestLine.treatmentUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if quoteRequestLine.traceabilityUnitPrice == 0 %}
                                                     0
                                                 {% else %}
-                                                    {{ (((quoteRequestLine.traceabilityRate / 1000000000000000) + (quoteRequestLine.traceabilityUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
+                                                    {{ (((quoteRequestLine.traceabilityRate / 1000000000000000) * (quoteRequestLine.traceabilityUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
                                                 {% endif %}
                                             </td>
                                             <td>{{ quoteRequestLine.accessPrice|formatAmount('', app.request.locale)|round }}</td>
