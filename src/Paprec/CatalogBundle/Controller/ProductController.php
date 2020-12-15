@@ -70,7 +70,7 @@ class ProductController extends Controller
             ->where('p.deleted IS NULL')
             ->andWhere('pL.language = :language')
             ->orderBy('p.position', 'ASC')
-            ->setParameter('language', 'EN');
+            ->setParameter('language', 'FR');
 
         if (is_array($search) && isset($search['value']) && $search['value'] != '') {
             if (substr($search['value'], 0, 1) == '#') {
