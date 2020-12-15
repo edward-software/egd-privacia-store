@@ -27,7 +27,6 @@ Catalog:
     Cancel:                 Annuler
     Confirm-cancel:         Etes-vous sûr de vouloir annuler ?
     Confirm-remove:         Etes-vous sûr de vouloir supprimer ce code postal ?
-    SetUpRate:              Variable Transport Composante 1
     RentalRate:             Variable Location
     TransportRate:          Variable Transport Composante 2
     TreatmentRate:          Variable Transport Composante 3
@@ -75,10 +74,9 @@ Catalog:
     CapacityUnit:           Unité de volume
     Position:               Position
     FolderNumber:           Nombre de dossiers
-    SetUpPrice:             PU Transport Composante 1
     RentalUnitPrice:        PU location
-    TransportUnitPrice:     PU Transport Composante 2
-    TreatmentUnitPrice:     PU Transport Composante 3
+    TransportUnitPrice:     PU Transport
+    TreatmentUnitPrice:     PU Traitement
     TraceabilityUnitPrice:  PU Transport Composante 4
 
   ProductLabel:

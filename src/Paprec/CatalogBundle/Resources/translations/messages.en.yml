@@ -26,7 +26,6 @@ Catalog:
     Cancel:                 Cancel
     Confirm-cancel:         Etes-vous sûr de vouloir annuler ?
     Confirm-remove:         Etes-vous sûr de vouloir supprimer ce code postal ?
-    SetUpRate:              Setup rate
     RentalRate:             Rental rate
     TransportRate:          Transport rate
     TreatmentRate:          Treatment rate
@@ -73,7 +72,6 @@ Catalog:
     Details:                Product details
     CapacityUnit:           Capacity unit
     Position:               Position
-    SetUpPrice:             Setup price
     RentalUnitPrice:        Rental unit price
     FolderNumber:           Number of folders
     TransportUnitPrice:     Transport unit price

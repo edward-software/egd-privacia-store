@@ -1,9 +1,9 @@
 Commercial:
 
 
-    Bundle-name:                    Gestion commerciale
-    QuoteRequests:                  Demandes de devis
-    Settings:                       Paramétrage
+    Bundle-name: Gestion commerciale
+    QuoteRequests: Demandes de devis
+    Settings: Paramétrage
 
     QuoteRequest:
         QuoteRequests: Demandes de devis
@@ -52,19 +52,21 @@ Commercial:
         Edit: Edition du devis
         Ponctual: A la demande
         Regular: Régulière
+        RegularDuration: Durée contrat
+        PonctualDuration: Durée prestation
         Error:
-            generatedQuoteNotSent:    Erreur lors de la génération et l'envoi du devis.
-            generatedContractNotSent:    Erreur lors de la génération et l'envoi du contrat.
+            generatedQuoteNotSent: Erreur lors de la génération et l'envoi du devis.
+            generatedContractNotSent: Erreur lors de la génération et l'envoi du contrat.
         Success:
-            generatedQuoteSent:       Le devis a bien été généré et envoyé au client.
-            generatedContractSent:       Le contrat a bien été généré et envoyé au client.
+            generatedQuoteSent: Le devis a bien été généré et envoyé au client.
+            generatedContractSent: Le contrat a bien été généré et envoyé au client.
             newUserInChargeWarned: Un mail a été envoyé au nouveau commercial en charge
         Locale: Langue
         Number: Numéro offre
         Type:
             Type: Type
-            Single: Service régulier
-            Regular: Désarchivage unique
+            Ponctual: Désarchivage unique
+            Regular: Service régulier
         SignatoryFirstName1: Prénom signataire 1
         SignatoryLastName1: Nom signataire 1
         SignatoryTitle1: Titre signataire 1
@@ -80,6 +82,18 @@ Commercial:
         2150: De 21 à 50 employés
         51100: De 51 à 100 employés
         100+: Plus de 100 employés
+
+    PonctualDuration:
+        1: 1 mois
+        2: 2 mois
+        3: 3 mois
+        4: 4 mois
+
+    RegularDuration:
+        24: 24 mois
+        36: 36 mois
+        48: 48 mois
+        60: 60 mois
 
     DestructionType:
         DOCUMENT_DESTRUCTION: Destruction confidentielle de documents
@@ -97,10 +111,9 @@ Commercial:
         UnitPrice: Prix unitaire
         Quantity: Quantité
         RentalPrice: Location
-        SetUpPrice: Transport 1
-        Transport: Transport 2
-        Treatment: Transport 3
-        Traceability: Transport 4
+        Transport: Transport
+        Treatment: Traitement
+        Traceability: Traçabilité
         Access: Accès
         TotalAmount: Montant total
         Add: Ajout d'un produit

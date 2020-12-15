@@ -228,6 +228,22 @@ class QuoteRequest
     private $annualBudget;
 
     /**
+     * @var int
+     * Durée d'une prestation ponctuelle
+     *
+     * @ORM\Column(name="contractDuration", type="integer", nullable=true)
+     */
+    private $ponctualDuration;
+
+    /**
+     * @var int
+     * Durée d'un contrat régulier
+     *
+     * @ORM\Column(name="regularDuration", type="integer", nullable=true)
+     */
+    private $regularDuration;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="frequency", type="string", length=255, nullable=true)
@@ -292,6 +308,8 @@ class QuoteRequest
      * @Assert\NotBlank(groups={"signatory"})
      */
     private $signatoryTitle1;
+
+
 
     /**
      * #################################
@@ -723,6 +741,42 @@ class QuoteRequest
     public function getSalesmanComment()
     {
         return $this->salesmanComment;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPonctualDuration()
+    {
+        return $this->ponctualDuration;
+    }
+
+    /**
+     * @param int $ponctualDuration
+     * @return QuoteRequest
+     */
+    public function setPonctualDuration($ponctualDuration)
+    {
+        $this->ponctualDuration = $ponctualDuration;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getRegularDuration()
+    {
+        return $this->regularDuration;
+    }
+
+    /**
+     * @param int $regularDuration
+     * @return QuoteRequest
+     */
+    public function setRegularDuration($regularDuration)
+    {
+        $this->regularDuration = $regularDuration;
+        return $this;
     }
 
     /**

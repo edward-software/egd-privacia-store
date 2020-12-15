@@ -159,7 +159,6 @@ class ProductController extends Controller
             'User creation ID',
             'User update ID',
             'Folder number',
-            'Setup UP',
             'PL. ID',
             'Name',
             'Short desc.',
@@ -200,7 +199,6 @@ class ProductController extends Controller
                 $product->getUserCreation(),
                 $product->getUserUpdate(),
                 $product->getFolderNumber(),
-                $numberManager->denormalize($product->getSetUpPrice()),
                 $productLabel->getId(),
                 $productLabel->getName(),
                 $productLabel->getShortDescription(),
@@ -333,7 +331,6 @@ class ProductController extends Controller
 
 
             $product->setRentalUnitPrice($numberManager->normalize($product->getRentalUnitPrice()));
-            $product->setSetUpPrice($numberManager->normalize($product->getSetUpPrice()));
             $product->setTransportUnitPrice($numberManager->normalize($product->getTransportUnitPrice()));
             $product->setTreatmentUnitPrice($numberManager->normalize($product->getTreatmentUnitPrice()));
             $product->setTraceabilityUnitPrice($numberManager->normalize($product->getTraceabilityUnitPrice()));
@@ -386,7 +383,6 @@ class ProductController extends Controller
         $language = $request->getLocale();
         $productLabel = $productManager->getProductLabelByProductAndLocale($product, strtoupper($language));
 
-        $product->setSetUpPrice($numberManager->denormalize($product->getSetUpPrice()));
         $product->setRentalUnitPrice($numberManager->denormalize($product->getRentalUnitPrice()));
         $product->setTransportUnitPrice($numberManager->denormalize($product->getTransportUnitPrice()));
         $product->setTreatmentUnitPrice($numberManager->denormalize($product->getTreatmentUnitPrice()));
@@ -408,7 +404,6 @@ class ProductController extends Controller
 
             $product = $form1->getData();
 
-            $product->setSetUpPrice($numberManager->normalize($product->getSetUpPrice()));
             $product->setRentalUnitPrice($numberManager->normalize($product->getRentalUnitPrice()));
             $product->setTransportUnitPrice($numberManager->normalize($product->getTransportUnitPrice()));
             $product->setTreatmentUnitPrice($numberManager->normalize($product->getTreatmentUnitPrice()));

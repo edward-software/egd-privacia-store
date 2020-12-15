@@ -36,7 +36,6 @@ class ProductType extends AbstractType
                 'data' => '1',
                 "expanded" => true,
             ))
-            ->add('setUpPrice', TextType::class)
             ->add('rentalUnitPrice', TextType::class)
             ->add('transportUnitPrice', TextType::class)
             ->add('treatmentUnitPrice', TextType::class)

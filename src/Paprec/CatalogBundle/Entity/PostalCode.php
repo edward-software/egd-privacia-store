@@ -64,7 +64,7 @@ class PostalCode
     private $deleted;
 
     /**
-     * @var text
+     * @var string
      * @ORM\Column(name="code", type="string")
      * @Assert\NotBlank()
      * @Assert\Regex(
@@ -74,14 +74,6 @@ class PostalCode
      * )
      */
     private $code;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="setUpRate", type="bigint")
-     * @Assert\NotBlank()
-     */
-    private $setUpRate;
 
     /**
      * @var int
@@ -489,30 +481,6 @@ class PostalCode
     public function getQuoteRequests()
     {
         return $this->quoteRequests;
-    }
-
-    /**
-     * Set setUpRate.
-     *
-     * @param int $setUpRate
-     *
-     * @return PostalCode
-     */
-    public function setSetUpRate($setUpRate)
-    {
-        $this->setUpRate = $setUpRate;
-
-        return $this;
-    }
-
-    /**
-     * Get setUpRate.
-     *
-     * @return int
-     */
-    public function getSetUpRate()
-    {
-        return $this->setUpRate;
     }
 
     /**

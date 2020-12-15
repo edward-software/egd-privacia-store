@@ -225,7 +225,6 @@ $(function () {
     });
 
     // Désactivation des champs d'adresses quand on sélecitonne multisite
-    /*
     $('input[name*=isMultisite]').change(function () {
         if (this.value == 1) {
             $('.address-field').prop("disabled", true);
@@ -233,7 +232,7 @@ $(function () {
         } else if (this.value == 0) {
             $('.address-field').prop("disabled", false);
         }
-    });*/
+    });
 
     $('#contact_staff_select').change(function () {
         $('.contact_staff_input').val(this.value);

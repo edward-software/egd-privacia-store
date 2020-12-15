@@ -52,14 +52,6 @@
                             </span>
                         </div>
                         <div class="form-group">
-                            <label>Portable* :</label>{#Inserérer les variables#}
-                            {{ form_widget(form.phone, {'attr': {'class': 'form-control'}}) }}
-                            {{ form_errors(form.phone) }}
-                            <span id="phone-number-info">
-                                {{ 'Public.Contact.PhoneNumberInfo'| trans({}, "messages", locale) }}
-                            </span>
-                        </div>
-                        <div class="form-group">
                             <label>{{ 'Public.Contact.Staff'| trans({}, "messages", locale) }}* :</label>
                             <select id="contact_staff_select" class="form-control">
                                 <option value="" selected disabled hidden></option>
@@ -102,7 +94,7 @@
                             </select>
                             {{ form_errors(form.destructionType) }}
                         </div>#}
-                        <div class="form-group paprec-flex align-items_center">
+                        <div class="form-group paprec-flex align-items_center m-t-30">
                             <label>{{ 'Public.Contact.IsMultisite'| trans({}, "messages", locale) }}* :</label>
                             {{ form_widget(form.isMultisite, {'attr': {'class': 'form-check form-check-inline radio-form'}}) }}
                             {{ form_errors(form.isMultisite) }}
@@ -123,12 +115,6 @@
                             {{ form_widget(form.city, {'attr': {'class': 'form-control address-field'}}) }}
                             {{ form_errors(form.city) }}
                         </div>
-                        <div class="form-group">
-                            <label>{{ 'Public.Contact.Comment'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.comment, {'attr': {'class': 'form-control', 'rows': '11'}}) }}
-                            {{ form_errors(form.comment) }}
-                        </div>
-                        <h2 class="color-secondary m-y-25">Adresse de facturation</h2>
                         {% if cart.otherNeeds and cart.otherNeeds|length > 0 %}
                             <div class="form-group">
                                 <label>{{ 'Public.Catalog.Other-Needs'| trans({}, "messages", locale) }}</label>
@@ -141,11 +127,26 @@
                                 </ul>
                             </div>
                         {% endif %}
-
+                        <h2 class="color-secondary m-y-25">{{ 'Public.Contact.Signatory'| trans({}, "messages", locale) }}</h2>
+                        <div class="form-group">
+                            <label>{{ 'Public.Contact.SignatoryLastName1'| trans({}, "messages", locale) }}* :</label>
+                            {{ form_widget(form.signatoryLastName1, {'attr': {'class': 'form-control', 'rows': '11'}}) }}
+                            {{ form_errors(form.signatoryLastName1) }}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ 'Public.Contact.SignatoryFirstName1'| trans({}, "messages", locale) }}* :</label>
+                            {{ form_widget(form.signatoryFirstName1, {'attr': {'class': 'form-control', 'rows': '11'}}) }}
+                            {{ form_errors(form.signatoryFirstName1) }}
+                        </div>
+                        <div class="form-group">
+                            <label>{{ 'Public.Contact.SignatoryTitle1'| trans({}, "messages", locale) }}* :</label>
+                            {{ form_widget(form.signatoryTitle1, {'attr': {'class': 'form-control', 'rows': '11'}}) }}
+                            {{ form_errors(form.signatoryTitle1) }}
+                        </div>
                         <button type="submit"
                                 id="contactDetailFormSubmitButton"
                                 data-key="{{ recaptcha_site_key }}"
-                                class="btn btn__blue valid">{{ 'Public.Contact.SendRequest'| trans({}, "messages", locale) }}</button>
+                                class="m-y-25 btn btn__blue valid">{{ 'Public.Contact.SendRequest'| trans({}, "messages", locale) }}</button>
                     </div>
                 </div>
                 {{ form_rest(form) }}

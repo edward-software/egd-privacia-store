@@ -264,7 +264,20 @@
                                             {{ form_errors(form.quoteStatus) }}
                                         </div>
                                     </div>
-
+                                    <div class="form-group">
+                                        <label class="form-label">{{ 'Commercial.QuoteRequest.RegularDuration'|trans }}</label>
+                                        <div class="form-content">
+                                            {{ form_widget(form.regularDuration, {'attr': {'class': 'form-control'}}) }}
+                                            {{ form_errors(form.regularDuration) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="form-label">{{ 'Commercial.QuoteRequest.PonctualDuration'|trans }}</label>
+                                        <div class="form-content">
+                                            {{ form_widget(form.ponctualDuration, {'attr': {'class': 'form-control'}}) }}
+                                            {{ form_errors(form.ponctualDuration) }}
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group">

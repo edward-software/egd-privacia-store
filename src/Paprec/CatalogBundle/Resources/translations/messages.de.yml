@@ -27,7 +27,6 @@ Catalog:
     Cancel:                 Stornieren
     Confirm-cancel:         Sind Sie sicher, dass Sie stornieren möchten?
     Confirm-remove:         Sind Sie sicher, dass Sie PLZ löschen möchten
-    SetUpRate:              PreisVariable für Transport (komponente 1)
     RentalRate:             PreisVariable für Behältermiete
     TransportRate:          PreisVariable für Transport (komponente 2)
     TreatmentRate:          PreisVariable für Transport (komponente 3)
@@ -75,7 +74,6 @@ Catalog:
     CapacityUnit:           Volumeneinheit
     Position:               Position
     FolderNumber:           Anzahl Ordner
-    SetUpPrice:             Transportpreis (komponente 1)
     RentalUnitPrice:        Mietpreis
     TransportUnitPrice:     Transportpreis (komponente 2)
     TreatmentUnitPrice:     Transportpreis (komponente 3)

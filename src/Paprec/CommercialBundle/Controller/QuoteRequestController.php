@@ -61,6 +61,11 @@ class QuoteRequestController extends Controller
             'id' => 'q.reference',
             'method' => array('getReference')
         );
+        $cols['type'] = array(
+            'label' => 'type',
+            'id' => 'q.type',
+            'method' => array('getType')
+        );
         $cols['businessName'] = array(
             'label' => 'businessName',
             'id' => 'q.businessName',
@@ -119,6 +124,7 @@ class QuoteRequestController extends Controller
                     $queryBuilder->expr()->like('q.id', '?1'),
                     $queryBuilder->expr()->like('q.number', '?1'),
                     $queryBuilder->expr()->like('q.reference', '?1'),
+                    $queryBuilder->expr()->like('q.type', '?1'),
                     $queryBuilder->expr()->like('q.businessName', '?1'),
                     $queryBuilder->expr()->like('q.totalAmount', '?1'),
                     $queryBuilder->expr()->like('q.quoteStatus', '?1'),
@@ -133,6 +139,7 @@ class QuoteRequestController extends Controller
         $tmp = array();
         foreach ($datatable['data'] as $data) {
             $line = $data;
+            $line['type'] = $data['type'] ? $this->get('translator')->trans('Commercial.QuoteRequest.Type.' . ucfirst(strtolower( $line['type']))) : '';
             $line['isMultisite'] = $data['isMultisite'] ? $this->get('translator')->trans('General.1') : $this->get('translator')->trans('General.0');
             $line['totalAmount'] = $numberManager->formatAmount($data['totalAmount'], 'CHF', $request->getLocale());
             $line['quoteStatus'] = $this->container->get('translator')->trans("Commercial.QuoteStatusList." . $data['quoteStatus']);
