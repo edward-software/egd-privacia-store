@@ -28,9 +28,9 @@ Catalog:
     Confirm-cancel:         Etes-vous sûr de vouloir annuler ?
     Confirm-remove:         Etes-vous sûr de vouloir supprimer ce code postal ?
     RentalRate:             Variable Location
-    TransportRate:          Variable Transport Composante 2
-    TreatmentRate:          Variable Transport Composante 3
-    TraceabilityRate:       Variable Transport Composante 4
+    TransportRate:          Variable Transport
+    TreatmentRate:          Variable Traitement
+    TraceabilityRate:       Variable Traçabilité
     UserInCharge:           Commercial en charge
     DisabledUser:           (Compte non actif)
     DeletedUser:            (Compte supprimé)
@@ -77,7 +77,7 @@ Catalog:
     RentalUnitPrice:        PU location
     TransportUnitPrice:     PU Transport
     TreatmentUnitPrice:     PU Traitement
-    TraceabilityUnitPrice:  PU Transport Composante 4
+    TraceabilityUnitPrice:  PU Traçabilité
 
   ProductLabel:
     Add: Ajouter une traduction
