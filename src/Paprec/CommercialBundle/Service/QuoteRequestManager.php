@@ -809,6 +809,12 @@ class QuoteRequestManager
                 return false;
             }
 
+            if ($quoteRequest->getType() === 'REGULAR') {
+                $templateDir .= 'regular/';
+            } else {
+                $templateDir .= 'ponctual/';
+            }
+
             $productManager = $this->container->get('paprec_catalog.product_manager');
             $products = $productManager->getAvailableProducts();
 
