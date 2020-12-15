@@ -141,7 +141,7 @@ class QuoteRequestController extends Controller
             $line = $data;
             $line['type'] = $data['type'] ? $this->get('translator')->trans('Commercial.QuoteRequest.Type.' . ucfirst(strtolower( $line['type']))) : '';
             $line['isMultisite'] = $data['isMultisite'] ? $this->get('translator')->trans('General.1') : $this->get('translator')->trans('General.0');
-            $line['totalAmount'] = $numberManager->formatAmount($data['totalAmount'], 'CHF', $request->getLocale());
+            $line['totalAmount'] = $numberManager->formatAmount($data['totalAmount'], 'EUR', $request->getLocale());
             $line['quoteStatus'] = $this->container->get('translator')->trans("Commercial.QuoteStatusList." . $data['quoteStatus']);
             $tmp[] = $line;
         }
