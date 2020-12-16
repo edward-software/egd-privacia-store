@@ -58,6 +58,6 @@ services:
 
 twig:
   globals:
-    reisswolf_public_site_url: '%reisswolf_public_site_url%'
+    privacia_public_site_url: '%privacia_public_site_url%'
     recaptcha_site_key: '%recaptcha_site_key%'
     recaptcha_secret_key: '%recaptcha_secret_key%'

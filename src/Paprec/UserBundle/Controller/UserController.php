@@ -109,9 +109,9 @@ class UserController extends Controller
 
         $users = $queryBuilder->getQuery()->getResult();
 
-        $phpExcelObject->getProperties()->setCreator("Reisswolf Shop")
-            ->setLastModifiedBy("Reisswolf Shop")
-            ->setTitle("Reisswolf Shop - USers")
+        $phpExcelObject->getProperties()->setCreator("Privacia Shop")
+            ->setLastModifiedBy("Privacia Shop")
+            ->setTitle("Privacia Shop - USers")
             ->setSubject("Extact");
 
         $phpExcelObject->setActiveSheetIndex(0)
@@ -165,7 +165,7 @@ class UserController extends Controller
 
         $writer = $this->container->get('phpexcel')->createWriter($phpExcelObject, 'Excel2007');
 
-        $fileName = 'ReisswolfShop-Extract-Users-' . date('Y-m-d') . '.xlsx';
+        $fileName = 'PrivaciaShop-Extract-Users-' . date('Y-m-d') . '.xlsx';
 
         // create the response
         $response = $this->container->get('phpexcel')->createStreamedResponse($writer);

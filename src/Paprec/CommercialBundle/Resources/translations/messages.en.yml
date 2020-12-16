@@ -107,11 +107,11 @@ Commercial:
       M: Dear Mr.
       Mrs: Dear Mrs.
     Title: Your request has been taken into account and sent to the sales department in your region.
-    Message1: Thank you for your request of %date%. Thank you for your interest in REISSWOLF services.
+    Message1: Thank you for your request of %date%. Thank you for your interest in PRIVACIA services.
     TechnicalService: service technique
-    Message2: We will send you our offer for REISSWOLF services in the next few hours.
+    Message2: We will send you our offer for PRIVACIA services in the next few hours.
     Regards: Best regards
-    Partner: Your partner Reisswolf
+    Partner: Your partner Privacia
     Disclaimer:
       Message1: You have received this e-mail to inform you of important changes to the services
       Message2: you use

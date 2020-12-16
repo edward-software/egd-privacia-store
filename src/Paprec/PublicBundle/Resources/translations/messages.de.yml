@@ -24,7 +24,7 @@ Public:
             SubMenu5: Zertifikate IQ NET und SQS
         Menu4:
             Title: Unternehmen
-            SubMenu1: Über Reisswolf
+            SubMenu1: Über Privacia
             SubMenu2: Paprec Gruppe
             SubMenu3: Nachhaltigkeit
             SubMenu4: Geschäftsleitung
@@ -37,7 +37,7 @@ Public:
     Type:
         BreadcrumbTitle: Bedarf definieren
         BreadcrumbContent: Bedarf definieren
-        Title: Die Reisswolf-Betriebe entsorgen und vernichten in allen Teilen der Schweiz vertrauliche Akten und Datenträger nach einheitlichen Sicherheitskriterien.
+        Title: Die Privacia-Betriebe entsorgen und vernichten in allen Teilen der Schweiz vertrauliche Akten und Datenträger nach einheitlichen Sicherheitskriterien.
         Solution1:
             Title: 'Lösung 1: REGELMÄSSIGE DIENSTLEISTUNG'
             Message1: 'Unser Dienstleistungspaket umfasst unter anderem:'
