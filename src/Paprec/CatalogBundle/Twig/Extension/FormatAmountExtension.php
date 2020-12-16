@@ -35,7 +35,7 @@ class FormatAmountExtension extends \Twig_Extension
 
         if ($type === 'DEC2') {
             $amount = str_replace(',', '.', $amount);
-            return  number_format((float)$amount, 2);
+            return  number_format((float)$amount, 2, ',', ' ');
         }
 
         return $formatManager->formatAmount($amount, $currency, $locale);

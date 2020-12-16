@@ -465,7 +465,7 @@
                 </tr>
                 <tr>
                     <td class="text-left">Escalier</td>
-                    <td></td>
+                    <td>{{ totalQuantity }}</td>
                     <td>5,00 €</td>
                 </tr>
                 <tr>
@@ -479,9 +479,9 @@
             <p class="bold mb-14">BUDGET :</p>
 
             <div class="flex">
-            <table style="width:48%; margin-right: 20px;">
-                <caption class="text-left bold">Location Conteneurs :</caption>
-                <tbody>
+                <table style="width:48%; margin-right: 20px;">
+                    <caption class="text-left bold">Location Conteneurs :</caption>
+                    <tbody>
                     <tr>
                         <th>Type Conteneurs</th>
                         <th>Quantité</th>
@@ -494,6 +494,7 @@
                         </th>
                     </tr>
                     {% set rentalTotalHT = 0 %}
+                    {% set totalQuantity = 0 %}
                     {% for product in products %}
                         {% set quantity = 0 %}
                         {% set unitPrice = 0 %}
@@ -501,6 +502,7 @@
                         {% for line in quoteRequest.quoteRequestLines %}
                             {% if line.product.id == product.id %}
                                 {% set quantity = line.quantity %}
+                                {% set totalQuantity = totalQuantity + quantity %}
                                 {% set unitPrice = (((line.rentalRate / 1000000000000000) * (line.rentalUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000) ) %}
                                 {% set total = (unitPrice * quantity) %}
                                 {% set rentalTotalHT = rentalTotalHT + total %}
@@ -515,8 +517,8 @@
                                 </div>
                             </td>
                             <td>
-                                {{ quantity }}
-                            </td>
+
+                            </td>{{ quantity }}
                             <td>{{ unitPrice|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                             <td>{{ total|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
@@ -567,7 +569,7 @@
                     {% set transportTreatmentTotalHT = 0 %}
                     {% for product in products %}
                         {% if minTransportUnitPrice == null or product.transportUnitPrice < minTransportUnitPrice %}
-                         {% set minTransportUnitPrice = product.transportUnitPrice%}
+                            {% set minTransportUnitPrice = product.transportUnitPrice %}
                         {% endif %}
                         {% set quantity = 0 %}
                         {% set unitPrice = 0 %}

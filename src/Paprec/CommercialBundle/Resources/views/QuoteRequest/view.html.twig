@@ -360,32 +360,32 @@
                                                 {% if quoteRequestLine.rentalUnitPrice == 0 %}
                                                     0
                                                 {% else %}
-                                                    {{ (((quoteRequestLine.rentalRate / 1000000000000000) * (quoteRequestLine.rentalUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
+                                                    {{ (((quoteRequestLine.rentalRate / 1000000000000000) * (quoteRequestLine.rentalUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|number_format(2, ',') }}
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if quoteRequestLine.transportUnitPrice == 0 %}
                                                     0
                                                 {% else %}
-                                                    {{ (((quoteRequestLine.transportRate / 1000000000000000) * (quoteRequestLine.transportUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
+                                                    {{ (((quoteRequestLine.transportRate / 1000000000000000) * (quoteRequestLine.transportUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|number_format(2, ',') }}
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if quoteRequestLine.treatmentUnitPrice == 0 %}
                                                     0
                                                 {% else %}
-                                                    {{ (((quoteRequestLine.treatmentRate / 1000000000000000) * (quoteRequestLine.treatmentUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
+                                                    {{ (((quoteRequestLine.treatmentRate / 1000000000000000) * (quoteRequestLine.treatmentUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|number_format(2, ',') }}
                                                 {% endif %}
                                             </td>
                                             <td>
                                                 {% if quoteRequestLine.traceabilityUnitPrice == 0 %}
                                                     0
                                                 {% else %}
-                                                    {{ (((quoteRequestLine.traceabilityRate / 1000000000000000) * (quoteRequestLine.traceabilityUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|round }}
+                                                    {{ (((quoteRequestLine.traceabilityRate / 1000000000000000) * (quoteRequestLine.traceabilityUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|number_format(2, ',') }}
                                                 {% endif %}
                                             </td>
-                                            <td>{{ quoteRequestLine.accessPrice|formatAmount('', app.request.locale)|round }}</td>
-                                            <td>{{ quoteRequestLine.totalAmount|formatAmount('', app.request.locale)|round }}</td>
+                                            <td>{{ quoteRequestLine.accessPrice|formatAmount('', app.request.locale) }}</td>
+                                            <td>{{ quoteRequestLine.totalAmount|formatAmount('', app.request.locale) }}</td>
                                             <td class="text-center">
                                                 <a href="{{ path('paprec_commercial_quoteRequest_editLine', {id: quoteRequest.id, quoteLineId: quoteRequestLine.id}) }}"
                                                    class="btn btn-sm btn-warning btn-sm mx-1"
