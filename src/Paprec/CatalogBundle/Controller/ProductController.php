@@ -133,9 +133,9 @@ class ProductController extends Controller
 
         $products = $queryBuilder->getQuery()->getResult();
 
-        $phpExcelObject->getProperties()->setCreator("Reisswolf Shop")
-            ->setLastModifiedBy("Reisswolf Shop")
-            ->setTitle("Reisswolf Shop - Products")
+        $phpExcelObject->getProperties()->setCreator("Privacia Shop")
+            ->setLastModifiedBy("Privacia Shop")
+            ->setTitle("Privacia Shop - Products")
             ->setSubject("Extract");
 
         $sheet = $phpExcelObject->setActiveSheetIndex();
@@ -230,7 +230,7 @@ class ProductController extends Controller
     
         $writer = $this->container->get('phpexcel')->createWriter($phpExcelObject, 'Excel2007');
 
-        $fileName = 'ReisswolfShop-Extraction-Products-' . date('Y-m-d') . '.xlsx';
+        $fileName = 'PrivaciaShop-Extraction-Products-' . date('Y-m-d') . '.xlsx';
 
         // create the response
         $response = $this->container->get('phpexcel')->createStreamedResponse($writer);

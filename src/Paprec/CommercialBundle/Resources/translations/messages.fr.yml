@@ -42,7 +42,7 @@ Commercial:
         AnnualBudget: Budget annuel
         View: Vue du devis
         Download-quote: Télécharger PDF
-        DownloadedQuoteName: Contrat Reisswolf
+        DownloadedQuoteName: Contrat Privacia
         Send-quote: Envoyer devis au client
         Send-contract: Envoyer contrat au client
         ProductsList: Liste des produits
@@ -127,11 +127,11 @@ Commercial:
 
     NewQuoteEmail:
         Object: Voici une nouvelle demande client N°%number%
-        Dear: Cher(ère) Collègue Reisswolf
+        Dear: Cher(ère) Collègue Privacia
         Message1: Tu trouveras ci-joint une demande de vérification de l'offre pour la zone géographique ainsi que du contrat prévu.
         QuoteLink: Cliquer ici sur le lien pour accéder à la demande.
         Message2: Nous t’en remercions par avance.
-        Partner: Ton partenaire Reisswolf
+        Partner: Ton partenaire Privacia
 
     ConfirmEmail:
         Object: Nous vous remercions pour votre demande
@@ -139,51 +139,51 @@ Commercial:
             M: Cher Monsieur
             Mrs: Chère Madame
         Title: Votre demande a bien été prise en compte et envoyée au service commercial de votre région.
-        Message1: Merci pour votre demande du  %date%. Nous vous remercions de l'intérêt que vous portez aux services REISSWOLF.
+        Message1: Merci pour votre demande du  %date%. Nous vous remercions de l'intérêt que vous portez aux services Privacia.
         TechnicalService: service technique
-        Message2: Nous vous enverrons notre offre pour les services REISSWOLF dans les prochaines heures.
+        Message2: Nous vous enverrons notre offre pour les services PRIVACIA dans les prochaines heures.
         Regards: Bien cordialement
-        Partner: Votre partenaire Reisswolf
+        Partner: Votre partenaire Privacia
         NoReply: Ne pas répondre à ce message; il a été envoyé à partir d'une boîte automatisée.
         Disclaimer:
             Message1: Vous avez reçu cet e-mail pour vous informer des modifications importantes apportées aux services
             Message2: que vous utilisez
 
     GeneratedQuoteEmail:
-        FileName: Offre Reisswolf
-        Object: Offre de services Reisswolf
+        FileName: Offre Privacia
+        Object: Offre de services Privacia
         Dear:
             M: Cher Monsieur
             Mrs: Chère Madame
-        Message1: Merci pour votre demande du  %date%. Nous vous remercions de l'intérêt que vous portez aux services REISSWOLF.
-        Message2: Vous trouverez en annexe notre offre pour les services REISSWOLF. Ceux-ci peuvent être adaptés à vos besoins actuels à tout moment, rapidement et simplement. Nous garantissons toujours un service impeccable et la destruction quotidienne de vos fichiers et supports de données.
+        Message1: Merci pour votre demande du  %date%. Nous vous remercions de l'intérêt que vous portez aux services PRIVACIA.
+        Message2: Vous trouverez en annexe notre offre pour les services PRIVACIA. Ceux-ci peuvent être adaptés à vos besoins actuels à tout moment, rapidement et simplement. Nous garantissons toujours un service impeccable et la destruction quotidienne de vos fichiers et supports de données.
         Message3: N'hésitez pas à nous contacter si vous avez d'autres questions. Nous nous réjouissons de travailler bientôt avec vous.
         Message4: Si vous êtes d'accord,
         Message5: cliquer ici sur le lien pour renseigner les signataires du contrat de service
         ReplySubject: Demande contrat / ID Devis N°%id%
         Regards: Bien cordialement
-        Partner: Votre partenaire Reisswolf
+        Partner: Votre partenaire Privacia
 
     GeneratedContractEmail:
-        FileName: Contrat Reisswolf
-        Object: Contrat de services Reisswolf
+        FileName: Contrat Privacia
+        Object: Contrat de services Privacia
         Dear:
             M: Cher Monsieur
             Mrs: Chère Madame
-        Message1: Nous vous remercions d’avoir choisi les services de REISSWOLF SA.
-        Message2: Vous trouverez en annexe notre contrat pour les services de REISSWOLF SA.
-        Message3: Nous vous prions de bien vouloir imprimer 2 exemplaires, les signer et les envoyer à l’adresse Reisswolf en haut du contrat.
+        Message1: Nous vous remercions d’avoir choisi les services de PRIVACIA SA.
+        Message2: Vous trouverez en annexe notre contrat pour les services de PRIVACIA SA.
+        Message3: Nous vous prions de bien vouloir imprimer 2 exemplaires, les signer et les envoyer à l’adresse Privacia en haut du contrat.
         Message4: Dès réception, vous recevrez quelques jours plus tard une version signée par nos soins.
         Message5: N'hésitez pas à nous contacter si vous avez d'autres questions. Nous nous réjouissons de travailler bientôt avec vous.
         Regards: Bien cordialement
-        Partner: Votre partenaire Reisswolf
+        Partner: Votre partenaire Privacia
 
     NewContractEmail:
-        FileName: Contrat Reisswolf
-        Object: Contrat Reisswolf N°%number%
-        Dear: Cher (ère) Collègue Reisswolf,
+        FileName: Contrat Privacia
+        Object: Contrat Privacia N°%number%
+        Dear: Cher (ère) Collègue Privacia,
         Message1: Pour information, tu trouveras ci-joint un contrat que le client devrait rapidement nous renvoyer signé.
-        Partner: Ton partenaire Reisswolf
+        Partner: Ton partenaire Privacia
 User:
     User:
         Lang: Langue

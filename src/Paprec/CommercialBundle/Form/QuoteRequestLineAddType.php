@@ -30,7 +30,7 @@ class QuoteRequestLineAddType extends AbstractType
                         ->where('p.deleted IS NULL')
                         ->andWhere('pL.language = :language')
                         ->orderBy('p.position', 'ASC')
-                        ->setParameter('language', 'EN');
+                        ->setParameter('language', 'FR');
                 },
                 'choice_label' => 'productLabels[0].name',
                 'placeholder' => '',

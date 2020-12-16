@@ -192,7 +192,7 @@ class QuoteRequestController extends Controller
         $quoteRequests = $queryBuilder->getQuery()->getResult();
 
         $phpExcelObject->getProperties()->setCreator("Paprec Easy Recyclage")
-            ->setLastModifiedBy("Reisswolf Shop")
+            ->setLastModifiedBy("Privacia Shop")
             ->setTitle("Paprec Easy Recyclage - Devis")
             ->setSubject("Extraction");
 
@@ -302,7 +302,7 @@ class QuoteRequestController extends Controller
 
         $writer = $this->container->get('phpexcel')->createWriter($phpExcelObject, 'Excel2007');
 
-        $fileName = 'ReisswolfShop-Extraction-Devis--' . date('Y-m-d') . '.xlsx';
+        $fileName = 'PrivaciaShop-Extraction-Devis--' . date('Y-m-d') . '.xlsx';
 
         // create the response
         $response = $this->container->get('phpexcel')->createStreamedResponse($writer);

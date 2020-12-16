@@ -56,6 +56,7 @@
         .text-left {
             text-align: left;
         }
+
         .text-right {
             text-align: right;
         }
@@ -149,6 +150,7 @@
         .offer__title {
             border-bottom: 2px solid #004a8e;
         }
+
         .offer__title__ref {
             border-top: 2px solid #004a8e;
             border-right: 2px solid #004a8e;
@@ -288,17 +290,21 @@
         table.simple-table tr:not(:first-child) td {
             border-top: 0 !important;
         }
+
         table.simple-table td {
             padding: 2px 5px;
         }
+
         table.simple-table tr td:first-child {
             width: 250px;
             padding-right: 30px;
         }
+
         table.simple-table tr td:nth-child(2) {
             width: 150px;
             border-left: 0;
         }
+
         table.simple-table tr td:nth-child(3) {
             width: 100px;
         }
@@ -319,32 +325,45 @@
 <body>
 <div class="offer__container">
     <div class="offer__header">
-        <img src="{{ absolute_url(asset('build/static/logo-privacia.png')) }}" alt="logo Privacia" style="width: 300px;">
+        <img src="{{ absolute_url(asset('build/static/logo-privacia.png')) }}" alt="logo Privacia"
+             style="width: 300px;">
     </div>
 
     <div class="offer__title flex space-between">
         <h1>Prestations Ponctuelles de Désarchivage</h1>
-        <p class="offer__title__ref">HLP14012019</p>
+        <p class="offer__title__ref">{{ quoteRequest.reference }}</p>
     </div>
 
     <div class="offer__content">
 
         <div class="offer__ref">
 
-            {#partie 1#}
+            {# partie 1 #}
 
             <h2>1. Client</h2>
-            <p><span class="bold">Nom de la société :</span> Nom de la société</p>
-            <p><span class="bold">Numéro / Rue :</span> Numéro rue</p>
+            <p><span class="bold">Nom de la société :</span> {{ quoteRequest.businessName }}</p>
+            <p><span class="bold">Numéro / Rue :</span> {{ quoteRequest.address }}</p>
             <div class="flex offer__ref-items">
                 <div>
-                    <p><span class="bold">Code Postal / Ville :</span> code ville</p>
+                    <p>
+                        <span class="bold">Code Postal / Ville :</span> {% if quoteRequest.postalCode %}{{ quoteRequest.postalCode.code }}{% endif %} {{ quoteRequest.city }}
+                    </p>
                 </div>
-                <div>
-                    <p><span class="bold">Étage :</span> étage</p>
-                </div>
+                {# <div> #}
+                {# <p><span class="bold">Étage :</span> étage</p> #}
+                {# </div> #}
             </div>
             <p class="bold"><u>Personne responsable (droit à la signature) :</u></p>
+            <div class="flex offer__ref-items">
+                <div>
+                    <p><span class="bold">Nom :</span> {{ quoteRequest.signatoryLastName1 }}</p>
+                </div>
+                <div>
+                    <p><span class="bold">Prénom :</span> {{ quoteRequest.signatoryFirstName1 }}</p>
+                </div>
+            </div>
+            <p><span class="bold">Fonction :</span> {{ quoteRequest.signatoryTitle1 }}</p>
+            <p class="bold"><u>Personne contact si différente :</u></p>
             <div class="flex offer__ref-items">
                 <div>
                     <p><span class="bold">Nom :</span> {{ quoteRequest.lastName }}</p>
@@ -353,41 +372,35 @@
                     <p><span class="bold">Prénom :</span> {{ quoteRequest.firstName }}</p>
                 </div>
             </div>
-            <p><span class="bold">Fonction :</span> {{ quoteRequest.businessName }}</p>
-            <p class="bold"><u>Personne contact si différente :</u></p>
-            <div class="flex offer__ref-items">
-                <div>
-                    <p><span class="bold">Nom :</span> nom</p>
-                </div>
-                <div>
-                    <p><span class="bold">Prénom :</span> prénom</p>
-                </div>
-            </div>
-            <p><span class="bold">Fonction :</span> fonction</p>
+            {# <p><span class="bold">Fonction :</span> fonction</p> #}
             <p><span class="bold">Télephone :</span> {{ quoteRequest.phone }}</p>
             <p><span class="bold">Email :</span> {{ quoteRequest.email }}</p>
 
-            {#partie 2#}
+            {# partie 2 #}
 
             <h2>2. Objet, Durée, Prix HT</h2>
-            <p><span class="bold">Début de la prestation :</span> date</p>
+            <p><span class="bold">Début de la prestation :</span></p>
             <div class="flex">
                 <p class="bold">Durée de la prestation : </p>
                 <div class="flex align-item-center">
-                    {#class active pour check the box#}
-                    <div class="check active" style="margin-left: 10px;margin-right: 10px;"></div>
+                    {# class active pour check the box #}
+                    <div class="check {% if quoteRequest.ponctualDuration == 1 %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>1 mois</p>
                 </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
-                    <div class="check" style="margin-left: 10px;margin-right: 10px;"></div>
+                    <div class="check {% if quoteRequest.ponctualDuration == 2 %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>2 mois</p>
                 </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
-                    <div class="check" style="margin-left: 10px;margin-right: 10px;"></div>
+                    <div class="check {% if quoteRequest.ponctualDuration == 3 %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>3 mois</p>
                 </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
-                    <div class="check" style="margin-left: 10px;margin-right: 10px;"></div>
+                    <div class="check {% if quoteRequest.ponctualDuration == 4 %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>4 mois</p>
                 </div>
             </div>
@@ -396,24 +409,29 @@
             <div class="flex">
                 <p class="bold">Nombre de passages :</p>
                 <div class="flex align-item-center">
-                    {#class active pour check the box#}
-                    <div class="check active" style="margin-left: 10px;margin-right: 10px;"></div>
+                    {# class active pour check the box #}
+                    <div class="check {% if quoteRequest.frequencyTimes == 1 %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>1 passage</p>
                 </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
-                    <div class="check" style="margin-left: 10px;margin-right: 10px;"></div>
+                    <div class="check {% if quoteRequest.frequencyTimes == 2 %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>2 passages</p>
                 </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
-                    <div class="check" style="margin-left: 10px;margin-right: 10px;"></div>
+                    <div class="check {% if quoteRequest.frequencyTimes == 3 %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>3 passages</p>
                 </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
-                    <div class="check" style="margin-left: 10px;margin-right: 10px;"></div>
+                    <div class="check {% if quoteRequest.frequencyTimes == 4 %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>4 passages</p>
                 </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
-                    <div class="check" style="margin-left: 10px;margin-right: 10px;"></div>
+                    <div class="check {% if quoteRequest.frequency == 'ponctual' %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>A la demande</p>
                 </div>
             </div>
@@ -421,49 +439,52 @@
             <div class="flex">
                 <p class="bold">Récurrence :</p>
                 <div class="flex align-item-center">
-                    {#class active pour check the box#}
-                    <div class="check active" style="margin-left: 10px;margin-right: 10px;"></div>
+                    {# class active pour check the box #}
+                    <div class="check {% if quoteRequest.frequencyInterval == 'week' %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>Semaine</p>
                 </div>
+                {# <div class="flex align-item-center" style="margin-left: 30px;"> #}
+                {# <div class="check" style="margin-left: 10px;margin-right: 10px;"></div> #}
+                {# <p>2 semaines</p> #}
+                {# </div> #}
                 <div class="flex align-item-center" style="margin-left: 30px;">
-                    <div class="check" style="margin-left: 10px;margin-right: 10px;"></div>
-                    <p>2 semaines</p>
-                </div>
-                <div class="flex align-item-center" style="margin-left: 30px;">
-                    <div class="check" style="margin-left: 10px;margin-right: 10px;"></div>
+                    <div class="check {% if quoteRequest.frequencyInterval == 'month' %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>Mois</p>
                 </div>
             </div>
 
-            <p class="mb-14"><span class="bold"><u>Accès/manutention :</u></span> Prix de chargement en étage par collecteur :</p>
+            <p class="mb-14"><span class="bold"><u>Accès/manutention :</u></span> Prix de chargement en étage par
+                collecteur :</p>
 
             <table style="width: 98%; margin-left: 20px;">
                 <tbody>
-                    <tr class="table-header">
-                        <th class="text-left">Prix de chargement en étage par collecteur :</th>
-                        <th>Quantité</th>
-                        <th>Prix/unit HT</th>
+                <tr class="table-header">
+                    <th class="text-left">Prix de chargement en étage par collecteur :</th>
+                    <th>Quantité</th>
+                    <th>Prix/unit HT</th>
 
-                    </tr>
-                    <tr>
-                        <td class="text-left">Escalier</td>
-                        <td>5</td>
-                        <td>5,00 €</td>
-                    </tr>
-                    <tr>
-                        <td class="text-left">Autres situations de pénibilité :</td>
-                        <td>1</td>
-                        <td>5,00 €</td>
-                    </tr>
+                </tr>
+                <tr>
+                    <td class="text-left">Escalier</td>
+                    <td></td>
+                    <td>5,00 €</td>
+                </tr>
+                <tr>
+                    <td class="text-left">Autres situations de pénibilité :</td>
+                    <td></td>
+                    <td></td>
+                </tr>
                 </tbody>
             </table>
 
             <p class="bold mb-14">BUDGET :</p>
 
             <div class="flex">
-            <table style="width:50%; margin-right: 20px;">
-                <caption class="text-left bold">Location Conteneurs :</caption>
-                <tbody>
+                <table style="width:50%; margin-right: 20px;">
+                    <caption class="text-left bold">Location Conteneurs :</caption>
+                    <tbody>
                     <tr>
                         <th>Type Conteneurs</th>
                         <th>Quantité</th>
@@ -475,61 +496,34 @@
                             Total HT
                         </th>
                     </tr>
-                    <tr>
-                        <td>
-                            <div class="flex align-item-center">
-                                <div class="check" style="margin-right: 10px;"></div>
-                                <p>Collecteur 70 L</p>
-                            </div>
-                        </td>
-                        <td>2</td>
-                        <td>prix</td>
-                        <td>prix</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="flex align-item-center">
-                                <div class="check" style="margin-right: 10px;"></div>
-                                <p>Console 90L</p>
-                            </div>
-                        </td>
-                        <td>2</td>
-                        <td>prix</td>
-                        <td>prix</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="flex align-item-center">
-                                <div class="check" style="margin-right: 10px;"></div>
-                                <p>Collecteur 140L</p>
-                            </div>
-                        </td>
-                        <td>2</td>
-                        <td>prix</td>
-                        <td>prix</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="flex align-item-center">
-                                <div class="check" style="margin-right: 10px;"></div>
-                                <p>Console 140L</p>
-                            </div>
-                        </td>
-                        <td>2</td>
-                        <td>prix</td>
-                        <td>prix</td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="flex align-item-center">
-                                <div class="check" style="margin-right: 10px;"></div>
-                                <p>Roll 800L</p>
-                            </div>
-                        </td>
-                        <td>2</td>
-                        <td>prix</td>
-                        <td>prix</td>
-                    </tr>
+                    {% set totalHT = 0 %}
+                    {% for product in products %}
+                        {% set quantity = 0 %}
+                        {% set unitPrice = 0 %}
+                        {% set total = 0 %}
+                        {% for line in quoteRequest.quoteRequestLines %}
+                            {% if line.product.id == product.id %}
+                                {% set quantity = line.quantity %}
+                                {% set unitPrice = (((line.rentalRate / 1000000000000000) * (line.rentalUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000) ) %}
+                                {% set total = (unitPrice * quantity) %}
+                                {% set totalHT = totalHT + total %}
+                            {% endif %}
+                        {% endfor %}
+                        <tr>
+                            <td>
+                                <div class="flex align-item-center">
+                                    <div class="check {% if quantity > 0 %} active {% endif %} "
+                                         style="margin-right: 10px;"></div>
+                                    <p>{{ product|productLabelTranslation('fr') }}</p>
+                                </div>
+                            </td>
+                            <td>
+                                {{ quantity }}
+                            </td>
+                            <td>{{ unitPrice|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                            <td>{{ total|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                        </tr>
+                    {% endfor %}
                     <tr>
                         <td colspan="3"></td>
                         <td></td>
@@ -542,7 +536,7 @@
                         <td colspan="3" class="text-right bold">
                             Budget Locations HT (€/mois)
                         </td>
-                        <td></td>
+                        <td>{{ totalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                     </tr>
                     <tr>
                         <td colspan="3" class="text-right bold">
@@ -550,121 +544,86 @@
                         </td>
                         <td></td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
 
-            <table style="width:50%;" >
-                <caption class="text-left bold">Transport et Traitement Conteneurs :</caption>
-                <tbody>
-                <tr>
-                    <th>Destruction<br>
-                        (€/Contenant/passage)</th>
-                    <th>Quantité</th>
-                    <th>
-                        Prix/unit<br>
-                        HT
-                    </th>
-                    <th>
-                        Total HT
-                    </th>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="flex align-item-center">
-                            <div class="check" style="margin-right: 10px;"></div>
-                            <p>Collecteur 70 L</p>
-                        </div>
-                    </td>
-                    <td>2</td>
-                    <td>prix</td>
-                    <td>prix</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="flex align-item-center">
-                            <div class="check" style="margin-right: 10px;"></div>
-                            <p>Console 90L</p>
-                        </div>
-                    </td>
-                    <td>2</td>
-                    <td>prix</td>
-                    <td>prix</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="flex align-item-center">
-                            <div class="check" style="margin-right: 10px;"></div>
-                            <p>Collecteur 140L</p>
-                        </div>
-                    </td>
-                    <td>2</td>
-                    <td>prix</td>
-                    <td>prix</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="flex align-item-center">
-                            <div class="check" style="margin-right: 10px;"></div>
-                            <p>Console 140L</p>
-                        </div>
-                    </td>
-                    <td>2</td>
-                    <td>prix</td>
-                    <td>prix</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="flex align-item-center">
-                            <div class="check" style="margin-right: 10px;"></div>
-                            <p>Roll 800L</p>
-                        </div>
-                    </td>
-                    <td>2</td>
-                    <td>prix</td>
-                    <td>prix</td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="flex align-item-center">
-                            <div class="check" style="margin-right: 10px;"></div>
-                            <p>Transport (€/passage)</p>
-                        </div>
-                    </td>
-                    <td>2</td>
-                    <td>prix</td>
-                    <td>prix</td>
-                </tr>
-                <tr>
-                    <td colspan="3"></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="text-right bold">
-                        Budget Transport et Traitement HT (€/passage)
-                    </td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="text-right bold">
-                        Budget Transport et Traitement TTC (€/passage)
-                    </td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
+                <table style="width:50%;">
+                    <caption class="text-left bold">Transport et Traitement Conteneurs :</caption>
+                    <tbody>
+                    <tr>
+                        <th>Destruction<br>
+                            (€/Contenant/passage)
+                        </th>
+                        <th>Quantité</th>
+                        <th>
+                            Prix/unit<br>
+                            HT
+                        </th>
+                        <th>
+                            Total HT
+                        </th>
+                    </tr>
+                    {% set totalDestructionTransportHT = 0 %}
+                    {% for product in products %}
+                        {% set quantity = 0 %}
+                        {% set unitPrice = 0 %}
+                        {% set total = 0 %}
+                        {% for line in quoteRequest.quoteRequestLines %}
+                            {% if line.product.id == product.id %}
+                                {% set quantity = line.quantity %}
+                                {% set unitPrice = (((line.treatmentRate / 1000000000000000) * (line.treatmentUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000) ) %}
+                                {% set total = (unitPrice * quantity) %}
+                                {% set totalHT = totalHT + total %}
+                            {% endif %}
+                        {% endfor %}
+                        <tr>
+                            <td>
+                                <div class="flex align-item-center">
+                                    <div class="check" style="margin-right: 10px;"></div>
+                                    <p>{{ product|productLabelTranslation('fr') }}</p>
+                                </div>
+                            </td>
+                            <td>{{ quantity }}</td>
+                            <td>{{ unitPrice|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                            <td>{{ total|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <th>Transport (€/passage)</th>
+                        <td>1</td>
+                        <td>prix</td>
+                        <td>prix</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right bold">
+                            Budget Transport et Traitement HT (€/passage)
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right bold">
+                            Budget Transport et Traitement TTC (€/passage)
+                        </td>
+                        <td></td>
+                    </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
 
-
-        {#partie 3#}
+        {# partie 3 #}
 
         <h2 style="margin-top: 0;">3. Remarques</h2>
         <div style="min-height: 30px;">
-            Remarques
+            {{ quoteRequest.salesmanComment|nl2br }}
         </div>
 
-        {#partie 4#}
+        {# partie 4 #}
 
         <h2>4. Signature</h2>
         <div class="flex align-item-center mb-30">
@@ -684,10 +643,10 @@
         </div>
     </div>
 
-    {#<div class="offer__footer">
+    {# <div class="offer__footer">
         <div class="flex space-between">
             <div>
-                <p class="bold">REISSWOLF Aktenvernichtungs-AG</p>
+                <p class="bold">PRIVACIA Aktenvernichtungs-AG</p>
                 <p>Romandie</p>
             </div>
             <div>
@@ -696,10 +655,10 @@
             </div>
             <div>
                 <p>Tel.: 022 552 62 62</p>
-                <p>Mail: geneve@reisswolf.ch</p>
+                <p>Mail: geneve@privacia.ch</p>
             </div>
         </div>
-    </div>#}
+    </div> #}
 </div>
 
 </body>
