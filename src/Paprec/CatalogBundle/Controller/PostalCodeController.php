@@ -96,9 +96,9 @@ class PostalCodeController extends Controller
 
         $postalCodes = $queryBuilder->getQuery()->getResult();
 
-        $phpExcelObject->getProperties()->setCreator("Reisswolf Shop")
-            ->setLastModifiedBy("Reisswolf Shop")
-            ->setTitle("Reisswolf Shop - Postal codes")
+        $phpExcelObject->getProperties()->setCreator("Privacia Shop")
+            ->setLastModifiedBy("Privacia Shop")
+            ->setTitle("Privacia Shop - Postal codes")
             ->setSubject("Extract");
 
         $phpExcelObject->setActiveSheetIndex(0)
@@ -133,7 +133,7 @@ class PostalCodeController extends Controller
 
         $writer = $this->container->get('phpexcel')->createWriter($phpExcelObject, 'Excel2007');
 
-        $fileName = 'ReisswolfShop-Extract-Postal-Codes-' . date('Y-m-d') . '.xlsx';
+        $fileName = 'PrivaciaShop-Extract-Postal-Codes-' . date('Y-m-d') . '.xlsx';
 
         // create the response
         $response = $this->container->get('phpexcel')->createStreamedResponse($writer);

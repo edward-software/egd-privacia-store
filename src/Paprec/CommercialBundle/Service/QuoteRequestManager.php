@@ -468,7 +468,7 @@ class QuoteRequestManager
                 $rcptTo = $quoteRequest->getUserInCharge()->getEmail();
             } else {
                 if ($quoteRequest->getIsMultisite()) {
-                    $rcptTo = $this->container->getParameter('reisswolf_salesman_multisite_email');
+                    $rcptTo = $this->container->getParameter('privacia_salesman_multisite_email');
                 } else {
                     // TODO
 //                    $rcptTo = $quoteRequest->getPostalCode()->getRegion()->getEmail();
@@ -702,7 +702,7 @@ class QuoteRequestManager
                 $rcptTo = $quoteRequest->getUserInCharge()->getEmail();
             } else {
                 if ($quoteRequest->getIsMultisite()) {
-                    $rcptTo = $this->container->getParameter('reisswolf_salesman_multisite_email');
+                    $rcptTo = $this->container->getParameter('privacia_salesman_multisite_email');
                 } else {
                     // TODO
 //                    $rcptTo = $quoteRequest->getPostalCode()->getRegion()->getEmail();

@@ -4,7 +4,7 @@ twig:
   strict_variables: '%kernel.debug%'
   cache: false
   globals:
-    reisswolf_public_site_url: "%reisswolf_public_site_url%"
-    reisswolf_public_store_url: "%reisswolf_public_store_url%"
-    reisswolf_public_technical_service: "%reisswolf_public_technical_service%"
+    privacia_public_site_url: "%privacia_public_site_url%"
+    privacia_public_store_url: "%privacia_public_store_url%"
+    privacia_public_technical_service: "%privacia_public_technical_service%"
 
