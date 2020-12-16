@@ -2,7 +2,7 @@
         "http://www.w3.org/TR/html4/strict.dtd">
 <html>
 <head>
-    <title>PDF Paprec Offer</title>
+    <title>PDF Privacia Offer</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -33,7 +33,7 @@
         h2 {
             font-size: 14px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             margin-top: 20px;
             border-bottom: 1px solid #4a4a4a;
         }
@@ -349,9 +349,6 @@
                         <span class="bold">Code Postal / Ville :</span> {% if quoteRequest.postalCode %}{{ quoteRequest.postalCode.code }}{% endif %} {{ quoteRequest.city }}
                     </p>
                 </div>
-                {# <div> #}
-                {# <p><span class="bold">Étage :</span> étage</p> #}
-                {# </div> #}
             </div>
             <p class="bold"><u>Personne responsable (droit à la signature) :</u></p>
             <div class="flex offer__ref-items">
@@ -458,7 +455,7 @@
             <p class="mb-14"><span class="bold"><u>Accès/manutention :</u></span> Prix de chargement en étage par
                 collecteur :</p>
 
-            <table style="width: 98%; margin-left: 20px;">
+            <table style="width: 95%; margin-left: 20px;">
                 <tbody>
                 <tr class="table-header">
                     <th class="text-left">Prix de chargement en étage par collecteur :</th>
@@ -482,9 +479,9 @@
             <p class="bold mb-14">BUDGET :</p>
 
             <div class="flex">
-                <table style="width:50%; margin-right: 20px;">
-                    <caption class="text-left bold">Location Conteneurs :</caption>
-                    <tbody>
+            <table style="width:48%; margin-right: 20px;">
+                <caption class="text-left bold">Location Conteneurs :</caption>
+                <tbody>
                     <tr>
                         <th>Type Conteneurs</th>
                         <th>Quantité</th>
@@ -619,8 +616,8 @@
         {# partie 3 #}
 
         <h2 style="margin-top: 0;">3. Remarques</h2>
-        <div style="min-height: 30px;">
-            {{ quoteRequest.salesmanComment|nl2br }}
+        <div>
+            Remarques
         </div>
 
         {# partie 4 #}
@@ -642,23 +639,6 @@
             <p>Pour PRIVACIA, Lu et approuvé</p>
         </div>
     </div>
-
-    {# <div class="offer__footer">
-        <div class="flex space-between">
-            <div>
-                <p class="bold">PRIVACIA Aktenvernichtungs-AG</p>
-                <p>Romandie</p>
-            </div>
-            <div>
-                <p>Rue de la Bergère 26</p>
-                <p>CH-1242 Satigny</p>
-            </div>
-            <div>
-                <p>Tel.: 022 552 62 62</p>
-                <p>Mail: geneve@privacia.ch</p>
-            </div>
-        </div>
-    </div> #}
 </div>
 
 </body>
