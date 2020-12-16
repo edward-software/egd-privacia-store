@@ -493,7 +493,7 @@
                             Total HT
                         </th>
                     </tr>
-                    {% set totalHT = 0 %}
+                    {% set rentalTotalHT = 0 %}
                     {% for product in products %}
                         {% set quantity = 0 %}
                         {% set unitPrice = 0 %}
@@ -503,7 +503,7 @@
                                 {% set quantity = line.quantity %}
                                 {% set unitPrice = (((line.rentalRate / 1000000000000000) * (line.rentalUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000) ) %}
                                 {% set total = (unitPrice * quantity) %}
-                                {% set totalHT = totalHT + total %}
+                                {% set rentalTotalHT = rentalTotalHT + total %}
                             {% endif %}
                         {% endfor %}
                         <tr>
@@ -533,7 +533,7 @@
                         <td colspan="3" class="text-right bold">
                             Budget Locations HT (€/mois)
                         </td>
-                        <td>{{ totalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                        <td>{{ rentalTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                     </tr>
                     <tr>
                         <td colspan="3" class="text-right bold">
@@ -561,7 +561,14 @@
                         </th>
                     </tr>
                     {% set totalDestructionTransportHT = 0 %}
+                    {% set minTransportUnitPrice = null %}
+                    {% set transportUnitPrice = 0 %}
+                    {% set transportRate = 0 %}
+                    {% set transportTreatmentTotalHT = 0 %}
                     {% for product in products %}
+                        {% if minTransportUnitPrice == null or product.transportUnitPrice < minTransportUnitPrice %}
+                         {% set minTransportUnitPrice = product.transportUnitPrice%}
+                        {% endif %}
                         {% set quantity = 0 %}
                         {% set unitPrice = 0 %}
                         {% set total = 0 %}
@@ -570,9 +577,12 @@
                                 {% set quantity = line.quantity %}
                                 {% set unitPrice = (((line.treatmentRate / 1000000000000000) * (line.treatmentUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000) ) %}
                                 {% set total = (unitPrice * quantity) %}
-                                {% set totalHT = totalHT + total %}
+                                {% set transportTreatmentTotalHT = transportTreatmentTotalHT + total %}
+                                {% set transportRate = line.transportRate %}
+
                             {% endif %}
                         {% endfor %}
+                        {% set transportUnitPrice = (((transportRate / 1000000000000000) * (minTransportUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000)) %}
                         <tr>
                             <td>
                                 <div class="flex align-item-center">
@@ -585,11 +595,13 @@
                             <td>{{ total|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                     {% endfor %}
+                    {% set transportTreatmentTotalHT = transportTreatmentTotalHT + transportUnitPrice %}
+
                     <tr>
                         <th>Transport (€/passage)</th>
                         <td>1</td>
-                        <td>prix</td>
-                        <td>prix</td>
+                        <td>{{ transportUnitPrice|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                        <td>{{ transportUnitPrice|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                     </tr>
                     <tr>
                         <td colspan="3"></td>
@@ -599,7 +611,7 @@
                         <td colspan="3" class="text-right bold">
                             Budget Transport et Traitement HT (€/passage)
                         </td>
-                        <td></td>
+                        <td>{{ transportTreatmentTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                     </tr>
                     <tr>
                         <td colspan="3" class="text-right bold">
