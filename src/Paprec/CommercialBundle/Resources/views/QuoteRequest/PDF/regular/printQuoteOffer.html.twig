@@ -341,7 +341,7 @@
             {# partie 1 #}
 
             <h2>1. Client</h2>
-            <p><span class="bold">Nom de la société :</span> {{ quoteRequest.businessName }}é</p>
+            <p><span class="bold">Nom de la société :</span> {{ quoteRequest.businessName }}</p>
             <p><span class="bold">Numéro / Rue :</span> {{ quoteRequest.address }}</p>
             <div class="flex offer__ref-items">
                 <div>
@@ -349,9 +349,7 @@
                         <span class="bold">Code Postal / Ville :</span> {% if quoteRequest.postalCode %}{{ quoteRequest.postalCode.code }}{% endif %} {{ quoteRequest.city }}
                     </p>
                 </div>
-                <div>
-                    <p><span class="bold">Étage :</span> étage</p>
-                </div>
+
             </div>
             <p class="bold"><u>Personne responsable (droit à la signature) :</u></p>
             <div class="flex offer__ref-items">
@@ -379,7 +377,6 @@
             {# partie 2 #}
 
             <h2>2. Objet, Durée, Prix HT</h2>
-            <p><span class="bold">Début du contrat :</span></p>
             <div class="flex">
                 <p class="bold">Durée du contrat : </p>
                 <div class="flex align-item-center">

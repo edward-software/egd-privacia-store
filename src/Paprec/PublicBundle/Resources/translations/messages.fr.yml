@@ -37,7 +37,7 @@ Public:
     Type:
         BreadcrumbTitle: Définition des besoins
         BreadcrumbContent: Définition des besoins
-        Title: Les sociétés Privacia éliminent et détruisent les fichiers et supports de données confidentiels dans toute la Suisse selon des critères de sécurité uniformes.
+        Title: Les sociétés Privacia éliminent et détruisent les fichiers et supports de données confidentiels dans toute la France selon des critères de sécurité uniformes.
         Solution1:
             Title: 'Solution 1 : SERVICE REGULIER'
             Message1: 'Notre offre de services comprend entre autres :'
@@ -49,9 +49,9 @@ Public:
         Solution2:
             Title: 'Solution 2 : Désarchivage unique'
             Message1: 'Notre offre de services comprend entre autres :'
-            Message2: "Élimination des fichiers et des supports de données conformément à la période d'archivage et à la loi sur la protection des données"
+            Message2: "Élimination des fichiers et des supports de données conformément à votre politique d'archivage"
             Message3: 'Transport avec des véhicules spéciaux'
-            Message4: 'Destruction des donnéesn'
+            Message4: 'Destruction des données'
             Message5: 'Nous offrons également un service complet allant du déblaiement à la destruction finale (emballage, tri, destruction par broyage).'
 
     Catalog:
@@ -83,10 +83,12 @@ Public:
         FirstName: Prénom
         Email: E-mail
         Phone: Téléphone
-        PhoneNumberInfo: "Suivre la mise en forme  : +41 01 234 56 78"
+        PhoneNumberInfo: "Suivre la mise en forme  : +33 01 02 03 04 05"
         CoworkerNumber: Effectif
         IsMultisite: Prestation multi-sites
+        isMultisiteInfo: Votre demande de prestation multisite a bien été pris en compte. Vous serez contacté très prochainement par le service commercial.
         Access: Accès
+        FloorNumber: Nombre d'étages
         Staff: Effectif
         DestructionType: Type de destruction
         Address: Adresse

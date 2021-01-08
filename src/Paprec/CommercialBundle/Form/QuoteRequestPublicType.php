@@ -4,6 +4,7 @@ namespace Paprec\CommercialBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -51,6 +52,11 @@ class QuoteRequestPublicType extends AbstractType
                 },
                 'data' => 'ground',
                 'required' => true
+            ))
+            ->add('floorNumber', ChoiceType::class, array(
+                "choices" => $options['floorNumber'],
+                'data' => '0',
+                'required' => false
             ))
             ->add('staff', ChoiceType::class, array(
                 "choices" => $options['staff'],
@@ -113,6 +119,7 @@ class QuoteRequestPublicType extends AbstractType
             'access' => null,
             'staff' => null,
             'destructionType' => null,
+            'floorNumber' => null,
             'locale' => null
         ));
     }

@@ -160,12 +160,18 @@ class SubscriptionController extends Controller
             $destructionType[$d] = $d;
         }
 
+        $floorNumber = array();
+        foreach ($this->getParameter('paprec_quote_floor_number') as $f) {
+            $floorNumber[$f] = $f;
+        }
+
         $quoteRequest = $quoteRequestManager->add(false);
 
         $form = $this->createForm(QuoteRequestPublicType::class, $quoteRequest, array(
             'access' => $access,
             'staff' => $staff,
             'destructionType' => $destructionType,
+            'floorNumber' => $floorNumber,
             'locale' => $locale
         ));
 

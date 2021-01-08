@@ -106,6 +106,13 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="form-label">{{ 'Public.Contact.FloorNumber'|trans }}</label>
+                                        <div class="form-content">
+                                            {{ form_widget(form.floorNumber, {'attr': {'class': 'form-control'}}) }}
+                                            {{ form_errors(form.floorNumber) }}
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <label class="form-label">{{ 'Public.Contact.Staff'|trans }}</label>
                                         <div class="form-content">
                                             {{ form_widget(form.staff, {'attr': {'class': 'form-control'}}) }}

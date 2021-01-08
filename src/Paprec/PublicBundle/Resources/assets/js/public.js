@@ -229,8 +229,10 @@ $(function () {
         if (this.value == 1) {
             $('.address-field').prop("disabled", true);
             $('.address-field').val('');
+            $('#multisite-info').show();
         } else if (this.value == 0) {
             $('.address-field').prop("disabled", false);
+            $('#multisite-info').hide();
         }
     });
 
@@ -240,6 +242,13 @@ $(function () {
 
     $('#contact_access_select').change(function () {
         $('.contact_access_input').val(this.value);
+        if ($('.contact_access_input').val() === 'stairs') {
+            $('#floorNumber').show();
+            $('#paprec_catalogbundle_quote_request_public_floorNumber').focus().select();
+        } else {
+            $('#floorNumber').hide();
+            $('#paprec_catalogbundle_quote_request_public_floorNumber').val(0);
+        }
     });
 
     $('#contact_destruction_type_select').change(function () {

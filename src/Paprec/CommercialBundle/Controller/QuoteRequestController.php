@@ -374,12 +374,18 @@ class QuoteRequestController extends Controller
             $destructionType[$d] = $d;
         }
 
+        $floorNumber = array();
+        foreach ($this->getParameter('paprec_quote_floor_number') as $f) {
+            $floorNumber[$f] = $f;
+        }
+
         $form = $this->createForm(QuoteRequestType::class, $quoteRequest, array(
             'status' => $status,
             'locales' => $locales,
             'access' => $access,
             'staff' => $staff,
-            'destructionType' => $destructionType
+            'destructionType' => $destructionType,
+            'floorNumber' => $floorNumber
         ));
 
         $form->handleRequest($request);
@@ -451,6 +457,11 @@ class QuoteRequestController extends Controller
             $destructionType[$d] = $d;
         }
 
+        $floorNumber = array();
+        foreach ($this->getParameter('paprec_quote_floor_number') as $f) {
+            $floorNumber[$f] = $f;
+        }
+
         $quoteRequest->setOverallDiscount($numberManager->denormalize($quoteRequest->getOverallDiscount()));
         $quoteRequest->setAnnualBudget($numberManager->denormalize($quoteRequest->getAnnualBudget()));
 
@@ -459,7 +470,8 @@ class QuoteRequestController extends Controller
             'locales' => $locales,
             'access' => $access,
             'staff' => $staff,
-            'destructionType' => $destructionType
+            'destructionType' => $destructionType,
+            'floorNumber' => $floorNumber
         ));
 
         $savedCommercial = $quoteRequest->getUserInCharge();

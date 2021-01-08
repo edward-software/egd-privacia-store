@@ -168,6 +168,13 @@ class QuoteRequest
     private $access;
 
     /**
+     * @var int
+     *
+     * @ORM\Column(name="floorNumber",  type="integer", nullable=true)
+     */
+    private $floorNumber;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="address", type="text", nullable=true)
@@ -1090,6 +1097,24 @@ class QuoteRequest
     public function getAccess()
     {
         return $this->access;
+    }
+
+    /**
+     * @return int
+     */
+    public function getFloorNumber()
+    {
+        return $this->floorNumber;
+    }
+
+    /**
+     * @param int $floorNumber
+     * @return QuoteRequest
+     */
+    public function setFloorNumber($floorNumber)
+    {
+        $this->floorNumber = $floorNumber;
+        return $this;
     }
 
     /**

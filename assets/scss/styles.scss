@@ -79,9 +79,11 @@ a {
 .color-white {
   color: $white;
 }
+
 .color-primary {
   color: $primary;
 }
+
 .color-secondary {
   color: $secondary;
 }
@@ -226,6 +228,7 @@ form {
       font-weight: $font-regular;
       margin: 0 20px 0 8px;
     }
+
     input[type='radio'] {
       display: none;
     }
@@ -243,7 +246,7 @@ form {
       background-color: $white;
     }
 
-    input[type='radio']:checked+label:before {
+    input[type='radio']:checked + label:before {
       position: relative;
       border-radius: 50%;
       width: 1rem;
@@ -376,7 +379,7 @@ HIDE CAPTCHA
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(255,255,255,0.6);
+  background: rgba(255, 255, 255, 0.6);
   z-index: 10;
   display: none;
 
@@ -389,9 +392,13 @@ HIDE CAPTCHA
 Contact
  */
 
-#phone-number-info {
+#phone-number-info, #multisite-info {
   display: none;
   font-style: italic;
+}
+
+#floorNumber {
+  display: none;
 }
 
 .contact-other-need {

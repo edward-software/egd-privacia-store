@@ -56,6 +56,11 @@ class QuoteRequestType extends AbstractType
                     return 'Commercial.AccessList.' . $choiceValue;
                 },
             ))
+            ->add('floorNumber', ChoiceType::class, array(
+                "choices" => $options['floorNumber'],
+                'data' => '0',
+                'required' => false
+            ))
             ->add('staff', ChoiceType::class, array(
                 "choices" => $options['staff'],
                 "choice_label" => function ($choiceValue, $key, $value) {
@@ -207,6 +212,7 @@ class QuoteRequestType extends AbstractType
             'locales' => null,
             'staff' => null,
             'access' => null,
+            'floorNumber' => null,
             'destructionType' => null,
         ));
     }
