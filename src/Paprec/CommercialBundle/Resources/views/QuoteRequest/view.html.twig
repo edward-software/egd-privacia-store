@@ -149,7 +149,7 @@
                                             {% if quoteRequest.frequency == 'ponctual' %}
                                                 {{ 'Commercial.QuoteRequest.Ponctual'|trans }}
                                             {% elseif quoteRequest.frequency == 'regular' %}
-                                                {{ quoteRequest.frequencyTimes }} / {{ ('Commercial.QuoteRequest.' ~ quoteRequest.frequencyInterval)|trans }}
+                                                {{ quoteRequest.frequencyTimes }} / {{ ('Public.Catalog.' ~ quoteRequest.frequencyInterval|capitalize)|trans }}
                                             {% endif %}
                                         </label>
                                     </div>

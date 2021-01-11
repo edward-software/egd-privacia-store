@@ -28,7 +28,9 @@ Commercial:
         PassingFrequency: Fréquence de passage (si régulier)
         FrequencyTimes: Nb de passages (si régulier)
         month: mois
+        bimestre: bimestre
         quarter: trimestre
+        quadrimestre: quadrimestre
         year: an
         week: semaine
         CoworkerNumber: Effectif

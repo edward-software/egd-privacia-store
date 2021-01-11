@@ -137,8 +137,9 @@ class QuoteRequestType extends AbstractType
                 'choices' => array(
                     'week' => 'week',
                     'month' => 'month',
+                    'bimestre' => 'bimestre',
                     'quarter' => 'quarter',
-                    'year' => 'year'
+                    'quadrimestre' => 'quadrimestre'
                 ),
                 "choice_label" => function ($choiceValue, $key, $value) {
                     return ($choiceValue) ? 'Public.Catalog.' . ucfirst($choiceValue) : '';

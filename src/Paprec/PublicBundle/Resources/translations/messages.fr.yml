@@ -69,6 +69,8 @@ Public:
         Month: mois
         Quarter: trimestre
         Year: an
+        Bimestre: bimestre
+        Quadrimestre: quadrimestre
         BreadcrumbContent: Offres de services
         Define-Need: Définir son besoin
         Other-Needs: Autres besoins
