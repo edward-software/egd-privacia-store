@@ -17,4 +17,6 @@ services:
 
 parameters:
   paprec_commercial.data_tmp_directory: "%kernel.root_dir%/data/tmp"
-
+  paprec_commercial.files_directory: "%kernel.root_dir%/data/pdf"
+  paprec_commercial.file_names:
+    - cg

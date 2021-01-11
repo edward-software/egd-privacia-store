@@ -766,7 +766,7 @@ class QuoteRequestController extends Controller
 
         $locale = 'fr';
 
-        $file = $quoteRequestManager->generatePDF($quoteRequest, $locale);
+        $file = $quoteRequestManager->generatePDF($quoteRequest, $locale, false);
 
         $filename = substr($file, strrpos($file, '/') + 1);
 

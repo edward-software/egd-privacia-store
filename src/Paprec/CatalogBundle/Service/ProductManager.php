@@ -150,8 +150,7 @@ class ProductManager
         return (
                 ((($quoteRequestLine->getRentalUnitPrice() == 0) ? 0 : $numberManager->denormalize($quoteRequestLine->getRentalUnitPrice()) * $numberManager->denormalize15($quoteRequestLine->getRentalRate())) * (1 + $numberManager->denormalize($quoteRequestLine->getQuoteRequest()->getOverallDiscount() / 100)))
                 + ((($quoteRequestLine->getTreatmentUnitPrice() == 0) ? 0 : $numberManager->denormalize($quoteRequestLine->getTreatmentUnitPrice()) * $numberManager->denormalize15($quoteRequestLine->getTreatmentRate())) * (1 + $numberManager->denormalize($quoteRequestLine->getQuoteRequest()->getOverallDiscount() / 100)))
-                + ((($quoteRequestLine->getTraceabilityUnitPrice() == 0) ? 0 : $numberManager->denormalize($quoteRequestLine->getTraceabilityUnitPrice()) * $numberManager->denormalize15($quoteRequestLine->getTraceabilityRate())) * (1 + $numberManager->denormalize($quoteRequestLine->getQuoteRequest()->getOverallDiscount() / 100)))
-                + $this->getAccesPrice($quoteRequestLine->getQuoteRequest()))
+                + ((($quoteRequestLine->getTraceabilityUnitPrice() == 0) ? 0 : $numberManager->denormalize($quoteRequestLine->getTraceabilityUnitPrice()) * $numberManager->denormalize15($quoteRequestLine->getTraceabilityRate())) * (1 + $numberManager->denormalize($quoteRequestLine->getQuoteRequest()->getOverallDiscount() / 100))))
             * $quoteRequestLine->getQuantity();
 
     }

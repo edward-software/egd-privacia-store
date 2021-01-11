@@ -357,7 +357,6 @@
                                         <th>{{ 'Commercial.QuoteRequestLine.RentalPrice'|trans }}</th>
                                         <th>{{ 'Commercial.QuoteRequestLine.Treatment'|trans }} </th>
                                         <th>{{ 'Commercial.QuoteRequestLine.Traceability'|trans }}</th>
-                                        <th>{{ 'Commercial.QuoteRequestLine.Access'|trans }}</th>
                                         <th>{{ 'Commercial.QuoteRequestLine.TotalAmount'|trans }}</th>
 
                                         <th></th>
@@ -394,7 +393,6 @@
                                                     {{ (((quoteRequestLine.traceabilityRate / 1000000000000000) * (quoteRequestLine.traceabilityUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|number_format(2, ',') }}
                                                 {% endif %}
                                             </td>
-                                            <td>{{ quoteRequestLine.accessPrice|formatAmount('', app.request.locale) }}</td>
                                             <td>{{ quoteRequestLine.totalAmount|formatAmount('', app.request.locale) }}</td>
                                             <td class="text-center">
                                                 <a href="{{ path('paprec_commercial_quoteRequest_editLine', {id: quoteRequest.id, quoteLineId: quoteRequestLine.id}) }}"

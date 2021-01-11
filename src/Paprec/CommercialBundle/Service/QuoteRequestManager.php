@@ -856,6 +856,18 @@ class QuoteRequestManager
             $pdfArray = array();
             $pdfArray[] = $filenameOffer;
 
+            $ponctualFileNames = $this->container->getParameter('paprec_commercial.file_names');
+            $ponctualFileDirectory = $this->container->getParameter('paprec_commercial.files_directory');
+
+            if (is_array($ponctualFileNames) && count($ponctualFileNames)) {
+                foreach ($ponctualFileNames as $ponctualFileName) {
+                    $noticeFilename = $ponctualFileDirectory . '/' . $ponctualFileName . '.pdf';
+                    if (file_exists($noticeFilename)) {
+                        $pdfArray[] = $noticeFilename;
+                    }
+                }
+            }
+
             if ($addContract) {
                 /**
                  * On génère la page de contract

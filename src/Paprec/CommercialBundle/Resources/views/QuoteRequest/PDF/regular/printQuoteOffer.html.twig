@@ -420,15 +420,10 @@
                 </tr>
                 {% set rentalTotalHT = 0 %}
                 {% set rentalTotalTTC = 0 %}
-                {% set minTransportUnitPrice = null %}
-                {% set transportRate = 0 %}
                 {% set treatmentTotalHT = 0 %}
                 {% set treatmentTotalTTC = 0 %}
                 {% set totalQuantity = 0 %}
                 {% for product in products %}
-                    {% if minTransportUnitPrice == null or product.transportUnitPrice < minTransportUnitPrice %}
-                        {% set minTransportUnitPrice = product.transportUnitPrice %}
-                    {% endif %}
                     {% set quantity = 0 %}
                     {% set rentalUnitPrice = 0 %}
                     {% set rentalProductTotalHT = 0 %}
@@ -450,7 +445,6 @@
                             {% set treatmentProductTotalTTC = treatmentProductTotalHT %}
                             {% set treatmentTotalHT = treatmentTotalHT + treatmentProductTotalHT %}
                             {% set treatmentTotalTTC = treatmentTotalTTC + rentalProductTotalTTC %}
-                            {% set transportRate = line.transportRate %}
                         {% endif %}
                     {% endfor %}
 
@@ -555,7 +549,7 @@
                 </tr>
                 <tr>
                     <td class="text-left">Escalier</td>
-                    <td>{{ totalQuantity }}</td>
+                    <td>{% if quoteRequest.access == 'stairs' %}{{ quoteRequest.floorNumber }} {% else%} 0 {% endif %}</td>
                     <td>5,00 €</td>
                 </tr>
                 <tr>
@@ -570,17 +564,21 @@
 
             <div class="flex">
                 {% if quoteRequest.frequency == 'regular' %}
-                    {% set prestationTotalHT =  ((((transportRate / 1000000000000000) * (minTransportUnitPrice / 100)) + treatmentTotalHT) * (1 + quoteRequest.overallDiscount / 10000)) %}
+                    {% set prestationTotalHT =  ((((quoteRequest.transportRate / 1000000000000000) * (quoteRequest.minTransportUnitPrice / 100)) + treatmentTotalHT) * (1 + quoteRequest.overallDiscount / 10000)) %}
                     {% set frequencyInterval = quoteRequest.frequencyInterval %}
                     {% if frequencyInterval == 'week' %}
                         {% set prestationTotalHT = prestationTotalHT * quoteRequest.frequencyTimes * 4 %}
-
                     {% elseif frequencyInterval == 'month' %}
                         {% set prestationTotalHT = prestationTotalHT * quoteRequest.frequencyTimes %}
+                    {% elseif frequencyInterval == 'bimestre' %}
+                        {% set prestationTotalHT = prestationTotalHT * quoteRequest.frequencyTimes / 2 %}
                     {% elseif frequencyInterval == 'quarter' %}
                         {% set prestationTotalHT = prestationTotalHT * quoteRequest.frequencyTimes / 3 %}
+                    {% elseif frequencyInterval == 'quadrimestre' %}
+                        {% set prestationTotalHT = prestationTotalHT * quoteRequest.frequencyTimes / 4 %}
                     {% endif %}
                     {% set prestationTotalTTC =  prestationTotalHT %}
+
                     {% set totalHT =  prestationTotalHT + rentalTotalHT %}
                     {% set totalTTC =  totalHT %}
                     <table style="width:48%; margin-right: 20px;">
@@ -612,7 +610,7 @@
                 {% endif %}
 
                 {% if quoteRequest.frequency == 'ponctual' %}
-                    {% set prestationTotalHT =  ((((transportRate / 1000000000000000) * (minTransportUnitPrice / 100)) + treatmentTotalHT) * (1 + quoteRequest.overallDiscount / 10000)) %}
+                    {% set prestationTotalHT =  ((((quoteRequest.transportRate / 1000000000000000) * (quoteRequest.minTransportUnitPrice / 100)) + treatmentTotalHT) * (1 + quoteRequest.overallDiscount / 10000)) %}
                     {% set prestationTotalTTC =  prestationTotalHT %}
                     {% set totalHT =  prestationTotalHT + rentalTotalHT %}
                     {% set totalTTC =  totalHT %}
