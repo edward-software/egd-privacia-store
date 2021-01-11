@@ -139,7 +139,7 @@ class QuoteRequestController extends Controller
         $tmp = array();
         foreach ($datatable['data'] as $data) {
             $line = $data;
-            $line['type'] = $data['type'] ? $this->get('translator')->trans('Commercial.QuoteRequest.Type.' . ucfirst(strtolower( $line['type']))) : '';
+            $line['type'] = $data['type'] ? $this->get('translator')->trans('Commercial.QuoteRequest.Type.' . ucfirst(strtolower($line['type']))) : '';
             $line['isMultisite'] = $data['isMultisite'] ? $this->get('translator')->trans('General.1') : $this->get('translator')->trans('General.0');
             $line['totalAmount'] = $numberManager->formatAmount($data['totalAmount'], 'EUR', $request->getLocale());
             $line['quoteStatus'] = $this->container->get('translator')->trans("Commercial.QuoteStatusList." . $data['quoteStatus']);
@@ -397,6 +397,15 @@ class QuoteRequestController extends Controller
             $quoteRequest->setOverallDiscount($numberManager->normalize($quoteRequest->getOverallDiscount()));
             $quoteRequest->setAnnualBudget($numberManager->normalize($quoteRequest->getAnnualBudget()));
 
+            if ($quoteRequest->getPostalCode()) {
+                $quoteRequest->setTransportRate($quoteRequest->getPostalCode()->getTransportRate());
+            } else {
+                /**
+                 * Si pas de code postal, on met le à 1 par défaut
+                 */
+                $quoteRequest->setTransportRate($numberManager->normalize15(1));
+            }
+
             $quoteRequest->setUserCreation($user);
 
             $reference = $quoteRequestManager->generateReference($quoteRequest);
@@ -497,7 +506,7 @@ class QuoteRequestController extends Controller
              * Si le commercial en charge a changé, alors on envoie un mail au nouveau commercial
              */
             if ($quoteRequest->getUserInCharge() && ((!$savedCommercial && $quoteRequest->getUserInCharge())
-                || ($savedCommercial && $savedCommercial->getId() !== $quoteRequest->getUserInCharge()->getId()))) {
+                    || ($savedCommercial && $savedCommercial->getId() !== $quoteRequest->getUserInCharge()->getId()))) {
                 $quoteRequestManager->sendNewRequestEmail($quoteRequest);
                 $this->get('session')->getFlashBag()->add('success', 'newUserInChargeWarned');
             }

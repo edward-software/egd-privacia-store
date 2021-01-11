@@ -266,6 +266,14 @@ class QuoteRequestManager
                 $quoteRequestLine->setAccessPrice(0);
             }
 
+            /**
+             * si le transportUnitPrice de la quoteRequestLine est inférieur à minTransportUnitPrice de la quoteRequest
+             * alors on met le transportUnitPrice comme minTransportUnitPrice
+             */
+            if ($quoteRequest->getMinTransportUnitPrice() === 0 || $quoteRequestLine->getTransportUnitPrice() < $quoteRequest->getMinTransportUnitPrice()) {
+                $quoteRequest->setMinTransportUnitPrice($quoteRequestLine->getTransportUnitPrice());
+            }
+
             $this->em->persist($quoteRequestLine);
 
             /**
@@ -370,7 +378,7 @@ class QuoteRequestManager
         $productManager = $this->container->get('paprec_catalog.product_manager');
 
         return $numberManager->normalize(
-            round($productManager->calculatePrice($quoteRequestLine))
+            $productManager->calculatePrice($quoteRequestLine)
         );
     }
 
@@ -383,6 +391,10 @@ class QuoteRequestManager
     {
         $numberManager = $this->container->get('paprec_catalog.number_manager');
 
+        /**
+         * A chaque fois que l'on calcule on recheck le transportUnitPrice minimum parmis tous les produits
+         */
+
         $totalAmount = 0;
         if ($quoteRequest->getQuoteRequestLines() && count($quoteRequest->getQuoteRequestLines())) {
 
@@ -390,6 +402,11 @@ class QuoteRequestManager
                 $totalAmount += $quoteRequestLine->getTotalAmount();
             }
         }
+        /**
+         * On ajoute ensuite le prix de transport
+         */
+        $totalAmount += $numberManager->normalize($numberManager->denormalize($quoteRequest->getMinTransportUnitPrice()) * $numberManager->denormalize15($quoteRequest->getTransportRate()) * (1 + $numberManager->denormalize($quoteRequest->getOverallDiscount() / 100)));
+
         return $totalAmount;
     }
 

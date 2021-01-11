@@ -169,7 +169,9 @@
                                         <label class="col-md-4 col-form-label">{{ 'Commercial.QuoteRequest.PostalCode'|trans }}</label>
                                         <label class="col-form-label">
                                             {% if quoteRequest.postalCode %}
-                                                {{ quoteRequest.postalCode.code }}
+                                                <a href="{{ path('paprec_catalog_postalCode_view', {id: quoteRequest.postalCode.id}) }}">
+                                                    {{ quoteRequest.postalCode.code }}
+                                                </a>
                                             {% endif %}
                                         </label>
                                     </div>
@@ -315,6 +317,16 @@
                                             {{ quoteRequest.totalAmount|formatAmount('EUR', app.request.locale) }}
                                         </label>
                                     </div>
+                                    <div class="form-group row">
+                                        <label class="col-md-4 col-form-label">{{ 'Commercial.QuoteRequestLine.Transport'|trans }}</label>
+                                        <label class="col-form-label">
+                                            {% if quoteRequest.minTransportUnitPrice == 0 %}
+                                                0
+                                            {% else %}
+                                                {{ (((quoteRequest.transportRate / 1000000000000000) * (quoteRequest.minTransportUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|number_format(2, ',') }}
+                                            {% endif %}
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -343,7 +355,6 @@
                                         <th>{{ 'Commercial.QuoteRequestLine.ProductName'|trans }}</th>
                                         <th>{{ 'Commercial.QuoteRequestLine.Quantity'|trans }}</th>
                                         <th>{{ 'Commercial.QuoteRequestLine.RentalPrice'|trans }}</th>
-                                        <th>{{ 'Commercial.QuoteRequestLine.Transport'|trans }}</th>
                                         <th>{{ 'Commercial.QuoteRequestLine.Treatment'|trans }} </th>
                                         <th>{{ 'Commercial.QuoteRequestLine.Traceability'|trans }}</th>
                                         <th>{{ 'Commercial.QuoteRequestLine.Access'|trans }}</th>
@@ -367,13 +378,6 @@
                                                     0
                                                 {% else %}
                                                     {{ (((quoteRequestLine.rentalRate / 1000000000000000) * (quoteRequestLine.rentalUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|number_format(2, ',') }}
-                                                {% endif %}
-                                            </td>
-                                            <td>
-                                                {% if quoteRequestLine.transportUnitPrice == 0 %}
-                                                    0
-                                                {% else %}
-                                                    {{ (((quoteRequestLine.transportRate / 1000000000000000) * (quoteRequestLine.transportUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000))|number_format(2, ',') }}
                                                 {% endif %}
                                             </td>
                                             <td>

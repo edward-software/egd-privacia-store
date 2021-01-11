@@ -316,7 +316,19 @@ class QuoteRequest
      */
     private $signatoryTitle1;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="minTransportUnitPrice", type="integer", nullable=true)
+     */
+    private $minTransportUnitPrice;
 
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="transportRate", type="bigint", nullable=true)
+     */
+    private $transportRate;
 
     /**
      * #################################
@@ -364,6 +376,7 @@ class QuoteRequest
         $this->quoteRequestLines = new \Doctrine\Common\Collections\ArrayCollection();
         $this->otherNeeds = new \Doctrine\Common\Collections\ArrayCollection();
         $this->overallDiscount = 0;
+        $this->minTransportUnitPrice = 0;
     }
 
     /**
@@ -1381,4 +1394,41 @@ class QuoteRequest
     {
         return $this->token;
     }
+
+    /**
+     * @return int
+     */
+    public function getMinTransportUnitPrice()
+    {
+        return $this->minTransportUnitPrice;
+    }
+
+    /**
+     * @param int $minTransportUnitPrice
+     * @return QuoteRequest
+     */
+    public function setMinTransportUnitPrice($minTransportUnitPrice)
+    {
+        $this->minTransportUnitPrice = $minTransportUnitPrice;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTransportRate()
+    {
+        return $this->transportRate;
+    }
+
+    /**
+     * @param int $transportRate
+     * @return QuoteRequest
+     */
+    public function setTransportRate($transportRate)
+    {
+        $this->transportRate = $transportRate;
+        return $this;
+    }
+
 }

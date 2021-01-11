@@ -141,6 +141,7 @@ class SubscriptionController extends Controller
         $cartManager = $this->get('paprec.cart_manager');
         $quoteRequestManager = $this->get('paprec_commercial.quote_request_manager');
         $userManager = $this->get('paprec.user_manager');
+        $numberManager = $this->get('paprec_catalog.number_manager');
 
 
         $cart = $cartManager->get($cartUuid);
@@ -207,7 +208,18 @@ class SubscriptionController extends Controller
             $em = $this->getDoctrine()->getManager();
             $em->persist($quoteRequest);
 
-            // On récupère tous les produits ajoutés au Cart
+            if ($quoteRequest->getPostalCode()) {
+                $quoteRequest->setTransportRate($quoteRequest->getPostalCode()->getTransportRate());
+            } else {
+                /**
+                 * Si pas de code postal, on met le à 1 par défaut
+                 */
+                $quoteRequest->setTransportRate($numberManager->normalize15(1));
+            }
+
+            /**
+             * On récupère tous les produits ajoutés au Cart
+             */
             if ($cart->getContent() !== null) {
                 foreach ($cart->getContent() as $item) {
                     $quoteRequestManager->addLineFromCart($quoteRequest, $item['pId'], $item['qtty'], false);
