@@ -464,7 +464,7 @@
                 </tr>
                 <tr>
                     <td class="text-left">Escalier</td>
-                    <td>{{ totalQuantity }}</td>
+                    <td>{% if quoteRequest.access == 'stairs' %}{{ quoteRequest.floorNumber }} {% else%} 0 {% endif %}</td>
                     <td>5,00 €</td>
                 </tr>
                 <tr>
@@ -562,14 +562,10 @@
                         </th>
                     </tr>
                     {% set totalDestructionTransportHT = 0 %}
-                    {% set minTransportUnitPrice = null %}
-                    {% set transportUnitPrice = 0 %}
-                    {% set transportRate = 0 %}
                     {% set transportTreatmentTotalHT = 0 %}
+                    {% set transportUnitPrice = (((quoteRequest.transportRate / 1000000000000000) * (quoteRequest.minTransportUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000)) %}
+
                     {% for product in products %}
-                        {% if minTransportUnitPrice == null or product.transportUnitPrice < minTransportUnitPrice %}
-                            {% set minTransportUnitPrice = product.transportUnitPrice %}
-                        {% endif %}
                         {% set quantity = 0 %}
                         {% set unitPrice = 0 %}
                         {% set total = 0 %}
@@ -579,11 +575,9 @@
                                 {% set unitPrice = (((line.treatmentRate / 1000000000000000) * (line.treatmentUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000) ) %}
                                 {% set total = (unitPrice * quantity) %}
                                 {% set transportTreatmentTotalHT = transportTreatmentTotalHT + total %}
-                                {% set transportRate = line.transportRate %}
 
                             {% endif %}
                         {% endfor %}
-                        {% set transportUnitPrice = (((transportRate / 1000000000000000) * (minTransportUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000)) %}
                         <tr>
                             <td>
                                 <div class="flex align-item-center">
