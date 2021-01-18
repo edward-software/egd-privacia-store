@@ -437,7 +437,7 @@
                             {% set totalQuantity = totalQuantity + quantity %}
                             {% set rentalUnitPrice = (((line.rentalRate / 1000000000000000) * (line.rentalUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000) ) %}
                             {% set rentalProductTotalHT = (rentalUnitPrice * quantity) %}
-                            {% set rentalProductTotalTTC = rentalProductTotalHT %}
+                            {% set rentalProductTotalTTC = rentalProductTotalHT * 1.2 %}
                             {% set rentalTotalHT = rentalTotalHT + rentalProductTotalHT %}
                             {% set rentalTotalTTC = rentalTotalTTC + rentalProductTotalTTC %}
                             {% set treatmentUnitPrice = (((line.treatmentRate / 1000000000000000) * (line.treatmentUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000) ) %}
@@ -516,19 +516,21 @@
                          style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>Mois</p>
                 </div>
-                {# <div class="flex align-item-center" style="margin-left: 30px;"> #}
-                {# <div class="check" style="margin-left: 10px;margin-right: 10px;"></div> #}
-                {# <p>Bimestre</p> #}
-                {# </div> #}
+                <div class="flex align-item-center" style="margin-left: 30px;">
+                    <div class="check {% if  quoteRequest.frequency == 'regular' and quoteRequest.frequencyInterval == 'bimestre' %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
+                    <p>Bimestre</p>
+                </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
                     <div class="check {% if  quoteRequest.frequency == 'regular' and quoteRequest.frequencyInterval == 'quarter' %}active {% endif %}"
                          style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>Trimestre</p>
                 </div>
-                {# <div class="flex align-item-center" style="margin-left: 30px;"> #}
-                {# <div class="check" style="margin-left: 10px;margin-right: 10px;"></div> #}
-                {# <p>Quadrimestre</p> #}
-                {# </div> #}
+                <div class="flex align-item-center" style="margin-left: 30px;">
+                    <div class="check  {% if  quoteRequest.frequency == 'regular' and quoteRequest.frequencyInterval == 'quadrimestre' %}active {% endif %}"
+                         style="margin-left: 10px;margin-right: 10px;"></div>
+                    <p>Quadrimestre</p>
+                </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
                     <div class="check {% if  quoteRequest.frequency == 'ponctual' %}active {% endif %}"
                          style="margin-left: 10px;margin-right: 10px;"></div>
@@ -549,7 +551,7 @@
                 </tr>
                 <tr>
                     <td class="text-left">Escalier</td>
-                    <td>{% if quoteRequest.access == 'stairs' %}{{ quoteRequest.floorNumber }} {% else%} 0 {% endif %}</td>
+                    <td>{% if quoteRequest.access == 'stairs' %}{{ quoteRequest.floorNumber }} {% else %} 0 {% endif %}</td>
                     <td>5,00 €</td>
                 </tr>
                 <tr>
@@ -565,21 +567,28 @@
             <div class="flex">
                 {% if quoteRequest.frequency == 'regular' %}
                     {% set prestationTotalHT =  ((((quoteRequest.transportRate / 1000000000000000) * (quoteRequest.minTransportUnitPrice / 100)) + treatmentTotalHT) * (1 + quoteRequest.overallDiscount / 10000)) %}
+                    {% set penibilityTotalHT = totalQuantity * quoteRequest.floorNumber * 5 %}
                     {% set frequencyInterval = quoteRequest.frequencyInterval %}
                     {% if frequencyInterval == 'week' %}
                         {% set prestationTotalHT = prestationTotalHT * quoteRequest.frequencyTimes * 4 %}
+                        {% set penibilityTotalHT = penibilityTotalHT * quoteRequest.frequencyTimes * 4 %}
                     {% elseif frequencyInterval == 'month' %}
                         {% set prestationTotalHT = prestationTotalHT * quoteRequest.frequencyTimes %}
+                        {% set penibilityTotalHT = penibilityTotalHT * quoteRequest.frequencyTimes %}
                     {% elseif frequencyInterval == 'bimestre' %}
                         {% set prestationTotalHT = prestationTotalHT * quoteRequest.frequencyTimes / 2 %}
+                        {% set penibilityTotalHT = penibilityTotalHT * quoteRequest.frequencyTimes / 2 %}
                     {% elseif frequencyInterval == 'quarter' %}
                         {% set prestationTotalHT = prestationTotalHT * quoteRequest.frequencyTimes / 3 %}
+                        {% set penibilityTotalHT = penibilityTotalHT * quoteRequest.frequencyTimes / 3 %}
                     {% elseif frequencyInterval == 'quadrimestre' %}
                         {% set prestationTotalHT = prestationTotalHT * quoteRequest.frequencyTimes / 4 %}
+                        {% set penibilityTotalHT = penibilityTotalHT * quoteRequest.frequencyTimes / 4 %}
                     {% endif %}
                     {% set prestationTotalTTC =  prestationTotalHT * 1.2 %}
+                    {% set penibilityTotalTTC = penibilityTotalHT * 1.2 %}
 
-                    {% set totalHT =  prestationTotalHT + rentalTotalHT %}
+                    {% set totalHT =  prestationTotalHT + rentalTotalHT + penibilityTotalHT %}
                     {% set totalTTC =  totalHT * 1.2 %}
                     <table style="width:48%; margin-right: 20px;">
                         <tbody>
@@ -594,11 +603,18 @@
                             <td>{{ rentalTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                         <tr>
-                            <td>Budget prestation(€/passage)<br>
+                            <td>Budget prestation(€/mois)<br>
                                 <span style="font-size: 11px;font-style: italic;">(Transport - Destruction - Traçabilité)</span>
                             </td>
                             <td>{{ prestationTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                             <td>{{ prestationTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                        </tr>
+                        <tr>
+                            <td>Budget pénibilité(€/mois)<br>
+                                <span style="font-size: 11px;font-style: italic;">(conteneurs x étages X 5,00)</span>
+                            </td>
+                            <td>{{ penibilityTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                            <td>{{ penibilityTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                         <tr>
                             <td>Budget Mensuel (€/mois)</td>
@@ -649,7 +665,11 @@
 
         <h2 style="margin-top: 0;">3. Remarques</h2>
         <div>
-            {{ quoteRequest.salesmanComment }}
+            {% if quoteRequest.comment %}
+                {{ quoteRequest.comment }}
+            {% else %}
+                Pas de remarques.
+            {% endif %}
         </div>
 
         {# partie 4 #}

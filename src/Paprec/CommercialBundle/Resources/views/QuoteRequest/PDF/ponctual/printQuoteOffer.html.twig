@@ -464,7 +464,7 @@
                 </tr>
                 <tr>
                     <td class="text-left">Escalier</td>
-                    <td>{% if quoteRequest.access == 'stairs' %}{{ quoteRequest.floorNumber }} {% else%} 0 {% endif %}</td>
+                    <td>{% if quoteRequest.access == 'stairs' %}{{ quoteRequest.floorNumber }} {% else %} 0 {% endif %}</td>
                     <td>5,00 €</td>
                 </tr>
                 <tr>
@@ -561,10 +561,9 @@
                             Total HT
                         </th>
                     </tr>
-                    {% set totalDestructionTransportHT = 0 %}
                     {% set transportTreatmentTotalHT = 0 %}
                     {% set transportUnitPrice = (((quoteRequest.transportRate / 1000000000000000) * (quoteRequest.minTransportUnitPrice / 100)) * (1 + quoteRequest.overallDiscount / 10000)) %}
-
+                    {% set penibilityTotalHT = totalQuantity * quoteRequest.floorNumber * 5 %}
                     {% for product in products %}
                         {% set quantity = 0 %}
                         {% set unitPrice = 0 %}
@@ -590,7 +589,7 @@
                             <td>{{ total|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                     {% endfor %}
-                    {% set transportTreatmentTotalHT = transportTreatmentTotalHT + transportUnitPrice %}
+                    {% set transportTreatmentTotalHT = transportTreatmentTotalHT + transportUnitPrice + penibilityTotalHT %}
 
                     <tr>
                         <th>Transport (€/passage)</th>
@@ -604,15 +603,22 @@
                     </tr>
                     <tr>
                         <td colspan="3" class="text-right bold">
+                            Budget pénibilité HT (€/passage)
+                        </td>
+                        <td>{{ penibilityTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" class="text-right bold">
                             Budget Transport et Traitement HT (€/passage)
                         </td>
                         <td>{{ transportTreatmentTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                     </tr>
+
                     <tr>
                         <td colspan="3" class="text-right bold">
                             Budget Transport et Traitement TTC (€/passage)
                         </td>
-                        <td>{ (transportTreatmentTotalHT * 1.2)|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                        <td>{{ (transportTreatmentTotalHT * 1.2)|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -624,7 +630,11 @@
 
         <h2 style="margin-top: 0;">3. Remarques</h2>
         <div>
-            Remarques
+            {% if quoteRequest.comment %}
+                {{ quoteRequest.comment }}
+            {% else %}
+                Pas de remarques.
+            {% endif %}
         </div>
 
         {# partie 4 #}

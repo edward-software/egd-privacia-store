@@ -377,6 +377,7 @@ class QuoteRequest
         $this->otherNeeds = new \Doctrine\Common\Collections\ArrayCollection();
         $this->overallDiscount = 0;
         $this->minTransportUnitPrice = 0;
+        $this->regularDuration = 36;
     }
 
     /**

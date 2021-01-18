@@ -361,6 +361,14 @@ class QuoteRequestManager
             $quoteRequestLine->setAccessPrice(0);
         }
 
+        /**
+         * si le transportUnitPrice de la quoteRequestLine est inférieur à minTransportUnitPrice de la quoteRequest
+         * alors on met le transportUnitPrice comme minTransportUnitPrice
+         */
+        if ($quoteRequest->getMinTransportUnitPrice() === 0 || $quoteRequestLine->getTransportUnitPrice() > $quoteRequest->getMinTransportUnitPrice()) {
+            $quoteRequest->setMinTransportUnitPrice($quoteRequestLine->getTransportUnitPrice());
+        }
+
         if ($doFlush) {
             $this->em->flush();
         }
