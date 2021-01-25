@@ -859,13 +859,31 @@ class QuoteRequestManager
             );
 
             /**
-             * Concaténation des notices
+             * Concaténation des fichiers
              */
             $pdfArray = array();
-            $pdfArray[] = $filenameOffer;
 
             $ponctualFileNames = $this->container->getParameter('paprec_commercial.file_names');
+            $ponctualFileCovers = $this->container->getParameter('paprec_commercial.cover_file_names');
             $ponctualFileDirectory = $this->container->getParameter('paprec_commercial.files_directory');
+
+            /**
+             * Ajout de(s) page(s) de garde
+             */
+            if (is_array($ponctualFileCovers) && count($ponctualFileCovers)) {
+                foreach ($ponctualFileCovers as $ponctualFileCover) {
+                    $noticeFilename = $ponctualFileDirectory . '/' . $ponctualFileCover . '.pdf';
+                    if (file_exists($noticeFilename)) {
+                        $pdfArray[] = $noticeFilename;
+                    }
+                }
+            }
+
+            /**
+             * Ajout de l'offre généré
+             */
+            $pdfArray[] = $filenameOffer;
+
 
             if (is_array($ponctualFileNames) && count($ponctualFileNames)) {
                 foreach ($ponctualFileNames as $ponctualFileName) {

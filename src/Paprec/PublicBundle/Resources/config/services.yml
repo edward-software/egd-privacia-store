@@ -20,3 +20,5 @@ parameters:
   paprec_commercial.files_directory: "%kernel.root_dir%/data/pdf"
   paprec_commercial.file_names:
     - cg
+  paprec_commercial.cover_file_names:
+    - cover

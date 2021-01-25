@@ -236,6 +236,16 @@ $(function () {
         }
     });
 
+    // Désactivation des champs de signatory quand on sélecitonne signataire
+        $('input[name*=isSameSignatory]').change(function () {
+        if (this.value == 1) {
+            $('.signatory-field').prop("disabled", true);
+            $('.signatory-field').val('');
+        } else if (this.value == 0) {
+            $('.signatory-field').prop("disabled", false);
+        }
+    });
+
     $('#contact_staff_select').change(function () {
         $('.contact_staff_input').val(this.value);
     });

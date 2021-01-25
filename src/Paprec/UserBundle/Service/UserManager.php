@@ -89,7 +89,7 @@ class UserManager
      * @return object|User|null
      * @throws Exception
      */
-    public function getUserInChargeByPostalCode(PostalCode $pc)
+    public function getUserInChargeByPostalCode($pc)
     {
         try {
             if ($pc == null) {

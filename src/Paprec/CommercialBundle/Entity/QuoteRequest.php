@@ -144,6 +144,14 @@ class QuoteRequest
     private $isMultisite;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="isSameSignatory", type="boolean")
+     * @Assert\NotBlank(groups={"public"})
+     */
+    private $isSameSignatory;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="staff", type="text")
@@ -178,7 +186,7 @@ class QuoteRequest
      * @var string
      *
      * @ORM\Column(name="address", type="text", nullable=true)
-     * @Assert\NotBlank(groups={"public"})
+     * @Assert\NotBlank(groups={"public_multisite"})
      */
     private $address;
 
@@ -186,7 +194,7 @@ class QuoteRequest
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=255, nullable=true, nullable=true)
-     * @Assert\NotBlank(groups={"public"})
+     * @Assert\NotBlank(groups={"public_multisite"})
      */
     private $city;
 
@@ -296,7 +304,7 @@ class QuoteRequest
      * @var string
      *
      * @ORM\Column(name="signatoryLastName1", type="string", length=255, nullable=true)
-     * @Assert\NotBlank(groups={"signatory"})
+     * @Assert\NotBlank(groups={"public_same_signatory"})
      */
     private $signatoryLastName1;
 
@@ -304,7 +312,7 @@ class QuoteRequest
      * @var string
      *
      * @ORM\Column(name="signatoryFirstName1", type="string", length=255, nullable=true)
-     * @Assert\NotBlank(groups={"signatory"})
+     * @Assert\NotBlank(groups={"public_same_signatory"})
      */
     private $signatoryFirstName1;
 
@@ -312,7 +320,7 @@ class QuoteRequest
      * @var string
      *
      * @ORM\Column(name="signatoryTitle1", type="string", length=255, nullable=true)
-     * @Assert\NotBlank(groups={"signatory"})
+     * @Assert\NotBlank(groups={"public_same_signatory"})
      */
     private $signatoryTitle1;
 
@@ -343,7 +351,7 @@ class QuoteRequest
 
     /**
      * @ORM\ManyToOne(targetEntity="Paprec\CatalogBundle\Entity\PostalCode", inversedBy="quoteRequests")
-     * @Assert\NotBlank(groups={"public"})
+     * @Assert\NotBlank(groups={"public_multisite"})
      */
     private $postalCode;
 
@@ -378,6 +386,7 @@ class QuoteRequest
         $this->overallDiscount = 0;
         $this->minTransportUnitPrice = 0;
         $this->regularDuration = 36;
+        $this->isSameSignatory = false;
     }
 
     /**
@@ -618,6 +627,24 @@ class QuoteRequest
     public function getIsMultisite()
     {
         return $this->isMultisite;
+    }
+
+    /**
+     * @return bool
+     */
+    public function getIsSameSignatory()
+    {
+        return $this->isSameSignatory;
+    }
+
+    /**
+     * @param bool $isSameSignatory
+     * @return QuoteRequest
+     */
+    public function setIsSameSignatory($isSameSignatory)
+    {
+        $this->isSameSignatory = $isSameSignatory;
+        return $this;
     }
 
     /**

@@ -136,19 +136,24 @@
                                 {{ 'Public.Contact.isMultisiteInfo'| trans({}, "messages", locale) }}
                             </span>
                         <h2 class="color-secondary m-y-25">{{ 'Public.Contact.Signatory'| trans({}, "messages", locale) }}</h2>
+                        <div class="form-group paprec-flex align-items_center m-t-30">
+                            <label>{{ 'Public.Contact.IsSameSignatory'| trans({}, "messages", locale) }}* :</label>
+                            {{ form_widget(form.isSameSignatory, {'attr': {'class': 'form-check form-check-inline radio-form'}}) }}
+                            {{ form_errors(form.isSameSignatory) }}
+                        </div>
                         <div class="form-group">
                             <label>{{ 'Public.Contact.SignatoryLastName1'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.signatoryLastName1, {'attr': {'class': 'form-control', 'rows': '11'}}) }}
+                            {{ form_widget(form.signatoryLastName1, {'attr': {'class': 'form-control signatory-field'}}) }}
                             {{ form_errors(form.signatoryLastName1) }}
                         </div>
                         <div class="form-group">
                             <label>{{ 'Public.Contact.SignatoryFirstName1'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.signatoryFirstName1, {'attr': {'class': 'form-control', 'rows': '11'}}) }}
+                            {{ form_widget(form.signatoryFirstName1, {'attr': {'class': 'form-control signatory-field'}}) }}
                             {{ form_errors(form.signatoryFirstName1) }}
                         </div>
                         <div class="form-group">
                             <label>{{ 'Public.Contact.SignatoryTitle1'| trans({}, "messages", locale) }}* :</label>
-                            {{ form_widget(form.signatoryTitle1, {'attr': {'class': 'form-control', 'rows': '11'}}) }}
+                            {{ form_widget(form.signatoryTitle1, {'attr': {'class': 'form-control signatory-field'}}) }}
                             {{ form_errors(form.signatoryTitle1) }}
                         </div>
                         <button type="submit"

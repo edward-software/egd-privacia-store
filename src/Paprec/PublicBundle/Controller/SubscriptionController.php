@@ -188,6 +188,13 @@ class SubscriptionController extends Controller
             $quoteRequest->setFrequencyTimes($cart->getFrequencyTimes());
             $quoteRequest->setFrequencyInterval($cart->getFrequencyInterval());
             $quoteRequest->setNumber($quoteRequestManager->generateNumber($quoteRequest));
+            /**
+             * Set Signatory if isSameSignatory
+             */
+            if ($quoteRequest->getIsSameSignatory()) {
+                $quoteRequest->setSignatoryLastName1($quoteRequest->getLastName());
+                $quoteRequest->setSignatoryFirstName1($quoteRequest->getFirstName());
+            }
 
             if ($cart->getOtherNeeds() && count($cart->getOtherNeeds())) {
                 foreach ($cart->getOtherNeeds() as $otherNeed) {

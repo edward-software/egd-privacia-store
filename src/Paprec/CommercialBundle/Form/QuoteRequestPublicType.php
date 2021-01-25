@@ -88,6 +88,14 @@ class QuoteRequestPublicType extends AbstractType
                 "data" => 0,
                 "expanded" => true,
             ))
+            ->add('isSameSignatory', ChoiceType::class, array(
+                "choices" => array(0, 1),
+                "choice_label" => function ($choiceValue, $key, $value) {
+                    return 'General.' . $choiceValue;
+                },
+                "data" => 0,
+                "expanded" => true,
+            ))
             ->add('address', TextType::class)
             ->add('postalCode', TextType::class, array(
                 'invalid_message' => 'Public.Contact.PostalCodeError'
@@ -110,11 +118,15 @@ class QuoteRequestPublicType extends AbstractType
         $resolver->setDefaults(array(
             'data_class' => 'Paprec\CommercialBundle\Entity\QuoteRequest',
             'validation_groups' => function (FormInterface $form) {
+                $groups = ['public'];
                 $data = $form->getData();
-                if ($data->getIsMultisite() === 1) {
-                    return ['public'];
+                if ($data->getIsMultisite() === 0) {
+                    $groups[] = 'public_multisite';
                 }
-                return ['public', 'public_multisite'];
+                if ($data->getIsSameSignatory() === 0) {
+                    $groups[] = 'public_same_signatory';
+                }
+                return $groups;
             },
             'access' => null,
             'staff' => null,

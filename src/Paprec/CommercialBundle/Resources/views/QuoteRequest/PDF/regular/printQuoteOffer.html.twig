@@ -379,27 +379,27 @@
             <h2>2. Objet, Durée, Prix HT</h2>
             <div class="flex">
                 <p class="bold">Durée du contrat : </p>
-                <div class="flex align-item-center">
-                    {# class active pour check the box #}
-                    <div class="check {% if quoteRequest.regularDuration == 24 %}active {% endif %}"
-                         style="margin-left: 10px;margin-right: 10px;"></div>
-                    <p>24 mois</p>
-                </div>
+{#                <div class="flex align-item-center">#}
+{#                    #}{# class active pour check the box #}
+{#                    <div class="check {% if quoteRequest.regularDuration == 24 %}active {% endif %}"#}
+{#                         style="margin-left: 10px;margin-right: 10px;"></div>#}
+{#                    <p>24 mois</p>#}
+{#                </div>#}
                 <div class="flex align-item-center" style="margin-left: 30px;">
                     <div class="check {% if quoteRequest.regularDuration == 36 %}active {% endif %}"
                          style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>36 mois</p>
                 </div>
-                <div class="flex align-item-center" style="margin-left: 30px;">
-                    <div class="check {% if quoteRequest.regularDuration == 48 %}active {% endif %}"
-                         style="margin-left: 10px;margin-right: 10px;"></div>
-                    <p>48 mois</p>
-                </div>
-                <div class="flex align-item-center" style="margin-left: 30px;">
-                    <div class="check {% if quoteRequest.regularDuration == 60 %}active {% endif %}"
-                         style="margin-left: 10px;margin-right: 10px;"></div>
-                    <p>60 mois</p>
-                </div>
+{#                <div class="flex align-item-center" style="margin-left: 30px;">#}
+{#                    <div class="check {% if quoteRequest.regularDuration == 48 %}active {% endif %}"#}
+{#                         style="margin-left: 10px;margin-right: 10px;"></div>#}
+{#                    <p>48 mois</p>#}
+{#                </div>#}
+{#                <div class="flex align-item-center" style="margin-left: 30px;">#}
+{#                    <div class="check {% if quoteRequest.regularDuration == 60 %}active {% endif %}"#}
+{#                         style="margin-left: 10px;margin-right: 10px;"></div>#}
+{#                    <p>60 mois</p>#}
+{#                </div>#}
             </div>
 
             <p class="bold">Location Conteneurs :</p>
@@ -456,10 +456,10 @@
                                 <p>{{ product|productLabelTranslation('fr') }}</p>
                             </div>
                         </td>
-                        <td>{{ quantity }}</td>
-                        <td>{{ rentalUnitPrice|formatAmount('EUR', 'fr', 'DEC2') }}</td>
-                        <td>{{ rentalProductTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
-                        <td>{{ rentalProductTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                        <td>{% if quantity > 0 %}{{ quantity }}{% endif %}</td>
+                        <td>{% if rentalUnitPrice > 0 %}{{ rentalUnitPrice|formatAmount('EUR', 'fr', 'DEC2') }}{% endif %}</td>
+                        <td>{% if rentalProductTotalHT > 0 %}{{ rentalProductTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}{% endif %}</td>
+                        <td>{% if rentalProductTotalTTC > 0 %}{{ rentalProductTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}{% endif %}</td>
                     </tr>
                 {% endfor %}
                 <tr>
@@ -590,7 +590,7 @@
 
                     {% set totalHT =  prestationTotalHT + rentalTotalHT + penibilityTotalHT %}
                     {% set totalTTC =  totalHT * 1.2 %}
-                    <table style="width:48%; margin-right: 20px;">
+                    <table style="width:48%; margin-right: 20px; margin-left: 20px;">
                         <tbody>
                         <tr>
                             <th>Prestations récurrentes</th>
@@ -627,10 +627,12 @@
 
                 {% if quoteRequest.frequency == 'ponctual' %}
                     {% set prestationTotalHT =  ((((quoteRequest.transportRate / 1000000000000000) * (quoteRequest.minTransportUnitPrice / 100)) + treatmentTotalHT) * (1 + quoteRequest.overallDiscount / 10000)) %}
+                    {% set penibilityTotalHT = totalQuantity * quoteRequest.floorNumber * 5 %}
                     {% set prestationTotalTTC =  prestationTotalHT * 1.2 %}
+                    {% set penibilityTotalTTC = penibilityTotalHT * 1.2 %}
                     {% set totalHT =  prestationTotalHT + rentalTotalHT %}
                     {% set totalTTC =  totalHT %}
-                    <table style="width:50%;">
+                    <table style="width:50%;  margin-left: 20px;">
                         <tbody>
                         <tr>
                             <th>Prestations à la demande</th>
@@ -650,9 +652,11 @@
                             <td>{{ prestationTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>Budget pénibilité(€/passage)<br>
+                                <span style="font-size: 11px;font-style: italic;">(conteneurs x étages X 5,00)</span>
+                            </td>
+                            <td>{{ penibilityTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                            <td>{{ penibilityTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                         </tbody>
                     </table>

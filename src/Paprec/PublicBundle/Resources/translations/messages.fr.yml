@@ -89,6 +89,7 @@ Public:
         CoworkerNumber: Effectif
         IsMultisite: Prestation multi-sites
         isMultisiteInfo: Votre demande de prestation multisite a bien été pris en compte. Vous serez contacté très prochainement par le service commercial.
+        IsSameSignatory:  Signataire du contrat identique au contact
         Access: Accès
         FloorNumber: Nombre d'étages
         Staff: Effectif
