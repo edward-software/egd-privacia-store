@@ -400,8 +400,6 @@
                     <p>4 mois</p>
                 </div>
             </div>
-
-            <p class="bold">Prestation de destruction :</p>
             <div class="flex">
                 <p class="bold">Nombre de passages :</p>
                 <div class="flex align-item-center">
@@ -516,10 +514,12 @@
                                 </div>
                             </td>
                             <td>
-                                {{ quantity }}
+                                {% if quantity > 0 %}
+                                    {{ quantity }}
+                                {% endif %}
                             </td>
-                            <td>{{ unitPrice|formatAmount('EUR', 'fr', 'DEC2') }}</td>
-                            <td>{{ total|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                            <td>{% if unitPrice > 0 %}{{ unitPrice|formatAmount('EUR', 'fr', 'DEC2') }}{% endif %}</td>
+                            <td>{% if total > 0 %}{{ total|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                     {% endfor %}
                     <tr>
