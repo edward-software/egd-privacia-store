@@ -191,9 +191,9 @@ class QuoteRequestController extends Controller
         /** @var QuoteRequest[] $quoteRequests */
         $quoteRequests = $queryBuilder->getQuery()->getResult();
 
-        $phpExcelObject->getProperties()->setCreator("Paprec Easy Recyclage")
+        $phpExcelObject->getProperties()->setCreator("Paprec Privacia")
             ->setLastModifiedBy("Privacia Shop")
-            ->setTitle("Paprec Easy Recyclage - Devis")
+            ->setTitle("Paprec Privacia - Devis")
             ->setSubject("Extraction");
 
         $sheet = $phpExcelObject->setActiveSheetIndex();

@@ -357,7 +357,7 @@ class UserController extends Controller
         $em->flush();
 
         $message = \Swift_Message::newInstance()
-            ->setSubject('Easy-Recyclage : Identifiants')
+            ->setSubject('Privacia : Identifiants')
             ->setFrom($this->getParameter('paprec_email_sender'))
             ->setTo($user->getEmail())
             ->setBody($this->container->get('templating')->render('PaprecUserBundle:User:sendAccessEmail.html.twig',
@@ -405,7 +405,7 @@ class UserController extends Controller
                     $em->flush();
 
                     $message = \Swift_Message::newInstance()
-                        ->setSubject('Easy-Recyclage : Identifiants')
+                        ->setSubject('Privacia : Identifiants')
                         ->setFrom($this->getParameter('paprec_email_sender'))
                         ->setTo($user->getEmail())
                         ->setBody($this->container->get('templating')->render('PaprecUserBundle:User:sendAccessEmail.html.twig',
