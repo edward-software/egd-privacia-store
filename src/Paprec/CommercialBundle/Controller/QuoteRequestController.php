@@ -105,14 +105,14 @@ class QuoteRequestController extends Controller
             ->from('PaprecCommercialBundle:QuoteRequest', 'q')
             ->where('q.deleted IS NULL');
 
-        /**
-         * Si l'utilisateur n'est pas administrateur, alors on récupère uniquement les devis qui lui sont rattachés
-         */
-        if (!$isAdmin) {
-            $queryBuilder
-                ->andWhere('q.userInCharge = :userId')
-                ->setParameter('userId', $systemUser->getId());
-        }
+//        /**
+//         * Si l'utilisateur n'est pas administrateur, alors on récupère uniquement les devis qui lui sont rattachés
+//         */
+//        if (!$isAdmin) {
+//            $queryBuilder
+//                ->andWhere('q.userInCharge = :userId')
+//                ->setParameter('userId', $systemUser->getId());
+//        }
 
         if (is_array($search) && isset($search['value']) && $search['value'] != '') {
             if (substr($search['value'], 0, 1) == '#') {
