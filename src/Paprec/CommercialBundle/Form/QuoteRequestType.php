@@ -207,7 +207,7 @@ class QuoteRequestType extends AbstractType
                 if ($data->getIsMultisite() === 1) {
                     return ['default', 'public'];
                 }
-                return ['default', 'public', 'public_multisite'];
+                return ['default', 'public_multisite'];
             },
             'status' => null,
             'locales' => null,
