@@ -141,6 +141,13 @@ class PostalCode
      */
     private $quoteRequests;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Paprec\CatalogBundle\Entity\Agency", inversedBy="postalCodes")
+     * @Assert\NotBlank
+     */
+    private $agency;
+
     /**
      * Constructor
      */
@@ -506,4 +513,23 @@ class PostalCode
     {
         return $this->rentalRate;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAgency()
+    {
+        return $this->agency;
+    }
+
+    /**
+     * @param mixed $agency
+     * @return PostalCode
+     */
+    public function setAgency($agency)
+    {
+        $this->agency = $agency;
+        return $this;
+    }
+
 }

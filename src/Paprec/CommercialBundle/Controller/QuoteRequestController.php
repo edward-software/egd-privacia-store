@@ -395,6 +395,7 @@ class QuoteRequestController extends Controller
             $quoteRequest = $form->getData();
 
             $quoteRequest->setOverallDiscount($numberManager->normalize($quoteRequest->getOverallDiscount()));
+            $quoteRequest->setTollFees($numberManager->normalize($quoteRequest->getTollFees()));
             $quoteRequest->setAnnualBudget($numberManager->normalize($quoteRequest->getAnnualBudget()));
 
             if ($quoteRequest->getPostalCode()) {
@@ -472,6 +473,7 @@ class QuoteRequestController extends Controller
         }
 
         $quoteRequest->setOverallDiscount($numberManager->denormalize($quoteRequest->getOverallDiscount()));
+        $quoteRequest->setTollFees($numberManager->denormalize($quoteRequest->getTollFees()));
         $quoteRequest->setAnnualBudget($numberManager->denormalize($quoteRequest->getAnnualBudget()));
 
         $form = $this->createForm(QuoteRequestType::class, $quoteRequest, array(
@@ -490,6 +492,7 @@ class QuoteRequestController extends Controller
         if ($form->isSubmitted() && $form->isValid()) {
             $quoteRequest = $form->getData();
             $quoteRequest->setOverallDiscount($numberManager->normalize($quoteRequest->getOverallDiscount()));
+            $quoteRequest->setTollFees($numberManager->normalize($quoteRequest->getTollFees()));
             $quoteRequest->setAnnualBudget($numberManager->normalize($quoteRequest->getAnnualBudget()));
 
             if ($quoteRequest->getQuoteRequestLines()) {

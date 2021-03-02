@@ -58,7 +58,7 @@
     </style>
 
     {% block stylesheets %}{% endblock %}
-    {#<link rel="icon" type="image/png" href="{{ privacia_public_site_url }}/wp-content/themes/bst-master/images/logo/picto_feuille.png">#}
+    {# <link rel="icon" type="image/png" href="{{ privacia_public_site_url }}/wp-content/themes/bst-master/images/logo/picto_feuille.png"> #}
 </head>
 <body>
 
@@ -94,6 +94,8 @@
                                 <div class="dropdown-menu">
                                     <a class="dropdown-item{% if app.request.get('_route')|slice(0, 'paprec_catalog_postalCode'|length) == 'paprec_catalog_postalCode' %} active{% endif %}"
                                        href="{{ path('paprec_catalog_postalCode_index') }}">{{ 'Catalog.PostalCode.PostalCodes'|trans }}</a>
+                                    <a class="dropdown-item{% if app.request.get('_route')|slice(0, 'paprec_catalog_agency'|length) == 'paprec_catalog_agency' %} active{% endif %}"
+                                       href="{{ path('paprec_catalog_agency_index') }}">{{ 'Catalog.Agency.Agencies'|trans }}</a>
                                     <a class="dropdown-item{% if app.request.get('_route')|slice(0, 'paprec_catalog_custom_area'|length) == 'paprec_catalog_custom_area' %} active{% endif %}"
                                        href="{{ path('paprec_catalog_custom_area_index') }}">{{ 'Catalog.CustomArea.CustomAreas'|trans }}</a>
                                     <a class="dropdown-item{% if app.request.get('_route')|slice(0, 'paprec_catalog_other_need'|length) == 'paprec_catalog_other_need' %} active{% endif %}"
@@ -160,7 +162,7 @@
 <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@7.1.0/dist/promise.min.js"></script>
 
 <script src="{{ asset('build/app.js') }}"></script>
-{#<script src="{{ asset('build/manifest.json') }}"></script>#}
+{# <script src="{{ asset('build/manifest.json') }}"></script> #}
 {% block javascripts %}
 
 {% endblock %}

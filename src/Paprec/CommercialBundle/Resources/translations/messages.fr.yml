@@ -39,6 +39,7 @@ Commercial:
         IsMultisite: Prestation multi-sites
         Comment: Commentaire
         OverallDiscount: Ajustement prix (+/- en %)
+        TollFees: Frais de péages
         CustomerId: Numéro client
         SalesmanComment: Commentaire commercial
         AnnualBudget: Budget annuel
@@ -189,3 +190,6 @@ Commercial:
 User:
     User:
         Lang: Langue
+        PhoneNumber: Téléphone
+        MobileNumber: Mobile
+        JobTitle: Titre

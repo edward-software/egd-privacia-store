@@ -40,6 +40,9 @@ class UserType extends AbstractType
             ->add('lang', ChoiceType::class, array(
                 'choices' => $options['languages']
             ))
+            ->add('phoneNumber')
+            ->add('mobileNumber')
+            ->add('jobTitle')
             ->add('plainPassword', RepeatedType::class, array(
                 'type' => PasswordType::class,
                 'invalid_message' => 'The password fields must match.',

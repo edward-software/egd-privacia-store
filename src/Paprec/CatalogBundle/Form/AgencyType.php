@@ -2,8 +2,6 @@
 
 namespace Paprec\CatalogBundle\Form;
 
-use Paprec\CatalogBundle\Entity\Agency;
-use Paprec\CatalogBundle\Repository\AgencyRepository;
 use Paprec\UserBundle\Entity\User;
 use Paprec\UserBundle\Repository\UserRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -12,7 +10,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PostalCodeType extends AbstractType
+class AgencyType extends AbstractType
 {
 
     /**
@@ -22,44 +20,28 @@ class PostalCodeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('code', TextType::class, array(
+            ->add('name', TextType::class, array(
                 "required" => true
             ))
-            ->add('city', TextType::class, array(
-                "required" => true
-            ))
-            ->add('zone', TextType::class, array(
-                "required" => true
-            ))
-            ->add('rentalRate', TextType::class, array(
-                "required" => true
-            ))
-            ->add('transportRate', TextType::class, array(
-                "required" => true
-            ))
-            ->add('treatmentRate', TextType::class, array(
-                "required" => true
-            ))
-            ->add('traceabilityRate', TextType::class, array(
-                "required" => true
-            ))
-            ->add('agency', EntityType::class, array(
-                'class' => Agency::class,
+            ->add('salesman', EntityType::class, array(
+                'class' => User::class,
                 'multiple' => false,
                 'expanded' => false,
                 'placeholder' => '',
                 'empty_data' => null,
-                'choice_label' => function (Agency $agency) {
-                    return $agency->getName();
+                'choice_label' => function (User $user) {
+                    return $user->getFirstName() . ' ' . $user->getLastName();
                 },
                 'required' => false,
-                'query_builder' => function (AgencyRepository $ar) {
-                    return $ar->createQueryBuilder('a')
-                        ->where('a.deleted IS NULL')
-                        ->orderBy('a.name');
+                'query_builder' => function (UserRepository $ur) {
+                    return $ur->createQueryBuilder('u')
+                        ->where('u.deleted IS NULL')
+                        ->andWhere('u.roles LIKE \'%ROLE_COMMERCIAL%\'')
+                        ->andWhere('u.enabled = 1')
+                        ->orderBy('u.firstName');
                 }
             ))
-            ->add('userInCharge', EntityType::class, array(
+            ->add('assistant', EntityType::class, array(
                 'class' => User::class,
                 'multiple' => false,
                 'expanded' => false,
@@ -85,7 +67,7 @@ class PostalCodeType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Paprec\CatalogBundle\Entity\PostalCode',
+            'data_class' => 'Paprec\CatalogBundle\Entity\Agency',
         ));
     }
 }

@@ -1,76 +1,79 @@
 services:
-  _defaults: { public: true }
+    _defaults: { public: true }
 
 
-  paprec_catalog.postal_code_manager:
-    class: Paprec\CatalogBundle\Service\PostalCodeManager
-    arguments: ["@doctrine.orm.entity_manager", "@service_container"]
+    paprec_catalog.postal_code_manager:
+        class: Paprec\CatalogBundle\Service\PostalCodeManager
+        arguments: [ "@doctrine.orm.entity_manager", "@service_container" ]
 
-  paprec_catalog.custom_area_manager:
-    class: Paprec\CatalogBundle\Service\CustomAreaManager
-    arguments: ["@doctrine.orm.entity_manager", "@service_container"]
+    paprec_catalog.custom_area_manager:
+        class: Paprec\CatalogBundle\Service\CustomAreaManager
+        arguments: [ "@doctrine.orm.entity_manager", "@service_container" ]
 
-  paprec_catalog.other_need_manager:
-    class: Paprec\CatalogBundle\Service\OtherNeedManager
-    arguments: ["@doctrine.orm.entity_manager", "@service_container"]
+    paprec_catalog.other_need_manager:
+        class: Paprec\CatalogBundle\Service\OtherNeedManager
+        arguments: [ "@doctrine.orm.entity_manager", "@service_container" ]
 
-  paprec_catalog.product_manager:
-    class: Paprec\CatalogBundle\Service\ProductManager
-    arguments: ["@doctrine.orm.entity_manager", "@service_container"]
+    paprec_catalog.product_manager:
+        class: Paprec\CatalogBundle\Service\ProductManager
+        arguments: [ "@doctrine.orm.entity_manager", "@service_container" ]
 
-  paprec_catalog.product_label_manager:
-    class: Paprec\CatalogBundle\Service\ProductLabelManager
-    arguments: ["@doctrine.orm.entity_manager", "@service_container"]
+    paprec_catalog.product_label_manager:
+        class: Paprec\CatalogBundle\Service\ProductLabelManager
+        arguments: [ "@doctrine.orm.entity_manager", "@service_container" ]
 
-  paprec_catalog.picture_manager:
-    class: Paprec\CatalogBundle\Service\PictureManager
-    arguments: ["@doctrine.orm.entity_manager", "@service_container"]
+    paprec_catalog.picture_manager:
+        class: Paprec\CatalogBundle\Service\PictureManager
+        arguments: [ "@doctrine.orm.entity_manager", "@service_container" ]
 
-  paprec_catalog.number_manager:
-    class: Paprec\CatalogBundle\Service\NumberManager
-    arguments: ["@doctrine.orm.entity_manager", "@service_container"]
+    paprec_catalog.number_manager:
+        class: Paprec\CatalogBundle\Service\NumberManager
+        arguments: [ "@doctrine.orm.entity_manager", "@service_container" ]
 
+    paprec_catalog.agency_manager:
+        class: Paprec\CatalogBundle\Service\AgencyManager
+        arguments: [ "@doctrine.orm.entity_manager", "@service_container" ]
 
-  twig.formatAmount:
-    class: Paprec\CatalogBundle\Twig\Extension\FormatAmountExtension
-    public: false
-    arguments: ["@service_container"]
-    tags:
-      - { name: twig.extension }
+    twig.formatAmount:
+        class: Paprec\CatalogBundle\Twig\Extension\FormatAmountExtension
+        public: false
+        arguments: [ "@service_container" ]
+        tags:
+            - { name: twig.extension }
 
-  twig.formatId:
-    class: Paprec\CatalogBundle\Twig\Extension\FormatIdExtension
-    public: false
-    arguments: ["@service_container"]
-    tags:
-      - { name: twig.extension }
+    twig.formatId:
+        class: Paprec\CatalogBundle\Twig\Extension\FormatIdExtension
+        public: false
+        arguments: [ "@service_container" ]
+        tags:
+            - { name: twig.extension }
 
-  twig.productLabelTranslation:
-    class: Paprec\CatalogBundle\Twig\Extension\ProductLabelTranslationExtension
-    public: false
-    arguments: ["@service_container"]
-    tags:
-      - { name: twig.extension }
+    twig.productLabelTranslation:
+        class: Paprec\CatalogBundle\Twig\Extension\ProductLabelTranslationExtension
+        public: false
+        arguments: [ "@service_container" ]
+        tags:
+            - { name: twig.extension }
 
 parameters:
 
-  paprec_catalog.product.picto_path: "%kernel.root_dir%/../web/uploads/pictos"
+    paprec_catalog.product.picto_path: "%kernel.root_dir%/../web/uploads/pictos"
 
-  paprec_types_picture:
-    - PICTO
-    - PICTURE
-    - PILOTPICTURE
+    paprec_types_picture:
+        - PICTO
+        - PICTURE
+        - PILOTPICTURE
 
-  paprec_custom_area_types_picture:
-    - LEFT
-    - RIGHT
+    paprec_custom_area_types_picture:
+        - LEFT
+        - RIGHT
 
-  paprec_other_need_types_picture:
-    - PICTURE
+    paprec_other_need_types_picture:
+        - PICTURE
 
 
-  paprec_languages:
-    - FR
+    paprec_languages:
+        - FR
 
-  paprec_custom_area_codes:
-    - catalog_top
+    paprec_custom_area_codes:
+        - catalog_top

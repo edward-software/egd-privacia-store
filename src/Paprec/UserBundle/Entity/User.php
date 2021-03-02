@@ -3,10 +3,10 @@
 namespace Paprec\UserBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
-use FOS\UserBundle\Model\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Validator\Constraints as Assert;
+use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * User
@@ -101,6 +101,26 @@ class User extends BaseUser
      */
     private $lang;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phoneNumber", type="string", length=255, nullable=true)
+     */
+    private $phoneNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mobileNumber", type="string", length=255, nullable=true)
+     */
+    private $mobileNumber;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="jobTitle", type="string", length=255, nullable=true)
+     */
+    private $jobTitle;
 
     /**
      * #################################
@@ -119,6 +139,15 @@ class User extends BaseUser
      */
     private $quoteRequests;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Paprec\CatalogBundle\Entity\Agency", mappedBy="salesman")
+     */
+    private $salesmanAgencies;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Paprec\CatalogBundle\Entity\Agency", mappedBy="assistant")
+     */
+    private $assistantAgencies;
 
     public function __construct()
     {
@@ -126,6 +155,8 @@ class User extends BaseUser
 
         $this->dateCreation = new \DateTime();
         $this->products = new ArrayCollection();
+        $this->assistantAgencies = new ArrayCollection();
+        $this->salesmanAgencies = new ArrayCollection();
     }
 
 
@@ -423,6 +454,79 @@ class User extends BaseUser
         return $this->quoteRequests;
     }
 
+
+    /**
+     * Add salesmanAgency.
+     *
+     * @param \Paprec\CatalogBundle\Entity\Agency $agency
+     *
+     * @return User
+     */
+    public function addSalesmanAgency(\Paprec\CatalogBundle\Entity\Agency $agency)
+    {
+        $this->salesmanAgencies[] = $agency;
+
+        return $this;
+    }
+
+    /**
+     * Remove salesmanAgency.
+     *
+     * @param \Paprec\CatalogBundle\Entity\Agency $agency
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removeSalesmanAgency(\Paprec\CatalogBundle\Entity\Agency $agency)
+    {
+        return $this->salesmanAgencies->removeElement($agency);
+    }
+
+    /**
+     * Get salesmanAgencies.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSalesmanAgencies()
+    {
+        return $this->salesmanAgencies;
+    }
+
+    /**
+     * Add assistantAgency.
+     *
+     * @param \Paprec\CatalogBundle\Entity\Agency $agency
+     *
+     * @return User
+     */
+    public function addAssistantAgency(\Paprec\CatalogBundle\Entity\Agency $agency)
+    {
+        $this->assistantAgencies[] = $agency;
+
+        return $this;
+    }
+
+    /**
+     * Remove assistantAgency.
+     *
+     * @param \Paprec\CatalogBundle\Entity\Agency $agency
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removAssistantAgency(\Paprec\CatalogBundle\Entity\Agency $agency)
+    {
+        return $this->assistantAgencies->removeElement($agency);
+    }
+
+    /**
+     * Get assistantAgencies.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAssistantAgencies()
+    {
+        return $this->assistantAgencies;
+    }
+
     /**
      * Set lang.
      *
@@ -446,4 +550,59 @@ class User extends BaseUser
     {
         return $this->lang;
     }
+
+    /**
+     * @return string
+     */
+    public function getJobTitle()
+    {
+        return $this->jobTitle;
+    }
+
+    /**
+     * @param string $jobTitle
+     * @return User
+     */
+    public function setJobTitle($jobTitle)
+    {
+        $this->jobTitle = $jobTitle;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMobileNumber()
+    {
+        return $this->mobileNumber;
+    }
+
+    /**
+     * @param string $mobileNumber
+     * @return User
+     */
+    public function setMobileNumber($mobileNumber)
+    {
+        $this->mobileNumber = $mobileNumber;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+
+    /**
+     * @param string $phoneNumber
+     * @return User
+     */
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
+        return $this;
+    }
+
 }

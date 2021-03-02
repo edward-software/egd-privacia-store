@@ -35,6 +35,9 @@ class UserEditType extends AbstractType
             ->add('lang', ChoiceType::class, array(
                 'choices' => $options['languages']
             ))
+            ->add('phoneNumber')
+            ->add('mobileNumber')
+            ->add('jobTitle')
             ->add('enabled', ChoiceType::class, array(
                 "choices" => array(
                     'No' => 0,

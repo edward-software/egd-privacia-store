@@ -294,6 +294,12 @@
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-group row">
+                                        <label class="col-md-4 col-form-label">{{ 'Commercial.QuoteRequest.TollFees'|trans }}</label>
+                                        <label class="col-form-label">
+                                            {{ quoteRequest.tollFees|formatAmount('EUR', app.request.locale) }}
+                                        </label>
+                                    </div>
+                                    <div class="form-group row">
                                         <label class="col-md-4 col-form-label">{{ 'Commercial.QuoteRequest.OverallDiscount'|trans }}</label>
                                         <label class="col-form-label">
                                             {{ quoteRequest.overallDiscount|formatAmount('PERCENTAGE', app.request.locale) }}

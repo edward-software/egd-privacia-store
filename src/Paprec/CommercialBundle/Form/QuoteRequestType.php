@@ -8,6 +8,7 @@ use Paprec\UserBundle\Repository\UserRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -100,6 +101,7 @@ class QuoteRequestType extends AbstractType
                 }
             ))
             ->add('overallDiscount')
+            ->add('tollFees', NumberType::class)
             ->add('salesmanComment', TextareaType::class)
             ->add('annualBudget')
             ->add('frequency', ChoiceType::class, array(

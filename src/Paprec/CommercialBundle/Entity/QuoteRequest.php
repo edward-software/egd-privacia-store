@@ -223,6 +223,13 @@ class QuoteRequest
     /**
      * @var int
      *
+     * @ORM\Column(name="tollFees", type="integer", nullable=true)
+     */
+    private $tollFees;
+
+    /**
+     * @var int
+     *
      * @ORM\Column(name="overallDiscount", type="integer")
      */
     private $overallDiscount;
@@ -982,6 +989,25 @@ class QuoteRequest
     {
         return $this->totalAmount;
     }
+
+    /**
+     * @return int
+     */
+    public function getTollFees()
+    {
+        return $this->tollFees;
+    }
+
+    /**
+     * @param int $tollFees
+     * @return QuoteRequest
+     */
+    public function setTollFees($tollFees)
+    {
+        $this->tollFees = $tollFees;
+        return $this;
+    }
+
 
     /**
      * Set frequencyTimes.

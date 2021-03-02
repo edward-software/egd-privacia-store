@@ -379,27 +379,27 @@
             <h2>2. Objet, Durée, Prix HT</h2>
             <div class="flex">
                 <p class="bold">Durée du contrat : </p>
-{#                <div class="flex align-item-center">#}
-{#                    #}{# class active pour check the box #}
-{#                    <div class="check {% if quoteRequest.regularDuration == 24 %}active {% endif %}"#}
-{#                         style="margin-left: 10px;margin-right: 10px;"></div>#}
-{#                    <p>24 mois</p>#}
-{#                </div>#}
+                {# <div class="flex align-item-center"> #}
+                {# #}{# class active pour check the box #}
+                {# <div class="check {% if quoteRequest.regularDuration == 24 %}active {% endif %}" #}
+                {# style="margin-left: 10px;margin-right: 10px;"></div> #}
+                {# <p>24 mois</p> #}
+                {# </div> #}
                 <div class="flex align-item-center" style="margin-left: 30px;">
                     <div class="check {% if quoteRequest.regularDuration == 36 %}active {% endif %}"
                          style="margin-left: 10px;margin-right: 10px;"></div>
                     <p>36 mois</p>
                 </div>
-{#                <div class="flex align-item-center" style="margin-left: 30px;">#}
-{#                    <div class="check {% if quoteRequest.regularDuration == 48 %}active {% endif %}"#}
-{#                         style="margin-left: 10px;margin-right: 10px;"></div>#}
-{#                    <p>48 mois</p>#}
-{#                </div>#}
-{#                <div class="flex align-item-center" style="margin-left: 30px;">#}
-{#                    <div class="check {% if quoteRequest.regularDuration == 60 %}active {% endif %}"#}
-{#                         style="margin-left: 10px;margin-right: 10px;"></div>#}
-{#                    <p>60 mois</p>#}
-{#                </div>#}
+                {# <div class="flex align-item-center" style="margin-left: 30px;"> #}
+                {# <div class="check {% if quoteRequest.regularDuration == 48 %}active {% endif %}" #}
+                {# style="margin-left: 10px;margin-right: 10px;"></div> #}
+                {# <p>48 mois</p> #}
+                {# </div> #}
+                {# <div class="flex align-item-center" style="margin-left: 30px;"> #}
+                {# <div class="check {% if quoteRequest.regularDuration == 60 %}active {% endif %}" #}
+                {# style="margin-left: 10px;margin-right: 10px;"></div> #}
+                {# <p>60 mois</p> #}
+                {# </div> #}
             </div>
 
             <p class="bold">Location Conteneurs :</p>
@@ -413,9 +413,6 @@
                     </th>
                     <th>
                         Total HT
-                    </th>
-                    <th>
-                        Total TTC
                     </th>
                 </tr>
                 {% set rentalTotalHT = 0 %}
@@ -459,14 +456,13 @@
                         <td>{% if quantity > 0 %}{{ quantity }}{% endif %}</td>
                         <td>{% if rentalUnitPrice > 0 %}{{ rentalUnitPrice|formatAmount('EUR', 'fr', 'DEC2') }}{% endif %}</td>
                         <td>{% if rentalProductTotalHT > 0 %}{{ rentalProductTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}{% endif %}</td>
-                        <td>{% if rentalProductTotalTTC > 0 %}{{ rentalProductTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}{% endif %}</td>
                     </tr>
                 {% endfor %}
                 <tr>
-                    <td colspan="4" class="text-right bold">
+                    <td colspan="3" class="text-right bold">
                         Budget Locations (€/mois)
                     </td>
-                    <td>{{ rentalTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
+                    <td>{{ rentalTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                 </tr>
                 </tbody>
             </table>
@@ -537,36 +533,37 @@
                 </div>
             </div>
 
-            <p class="mb-14"><span class="bold"><u>Accès/manutention :</u></span> Prix de chargement en étage par
-                collecteur :</p>
+            <p class="mb-14"><span class="bold"><u>Accès/manutention :</u></span></p>
 
-            <table style="width: 95%; margin-left: 20px;">
-                <tbody>
-                <tr class="table-header">
-                    <th class="text-left">Prix de chargement en étage par collecteur :</th>
-                    <th>Quantité</th>
-                    <th>Prix/unit HT</th>
+            {% if (quoteRequest.access == 'stairs' and quoteRequest.floorNumber > 0) or quoteRequest.tollFees > 0 %}
+                <table style="width: 95%; margin-left: 20px;">
+                    <tbody>
+                    <tr class="table-header">
+                        <th class="text-left">Prix de chargement en étage par collecteur :</th>
+                        <th>Quantité</th>
+                        <th>Prix/unit HT</th>
 
-                </tr>
-                <tr>
-                    <td class="text-left">Escalier</td>
-                    <td>{% if quoteRequest.access == 'stairs' %}{{ quoteRequest.floorNumber }} {% else %} 0 {% endif %}</td>
-                    <td>5,00 €</td>
-                </tr>
-                <tr>
-                    <td class="text-left">Autres situations de pénibilité</td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                </tbody>
-            </table>
+                    </tr>
+                    <tr>
+                        <td class="text-left">Situations de pénibilité (Escaliers,...)</td>
+                        <td>{% if quoteRequest.access == 'stairs' %}{{ quoteRequest.floorNumber }} {% else %} 0 {% endif %}</td>
+                        <td>5,00 €</td>
+                    </tr>
+                    <tr>
+                        <td class="text-left">Frais de péages (facturés en sus)</td>
+                        <td></td>
+                        <td>{{ quoteRequest.tollFees|formatAmount('EUR', 'fr') }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            {% endif %}
 
             <p class="bold">BUDGET :</p>
 
             <div class="flex">
                 {% if quoteRequest.frequency == 'regular' %}
                     {% set prestationTotalHT =  ((((quoteRequest.transportRate / 1000000000000000) * (quoteRequest.minTransportUnitPrice / 100)) + treatmentTotalHT) * (1 + quoteRequest.overallDiscount / 10000)) %}
-                    {% set penibilityTotalHT = totalQuantity * quoteRequest.floorNumber * 5 %}
+                    {% set penibilityTotalHT = totalQuantity * quoteRequest.floorNumber * 5 + quoteRequest.tollfees / 100 %}
                     {% set frequencyInterval = quoteRequest.frequencyInterval %}
                     {% if frequencyInterval == 'week' %}
                         {% set prestationTotalHT = prestationTotalHT * quoteRequest.frequencyTimes * 4 %}
@@ -594,31 +591,26 @@
                         <tr>
                             <th>Prestations récurrentes</th>
                             <th>Montant HT</th>
-                            <th>Montant TTC</th>
                         </tr>
                         <tr>
                             <td>Budget locations (€/mois)</td>
                             <td>{{ rentalTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
-                            <td>{{ rentalTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                         <tr>
                             <td>Budget prestation(€/mois)<br>
                                 <span style="font-size: 11px;font-style: italic;">(Transport - Destruction - Traçabilité)</span>
                             </td>
                             <td>{{ prestationTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
-                            <td>{{ prestationTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                         <tr>
                             <td>Budget pénibilité(€/mois)<br>
                                 <span style="font-size: 11px;font-style: italic;">(conteneurs x étages X 5,00)</span>
                             </td>
                             <td>{{ penibilityTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
-                            <td>{{ penibilityTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                         <tr>
                             <td>Budget Mensuel (€/mois)</td>
                             <td>{{ totalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
-                            <td>{{ totalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                         </tbody>
                     </table>
@@ -626,7 +618,7 @@
 
                 {% if quoteRequest.frequency == 'ponctual' %}
                     {% set prestationTotalHT =  ((((quoteRequest.transportRate / 1000000000000000) * (quoteRequest.minTransportUnitPrice / 100)) + treatmentTotalHT) * (1 + quoteRequest.overallDiscount / 10000)) %}
-                    {% set penibilityTotalHT = totalQuantity * quoteRequest.floorNumber * 5 %}
+                    {% set penibilityTotalHT = totalQuantity * quoteRequest.floorNumber * 5 + quoteRequest.tollFees / 100 %}
                     {% set prestationTotalTTC =  prestationTotalHT * 1.2 %}
                     {% set penibilityTotalTTC = penibilityTotalHT * 1.2 %}
                     {% set totalHT =  prestationTotalHT + rentalTotalHT %}
@@ -636,26 +628,22 @@
                         <tr>
                             <th>Prestations à la demande</th>
                             <th>Montant HT</th>
-                            <th>Montant TTC</th>
                         </tr>
                         <tr>
                             <td>Budget locations (€/mois)</td>
                             <td>{{ rentalTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
-                            <td>{{ rentalTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                         <tr>
                             <td>Budget prestation(€/passage)<br>
                                 <span style="font-size: 11px;font-style: italic;">(Transport - Destruction - Traçabilité)</span>
                             </td>
                             <td>{{ prestationTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
-                            <td>{{ prestationTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                         <tr>
                             <td>Budget pénibilité(€/passage)<br>
                                 <span style="font-size: 11px;font-style: italic;">(conteneurs x étages X 5,00)</span>
                             </td>
                             <td>{{ penibilityTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
-                            <td>{{ penibilityTotalTTC|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                         </tr>
                         </tbody>
                     </table>

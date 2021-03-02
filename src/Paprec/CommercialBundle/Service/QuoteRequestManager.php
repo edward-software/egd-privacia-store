@@ -436,8 +436,11 @@ class QuoteRequestManager
                 return false;
             }
 
-            $locale = 'FR';
+            if (!$quoteRequest->getPostalCode()) {
+                return false;
+            }
 
+            $locale = 'FR';
 
             $translator = $this->container->get('translator');
 
@@ -451,7 +454,9 @@ class QuoteRequestManager
                         '@PaprecCommercial/QuoteRequest/emails/confirmQuoteEmail.html.twig',
                         array(
                             'quoteRequest' => $quoteRequest,
-                            'locale' => strtolower($locale)
+                            'locale' => strtolower($locale),
+                            'salesman' => $quoteRequest->getPostalCode()->getAgency()->getSalesman(),
+                            'assistant' => $quoteRequest->getPostalCode()->getAgency()->getAssistant()
                         )
                     ),
                     'text/html'

@@ -54,6 +54,16 @@
                                 </label>
                             </div>
                             <div class="form-group row">
+                                <label class="col-md-4 col-form-label">{{ 'Catalog.PostalCode.Agency'|trans }}</label>
+                                <label class="col-form-label col-md-8">
+                                    {% if postalCode.agency %}
+                                        <a href="{{ path('paprec_catalog_agency_view', {id: postalCode.agency.id}) }}">
+                                            {{ postalCode.agency.name }}
+                                        </a>
+                                    {% endif %}
+                                </label>
+                            </div>
+                            <div class="form-group row">
                                 <label class="col-md-4 col-form-label">{{ 'Catalog.PostalCode.Zone'|trans }}</label>
                                 <label class="col-form-label col-md-8">
                                     {{ postalCode.zone }}
