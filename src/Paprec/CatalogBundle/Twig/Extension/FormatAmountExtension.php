@@ -38,6 +38,11 @@ class FormatAmountExtension extends \Twig_Extension
             return  number_format((float)$amount, 2, ',', ' ');
         }
 
+        if ($type === 'DEC3') {
+            $amount = str_replace(',', '.', $amount);
+            return  number_format((float)$amount, 3, ',', ' ');
+        }
+
         return $formatManager->formatAmount($amount, $currency, $locale);
 
     }

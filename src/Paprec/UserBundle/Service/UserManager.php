@@ -102,8 +102,7 @@ class UserManager
 
             $user = null;
             if ($postalCode != null) {
-
-                $user = $postalCode->getUserInCharge();
+                $user = $postalCode->getAgency()->getSalesman();
             }
 
             return $user;

@@ -128,12 +128,6 @@ class User extends BaseUser
      * #################################
      */
 
-
-    /**
-     * @ORM\OneToMany(targetEntity="Paprec\CatalogBundle\Entity\PostalCode", mappedBy="userInCharge")
-     */
-    private $postalCodes;
-
     /**
      * @ORM\OneToMany(targetEntity="Paprec\CommercialBundle\Entity\QuoteRequest", mappedBy="userInCharge")
      */
@@ -322,30 +316,6 @@ class User extends BaseUser
         return $this->deleted;
     }
 
-//    /**
-//     * Set postalCodes.
-//     *
-//     * @param string $postalCodes
-//     *
-//     * @return User
-//     */
-//    public function setPostalCodes($postalCodes)
-//    {
-//        $this->postalCodes = $postalCodes;
-//
-//        return $this;
-//    }
-//
-//    /**
-//     * Get postalCodes.
-//     *
-//     * @return string
-//     */
-//    public function getPostalCodes()
-//    {
-//        return $this->postalCodes;
-//    }
-
     /**
      * Add product.
      *
@@ -370,52 +340,6 @@ class User extends BaseUser
     public function removeProduct(\Paprec\CatalogBundle\Entity\product $product)
     {
         return $this->products->removeElement($product);
-    }
-
-    /**
-     * Get products.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getProducts()
-    {
-        return $this->products;
-    }
-
-    /**
-     * Add postalCode.
-     *
-     * @param \Paprec\CatalogBundle\Entity\PostalCode $postalCode
-     *
-     * @return User
-     */
-    public function addPostalCode(\Paprec\CatalogBundle\Entity\PostalCode $postalCode)
-    {
-        $this->postalCodes[] = $postalCode;
-
-        return $this;
-    }
-
-    /**
-     * Remove postalCode.
-     *
-     * @param \Paprec\CatalogBundle\Entity\PostalCode $postalCode
-     *
-     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
-     */
-    public function removePostalCode(\Paprec\CatalogBundle\Entity\PostalCode $postalCode)
-    {
-        return $this->postalCodes->removeElement($postalCode);
-    }
-
-    /**
-     * Get postalCodes.
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getPostalCodes()
-    {
-        return $this->postalCodes;
     }
 
     /**

@@ -130,11 +130,6 @@ class PostalCode
      * #################################
      */
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Paprec\UserBundle\Entity\User", inversedBy="postalCodes")
-     */
-    private $userInCharge;
-
 
     /**
      * @ORM\OneToMany(targetEntity="Paprec\CommercialBundle\Entity\QuoteRequest", mappedBy="postalCode")
@@ -380,30 +375,6 @@ class PostalCode
     public function getUserUpdate()
     {
         return $this->userUpdate;
-    }
-
-    /**
-     * Set userInCharge.
-     *
-     * @param \Paprec\UserBundle\Entity\User|null $userInCharge
-     *
-     * @return PostalCode
-     */
-    public function setUserInCharge(\Paprec\UserBundle\Entity\User $userInCharge = null)
-    {
-        $this->userInCharge = $userInCharge;
-
-        return $this;
-    }
-
-    /**
-     * Get userInCharge.
-     *
-     * @return \Paprec\UserBundle\Entity\User|null
-     */
-    public function getUserInCharge()
-    {
-        return $this->userInCharge;
     }
 
     /**
