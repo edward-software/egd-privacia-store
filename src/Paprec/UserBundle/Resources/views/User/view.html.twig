@@ -148,7 +148,7 @@
                             <div class="form-group row">
                                 <label class="col-md-4 col-form-label">{{ 'User.User.Salesman'|trans }}</label>
                                 <label class="col-form-label">
-                                    {% for agency in user.assistantAgencies %}
+                                    {% for agency in user.salesmanAgencies %}
                                         {% if agency.deleted is null %}
                                             <a href="{{ path('paprec_catalog_agency_view', {id: agency.id}) }}">{{ agency.name }}</a><br>
                                         {% endif %}
