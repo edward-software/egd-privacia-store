@@ -26,7 +26,10 @@ User:
         Confirm-send-access:      Etes-vous sûr de vouloir envoyer les accès ?
         Send-access:              Envoyer les accès
         Roles:                    Rôle de l'utilisateur
-        Postal-codes:              Code postaux
+        Postal-codes:             Code postaux
+        Agencies:                 Agences
+        Salesman:                 Commercial
+        Assistant:               Assistant
         Password:                 Mot de passe
         Edit-my-profile:          Modifier mon profil
         Success:
