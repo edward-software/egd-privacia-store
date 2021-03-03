@@ -45,9 +45,15 @@ class PostalCodeToStringTransformer implements DataTransformerInterface
             return;
         }
 
+        $exploded = explode(' - ', $postalCodeCode);
+
+        $code = $exploded[0];
+        $city = $exploded[1];
+
         $postalCode = $this->entityManager
             ->getRepository(PostalCode::class)->findOneBy(array(
-                'code' => $postalCodeCode,
+                'code' => $code,
+                'city' => $city,
                 'deleted' => null
             ));
 

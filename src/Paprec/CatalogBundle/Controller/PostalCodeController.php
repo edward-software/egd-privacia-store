@@ -313,7 +313,7 @@ class PostalCodeController extends Controller
         $entities = $postalCodeManager->getActivesFromCode($code);
 
         foreach ($entities as $entity) {
-            $codes[] = $entity->getCode();
+            $codes[] = $entity->getCode() . ' - ' . $entity->getId();
         }
 
         $response = new JsonResponse();
