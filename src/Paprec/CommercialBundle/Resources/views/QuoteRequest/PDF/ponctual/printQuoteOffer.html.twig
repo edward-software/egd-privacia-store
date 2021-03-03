@@ -536,12 +536,6 @@
                         </td>
                         <td>{{ rentalTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                     </tr>
-                    <tr>
-                        <td colspan="3" class="text-right bold">
-                            Budget Locations TTC (€/mois)
-                        </td>
-                        <td>{{ (rentalTotalHT * 1.2)|formatAmount('EUR', 'fr', 'DEC2') }}</td>
-                    </tr>
                     </tbody>
                 </table>
 
@@ -612,13 +606,6 @@
                             Budget Transport et Traitement HT (€/passage)
                         </td>
                         <td>{{ transportTreatmentTotalHT|formatAmount('EUR', 'fr', 'DEC2') }}</td>
-                    </tr>
-
-                    <tr>
-                        <td colspan="3" class="text-right bold">
-                            Budget Transport et Traitement TTC (€/passage)
-                        </td>
-                        <td>{{ (transportTreatmentTotalHT * 1.2)|formatAmount('EUR', 'fr', 'DEC2') }}</td>
                     </tr>
                     </tbody>
                 </table>
