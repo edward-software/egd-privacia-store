@@ -1,4 +1,5 @@
 {% extends 'base_public.html.twig' %}
+{% block title %} Privacia - Catalogue{% endblock %}
 {% block breadcrumb_title %}
     {{ 'Public.Catalog.BreadcrumbTitle'| trans({}, "messages", locale) }}
 {% endblock %}
@@ -23,7 +24,8 @@
                         <div class="mytext">{% autoescape false %}{{ customArea.leftContent }}{% endautoescape %}</div>
                         <div class="image">
                             {% if customArea.leftPictures and customArea.leftPictures|length > 0 %}
-                                <img src="{{ asset('uploads/pictos/' ~ customArea.leftPictures[0].path) }}" class="img-fluid"
+                                <img src="{{ asset('uploads/pictos/' ~ customArea.leftPictures[0].path) }}"
+                                     class="img-fluid"
                                      alt="Image block left">
                             {% endif %}
                         </div>
@@ -58,23 +60,33 @@
                                 </div>
                                 <div class="product__description">
                                     <div class="paprec-flex space-between">
-                                        <div class="product__label">{{ 'Catalog.Product.Capacity'|trans({}, "messages", app.request.locale) }} :</div>
+                                        <div class="product__label">{{ 'Catalog.Product.Capacity'|trans({}, "messages", app.request.locale) }}
+                                            :
+                                        </div>
                                         <div class="product__value">{{ product.capacity }} {{ product.capacityUnit }}</div>
                                     </div>
                                     <div class="paprec-flex space-between">
-                                        <div class="product__label">{{ 'Catalog.Product.FolderNumber'|trans({}, "messages", app.request.locale) }} :</div>
+                                        <div class="product__label">{{ 'Catalog.Product.FolderNumber'|trans({}, "messages", app.request.locale) }}
+                                            :
+                                        </div>
                                         <div class="product__value">{{ product.folderNumber }}</div>
                                     </div>
                                     <div class="paprec-flex space-between">
-                                        <div class="product__label">{{ 'Catalog.Product.Dimensions'|trans({}, "messages", app.request.locale) }} :</div>
+                                        <div class="product__label">{{ 'Catalog.Product.Dimensions'|trans({}, "messages", app.request.locale) }}
+                                            :
+                                        </div>
                                         <div class="product__value">{{ product.dimensions }}</div>
                                     </div>
                                     <div class="paprec-flex space-between">
-                                        <div class="product__label">{{ 'Catalog.ProductLabel.Version'|trans({}, "messages", app.request.locale) }} :</div>
+                                        <div class="product__label">{{ 'Catalog.ProductLabel.Version'|trans({}, "messages", app.request.locale) }}
+                                            :
+                                        </div>
                                         <div class="product__value">{{ product|productLabelTranslation(locale, 'version') }} </div>
                                     </div>
                                     <div class="paprec-flex space-between">
-                                        <div class="product__label">{{ 'Catalog.ProductLabel.Lock'|trans({}, "messages", app.request.locale) }} :</div>
+                                        <div class="product__label">{{ 'Catalog.ProductLabel.Lock'|trans({}, "messages", app.request.locale) }}
+                                            :
+                                        </div>
                                         <div class="product__value">{{ product|productLabelTranslation(locale,'lockType') }}</div>
                                     </div>
                                 </div>
