@@ -47,15 +47,26 @@ class PostalCodeToStringTransformer implements DataTransformerInterface
 
         $exploded = explode(' - ', $postalCodeCode);
 
-        $code = $exploded[0];
-        $city = $exploded[1];
 
-        $postalCode = $this->entityManager
-            ->getRepository(PostalCode::class)->findOneBy(array(
-                'code' => $code,
-                'city' => $city,
-                'deleted' => null
-            ));
+        if ($exploded && count($exploded) > 1) {
+
+            $code = $exploded[0];
+            $city = $exploded[1];
+
+            $postalCode = $this->entityManager
+                ->getRepository(PostalCode::class)->findOneBy(array(
+                    'code' => $code,
+                    'city' => $city,
+                    'deleted' => null
+                ));
+
+        } else {
+            $postalCode = $this->entityManager
+                ->getRepository(PostalCode::class)->findOneBy(array(
+                    'code' => $postalCodeCode,
+                    'deleted' => null
+                ));
+        }
 
         if (null === $postalCode) {
             // causes a validation error
