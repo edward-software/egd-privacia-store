@@ -286,6 +286,9 @@ input:focus {
   cursor: pointer;
   min-width: 32%;
   max-width: 32%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 
   .fa-check {
     display: none;
