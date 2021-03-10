@@ -284,6 +284,8 @@ input:focus {
   background-color: $lightgray;
   padding: 30px;
   cursor: pointer;
+  min-width: 32%;
+  max-width: 32%;
 
   .fa-check {
     display: none;
