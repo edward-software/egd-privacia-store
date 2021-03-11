@@ -827,7 +827,7 @@ class QuoteRequestManager
             $snappy->setOption('javascript-delay', 3000);
             $snappy->setTimeout(600);
             $snappy->setOption('dpi', 72);
-            $snappy->setOption('zoom', 0.95);
+            $snappy->setOption('zoom', 0.92);
 
 //            $snappy->setOption('footer-html', $this->container->get('templating')->render('@PaprecCommercial/QuoteRequest/PDF/fr/_footer.html.twig'));
 
