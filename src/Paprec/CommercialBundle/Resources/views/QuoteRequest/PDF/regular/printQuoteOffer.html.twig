@@ -469,32 +469,32 @@
 
 
             <div class="flex">
-                <p class="bold">Nombre de passages :</p>
+                <p class="bold">Nombre de passages&nbsp;:</p>
                 <div class="flex align-item-center">
                     {# class active pour check the box #}
                     <div class="check {% if quoteRequest.frequencyTimes == 1 %}active {% endif %}"
                          style="margin-left: 10px;margin-right: 10px;"></div>
-                    <p>1 passage</p>
+                    <p>1</p>
                 </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
                     <div class="check {% if quoteRequest.frequencyTimes == 2 %}active {% endif %}"
                          style="margin-left: 10px;margin-right: 10px;"></div>
-                    <p>2 passages</p>
+                    <p>2</p>
                 </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
                     <div class="check {% if quoteRequest.frequencyTimes == 3 %}active {% endif %}"
                          style="margin-left: 10px;margin-right: 10px;"></div>
-                    <p>3 passages</p>
+                    <p>3</p>
                 </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
                     <div class="check {% if quoteRequest.frequencyTimes == 4 %}active {% endif %}"
                          style="margin-left: 10px;margin-right: 10px;"></div>
-                    <p>4 passages</p>
+                    <p>4</p>
                 </div>
                 <div class="flex align-item-center" style="margin-left: 30px;">
                     <div class="check {% if quoteRequest.frequencyTimes == 5 %}active {% endif %}"
                          style="margin-left: 10px;margin-right: 10px;"></div>
-                    <p>5 passages</p>
+                    <p>5</p>
                 </div>
             </div>
 
@@ -533,7 +533,7 @@
                 </div>
             </div>
 
-            <p class="mb-14"><span class="bold"><u>Accès/manutention :</u></span></p>
+{#            <p class="mb-14"><span class="bold"><u>Accès/manutention :</u></span></p>#}
 
             {% if (quoteRequest.access == 'stairs' and quoteRequest.floorNumber > 0) or quoteRequest.tollFees > 0 %}
                 <table style="width: 95%; margin-left: 20px;">
@@ -673,7 +673,7 @@
             <hr>
         </div>
         <div class="flex align-item-center">
-            <p style="margin-right: 70px;">Signature et cachet</p>
+            <p style="margin-right: 70px;">Signature et&nbsp;cachet</p>
             <hr>
             <hr>
         </div>
