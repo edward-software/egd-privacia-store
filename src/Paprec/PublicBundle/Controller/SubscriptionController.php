@@ -15,6 +15,7 @@ class SubscriptionController extends Controller
 
     /**
      * @Route("/", name="paprec_public_devis_index")
+     * @Route("/{locale}/step0", name="paprec_public_devis_step0_index")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse
      */
