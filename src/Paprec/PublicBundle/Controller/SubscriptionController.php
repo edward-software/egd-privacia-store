@@ -131,7 +131,7 @@ class SubscriptionController extends Controller
     }
 
     /**
-     * @Route("/{locale}/regulier/contact/{cartUuid}",  name="paprec_public_contact_regulier_index")
+     * @Route("/{locale}/regulier/catalogue/contact/{cartUuid}",  name="paprec_public_contact_regulier_index")
      * @Route("/{locale}/ponctuel/contact/{cartUuid}",  name="paprec_public_contact_ponctuel_index")
      * @param Request $request
      * @param $locale
