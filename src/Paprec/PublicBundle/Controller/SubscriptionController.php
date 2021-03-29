@@ -20,30 +20,32 @@ class SubscriptionController extends Controller
      */
     public function redirectToIndex0Action(Request $request)
     {
-        return $this->redirectToRoute('paprec_public_type_index', array('locale' => 'fr'));
-
+        return $this->redirectToRoute('paprec_public_devis_home', array('locale' => 'fr'));
     }
 
-    /**
-     * @Route("/{locale}", name="paprec_public_devis_home")
-     * @param Request $request
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse
-     */
-    public function redirectToIndexAction(Request $request, $locale)
-    {
-        return $this->redirectToRoute('paprec_public_type_index', array('locale' => 'fr'));
-
-    }
+//    /**
+//     * @Route("/{locale}", name="paprec_public_devis_home")
+//     * @param Request $request
+//     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+//     */
+//    public function redirectToIndexAction(Request $request, $locale)
+//    {
+//        return $this->redirectToRoute('paprec_public_type_index', array('locale' => 'fr'));
+//
+//    }
 
     /**
      * Page de sélection du type de besoin: Régulier ou archivage unique
      *
-     * @Route("/{locale}/step0", name="paprec_public_type_index")
+     * @Route("/{locale}", name="paprec_public_devis_home")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function typeSelectionAction(Request $request, $locale)
     {
+        if ($locale !== 'fr') {
+            return $this->redirectToRoute('paprec_public_devis_home', array('locale' => 'fr'));
+        }
         return $this->render('@PaprecPublic/Common/type.html.twig', array(
             'locale' => $locale
         ));
