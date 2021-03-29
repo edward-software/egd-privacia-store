@@ -71,7 +71,7 @@ class SubscriptionController extends Controller
             $em->flush();
 
             if ($type === 'PONCTUAL') {
-                return $this->redirectToRoute('paprec_public_contact_index', array(
+                return $this->redirectToRoute('paprec_public_contact_ponctuel_index', array(
                     'locale' => 'fr',
                     'cartUuid' => $cart->getId()
                 ));
@@ -89,7 +89,7 @@ class SubscriptionController extends Controller
 
 
     /**
-     * @Route("/{locale}/step1/{cartUuid}", defaults={"cartUuid"=null}, name="paprec_public_catalog_index")
+     * @Route("/{locale}/regulier/catalogue/{cartUuid}", defaults={"cartUuid"=null}, name="paprec_public_catalog_index")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Exception
@@ -128,7 +128,8 @@ class SubscriptionController extends Controller
     }
 
     /**
-     * @Route("/{locale}/step2/{cartUuid}",  name="paprec_public_contact_index")
+     * @Route("/{locale}/regulier/contact/{cartUuid}",  name="paprec_public_contact_regulier_index")
+     * @Route("/{locale}/ponctuel/contact/{cartUuid}",  name="paprec_public_contact_ponctuel_index")
      * @param Request $request
      * @param $locale
      * @param $cartUuid
@@ -242,7 +243,15 @@ class SubscriptionController extends Controller
 
 
             if ($sendConfirmEmail && $sendNewRequestEmail) {
-                return $this->redirectToRoute('paprec_public_confirm_index', array(
+                if ($quoteRequest->getType() === 'PONCTUAL') {
+                    return $this->redirectToRoute('paprec_public_confirm_ponctuel_index', array(
+                        'locale' => $locale,
+                        'cartUuid' => $cart->getId(),
+                        'quoteRequestId' => $quoteRequest->getId()
+                    ));
+                }
+
+                return $this->redirectToRoute('paprec_public_confirm_regulier_index', array(
                     'locale' => $locale,
                     'cartUuid' => $cart->getId(),
                     'quoteRequestId' => $quoteRequest->getId()
@@ -309,7 +318,8 @@ class SubscriptionController extends Controller
     }
 
     /**
-     * @Route("/{locale}/step3/{cartUuid}/{quoteRequestId}", name="paprec_public_confirm_index")
+     * @Route("/{locale}/ponctuel/contact/valide/{cartUuid}/{quoteRequestId}", name="paprec_public_confirm_ponctuel_index")
+     * @Route("/{locale}/regulier/catalogue/contact/valide/{cartUuid}/{quoteRequestId}", name="paprec_public_confirm_regulier_index")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      * @throws \Exception
