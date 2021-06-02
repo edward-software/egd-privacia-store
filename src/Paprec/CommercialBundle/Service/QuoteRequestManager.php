@@ -844,8 +844,7 @@ class QuoteRequestManager
                 $templateDir .= 'ponctual/';
             }
 
-            $productManager = $this->container->get('paprec_catalog.product_manager');
-            $products = $productManager->getAvailableProducts();
+            $products = $this->productManager->getAvailableProducts();
 
             /**
              * On génère la page d'offre
