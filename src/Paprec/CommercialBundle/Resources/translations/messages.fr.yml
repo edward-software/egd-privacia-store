@@ -136,6 +136,13 @@ Commercial:
         Message2: Nous t’en remercions par avance.
         Partner: Ton partenaire Privacia
 
+    QuoteRequestEmail:
+        Object: Voici une nouvelle demande de devis
+        Dear: Cher(ère) Collègue Privacia
+        Message1: Tu trouveras ci-dessous les coordonnées du contact ayant effectué une demande de devis
+        Message2: Nous t’en remercions par avance.
+        Partner: Ton partenaire Privacia
+
     ConfirmEmail:
         Object: Nous vous remercions pour votre demande
         Dear:

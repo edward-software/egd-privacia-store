@@ -418,6 +418,52 @@ class QuoteRequestManager
         return $totalAmount;
     }
 
+    /**
+     * Envoi d'un email au commercial pour l'informer qu'une demande de devis a été exprimé
+     * via le formulaire sur la home
+     */
+    public function sendHomeQuoteRequestEmail($data)
+    {
+        try {
+            $from = $this->container->getParameter('paprec_email_sender');
+
+            $rcptTo = $this->container->getParameter('privacia_quote_request_email');
+
+            if ($rcptTo == null || $rcptTo == '') {
+                return false;
+            }
+
+            $locale = 'FR';
+
+            $translator = $this->container->get('translator');
+
+            $message = \Swift_Message::newInstance()
+                ->setSubject($translator->trans('Commercial.QuoteRequestEmail.Object',
+                    array(), 'messages', strtolower($locale)))
+                ->setFrom($from)
+                ->setTo($rcptTo)
+                ->setBody(
+                    $this->container->get('templating')->render(
+                        '@PaprecCommercial/QuoteRequest/emails/quoteRequestEmail.html.twig',
+                        array(
+                            'locale' => strtolower($locale),
+                            'data' => $data
+                        )
+                    ),
+                    'text/html'
+                );
+            if ($this->container->get('mailer')->send($message)) {
+                return true;
+            }
+            return false;
+
+        } catch (ORMException $e) {
+            throw new Exception('unableToSendQuoteRequestEmail', 500);
+        } catch (Exception $e) {
+            throw new Exception($e->getMessage(), $e->getCode());
+        }
+    }
+
 
     /**
      * Envoie un mail à la personne ayant fait une demande de devis

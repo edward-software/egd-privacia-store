@@ -65,6 +65,11 @@ h2 {
   text-transform: uppercase;
 }
 
+h3 {
+  font-family: $font-family-1;
+  font-size: 16px;
+}
+
 a {
   color: $secondary;
 
@@ -127,7 +132,7 @@ a {
   font-size: 14px;
   height: auto;
   padding: 5px 15px;
-  transition: all .2s ease-in-out;
+  transition: all .3s ease;
 
   &__large {
     padding-left: 25px;
@@ -136,6 +141,32 @@ a {
 
   &:focus {
     box-shadow: none !important;
+  }
+
+  &__light {
+    background-color: $white !important;
+    border: 1px solid $primary !important;
+    color: $primary !important;
+    font-weight: $font-bold;
+    font-size: 14px;
+    font-family: $font-family-1;
+    &:hover {
+      background-color: $primary !important;
+      color: $white !important;
+    }
+  }
+
+  &__primary {
+    background-color: $primary !important;
+    border: 1px solid $primary !important;
+    color: $white !important;
+    font-weight: $font-bold;
+    font-size: 14px;
+    font-family: $font-family-1;
+    &:hover {
+      background-color: $white !important;
+      color: $primary !important;
+    }
   }
 
   &__blue {
@@ -284,8 +315,31 @@ form {
 /***** Page Confirmation ******/
 
 .confirmation {
-  img {
+  .illustration {
+    img {
+      width: 60%;
+    }
+  }
+
+  .contact-form-header {
     width: 60%;
+    margin-right: 20%;
+    margin-left: auto;
+
+    @media all and (max-width: 992px) {
+      margin: auto !important;
+    }
+    .form-group {
+      margin-bottom: 6px;
+      label {
+        margin-bottom: 0;
+        color: $primary;
+        font-weight: $font-regular;
+      }
+    }
+    button {
+      border-radius: $border-radius-xs;
+    }
   }
 }
 

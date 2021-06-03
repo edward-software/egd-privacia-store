@@ -36,10 +36,49 @@ class SubscriptionController extends Controller
 //    }
 
     /**
+     * @Route("/{locale}/quoteRequestForm",  name="paprec_public_quote_request_form", methods={"POST"})
+     *
+     * @param Request $request
+     * @param $locale
+     */
+    public function homeQuoteRequestAction(Request $request, $locale)
+    {
+        try {
+
+            $data = array();
+
+            $data['name'] = htmlspecialchars(stripslashes(trim($request->get('name'))));
+            $data['email'] = htmlspecialchars(stripslashes(trim($request->get('email'))));
+            $data['phone'] = htmlspecialchars(stripslashes(trim($request->get('phone'))));
+            $data['postal'] = htmlspecialchars(stripslashes(trim($request->get('postal'))));
+
+
+            $quoteRequestManager = $this->get('paprec_commercial.quote_request_manager');
+            /**
+             * On envoie le mail d'information au commercial
+             */
+            $sendQuoteRequestEmail = $quoteRequestManager->sendHomeQuoteRequestEmail($data);
+
+            if ($sendQuoteRequestEmail) {
+                $this->get('session')->getFlashBag()->add('success', 'emailSent');
+            } else {
+                $this->get('session')->getFlashBag()->add('error', 'emailNotSent');
+            }
+
+            return $this->redirectToRoute('paprec_public_devis_home', array('locale' => 'fr'));
+
+
+        } catch (\Exception $e) {
+            return new JsonResponse(array('error' => $e->getMessage()), 400);
+        }
+    }
+
+    /**
      * Page de sélection du type de besoin: Régulier ou archivage unique
      *
      * @Route("/{locale}", name="paprec_public_devis_home")
      * @param Request $request
+     * @param $locale
      * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
     public function typeSelectionAction(Request $request, $locale)

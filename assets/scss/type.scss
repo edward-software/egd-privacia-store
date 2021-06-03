@@ -1,7 +1,10 @@
 /***** Page séleciton du type de besoin REGULIER ou PONCTUAL ******/
 
 .type-container {
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  @media all and (max-width: 992px) {
+    margin-bottom: 0 !important;
+  }
 }
 
 
@@ -10,6 +13,7 @@
 
   &__block {
     height: 100%;
+
     &__body {
       display: flex;
       flex-direction: column;
@@ -17,7 +21,26 @@
       background-color: #F2F2F2;
       padding: 30px;
       height: 100%;
+      font-size: 13px;
+
+      &--no-bg {
+        background-color: transparent;
+      }
+
+      h1 {
+        font-size: 28px;
+        line-height: 30px;
+        margin-bottom: 15px;
+      }
+
+      p {
+        margin-bottom: 1em;
+      }
     }
+  }
+
+  p {
+    text-align: justify;
   }
 
   &__button {
@@ -30,7 +53,8 @@
   }
 
   ul {
-    margin-left: 15px;
+    margin-left: 30px;
+
     li {
       list-style: disc !important;
       padding-left: 10px;
