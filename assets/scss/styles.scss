@@ -156,6 +156,19 @@ a {
     }
   }
 
+  &__primary {
+    background-color: $primary !important;
+    border: 1px solid $primary !important;
+    color: $white !important;
+    font-weight: $font-bold;
+    font-size: 14px;
+    font-family: $font-family-1;
+    &:hover {
+      background-color: $white !important;
+      color: $primary !important;
+    }
+  }
+
   &__blue {
     background-color: $secondary;
     border: 1.5px solid $secondary;
@@ -310,6 +323,7 @@ form {
 
   .contact-form-header {
     width: 60%;
+    margin-right: 20%;
     margin-left: auto;
 
     @media all and (max-width: 992px) {
@@ -319,7 +333,7 @@ form {
       margin-bottom: 6px;
       label {
         margin-bottom: 0;
-        color: $darkgray;
+        color: $primary;
         font-weight: $font-regular;
       }
     }

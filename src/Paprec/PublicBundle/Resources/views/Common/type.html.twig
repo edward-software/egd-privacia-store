@@ -10,39 +10,61 @@
         <div class="container p-b-50">
             <div class="row">
                 <div class="col-lg-6 col-12">
-                    <h1 >{{ 'Public.Type.Title'| trans({}, "messages", locale) }}
+                    <h1>{{ 'Public.Type.Title'| trans({}, "messages", locale) }}
                     </h1>
-                    <h3 class="font-weight-bold m-y-24">Votre prestation à partir de 89€ !</h3>
+                    <h2 class=" m-y-24 h3">Votre prestation à partir de 89€ !</h2>
                 </div>
                 <div class="col-lg-6 col-12">
                     <div class="contact-form-header">
-                        <h3 class="font-weight-bold m-b-12">Faites vous rappeler sous 24h !</h3>
-                        <form id="" action="" method="post">
+                        <h2 class="font-weight-bold m-b-12">Faites vous rappeler sous 24h !</h2>
+                        <form id="" action="{{ path("paprec_public_quote_request_form", {locale: locale}) }}"
+                              method="post">
                             <div class="form-group">
                                 <label>Nom* :</label>
-                                <input type="text" class="form-control" id="">
+                                <input type="text"
+                                       required
+                                       class="form-control"
+                                       name="name" id="">
                             </div>
                             <div class="form-group">
                                 <label>Mail* :</label>
-                                <input type="email" class="form-control" id="">
+                                <input type="email"
+                                       required
+                                       name="email"
+                                       class="form-control" id="">
 
                             </div>
                             <div class="form-group">
                                 <label>Téléphone* :</label>
-                                <input type="tel" class="form-control" id="">
+                                <input type="tel"
+                                       required
+                                       name="phone"
+                                       class="form-control" id="">
                             </div>
                             <div class="form-group">
                                 <label>Code postal* :</label>
-                                <input type="texy" class="form-control" id="">
+                                <input type="number"
+                                       required
+                                       name="postal"
+                                       class="form-control" id="">
                             </div>
 
                             <button type="submit"
                                     id=""
-                                    data-key="{{ recaptcha_site_key }}"
-                                    class="btn btn__light w-100 m-t-6">
+                                    class="btn btn__primary w-100 m-t-6">
                                 Demandez votre devis
                             </button>
                         </form>
+                        {% for flashMessage in app.session.flashbag.get('error') %}
+                            <div class="m-t-5 float-right alert alert-danger">Error</div>
+                        {% endfor %}
+
+                        {% for flashMessage in app.session.flashbag.get('success') %}
+                            <div class="m-t-5 float-right alert alert-success">Votre demande a bien été prise en compte
+                                et envoyée au service commercial de votre région. Il reprendra contact avec vous dans
+                                les 24 heures.
+                            </div>
+                        {% endfor %}
 
                     </div>
                 </div>
@@ -50,7 +72,7 @@
 
             <div class="row">
                 <div class="col-12 text-center">
-                    <h3 class="font-weight-bold m-t-24">Ou choississez votre solution</h3>
+                    <h2 class="font-weight-bold m-t-24">Ou choississez votre solution</h2>
                 </div>
             </div>
 
@@ -63,7 +85,8 @@
                         <div class="type__block__body">
                             <div class="flex-1">
                                 <div class="m-b-20">
-                                    <h2 class="font-weight-bold">{{ 'Public.Type.Solution1.Title'| trans({}, "messages", locale) }}</h2></div>
+                                    <h2 class="font-weight-bold">{{ 'Public.Type.Solution1.Title'| trans({}, "messages", locale) }}</h2>
+                                </div>
                                 <div>{{ 'Public.Type.Solution1.Message1'| trans({}, "messages", locale) }}</div>
                                 <ul class="m-b-20">
                                     <li>{{ 'Public.Type.Solution1.Message2'| trans({}, "messages", locale) }}</li>
@@ -86,7 +109,8 @@
                         <div class="type__block__body">
                             <div class="flex-1">
                                 <div class="m-b-20">
-                                    <h2 class="font-weight-bold">{{ 'Public.Type.Solution2.Title'| trans({}, "messages", locale) }}</h2></div>
+                                    <h2 class="font-weight-bold">{{ 'Public.Type.Solution2.Title'| trans({}, "messages", locale) }}</h2>
+                                </div>
                                 <div>{{ 'Public.Type.Solution2.Message1'| trans({}, "messages", locale) }}</div>
                                 <ul class="m-b-20">
                                     <li>{{ 'Public.Type.Solution2.Message2'| trans({}, "messages", locale) }}</li>
@@ -108,53 +132,106 @@
             <div class="row">
                 <div class="col-lg-6 type">
                     <div class="type__block">
-                        <div class="type__block__body">
+                        <div class="type__block__body type__block__body--no-bg">
                             <h1>PRIVACIA, SPECIALISTE DE LA DESTRUCTION CONFIDENTIELLE DE DOCUMENTS</h1>
-                            <h2 class="font-weight-bold m-b-24">DES SOLUTIONS POUR UNE DESTRUCTION SECURISEE ET CONFIDENTIELLE DE VOS DOCUMENTS</h2>
-                            <p>Aujourd’hui, 43 collaborateurs travaillent pour Privacia sur notre site de La Courneuve (93) avec notamment pour spécialité, la destruction confidentielle et sécurisée de documents, sur tous types de support.
-                                Privacia opère sur la région Ile-de-France et permet au groupe Paprec de compléter ainsi les activités de la Corbeille Bleue, sa filiale dédiée à la collecte et au tri des déchets issus du secteur tertiaire.
+                            <h2 class="font-weight-bold m-b-24">DES SOLUTIONS POUR UNE DESTRUCTION SECURISEE ET
+                                CONFIDENTIELLE DE VOS DOCUMENTS</h2>
+                            <p>Aujourd’hui, 43 collaborateurs travaillent pour Privacia sur notre site de La Courneuve
+                                (93) avec notamment pour spécialité, la destruction confidentielle et sécurisée de
+                                documents, sur tous types de support.
+                                Privacia opère sur la région Ile-de-France et permet au groupe Paprec de compléter ainsi
+                                les activités de la Corbeille Bleue, sa filiale dédiée à la collecte et au tri des
+                                déchets issus du secteur tertiaire.
                             </p>
                             <p>
-                                Le service de Privacia sur la destruction sécurisée de documents confidentiels est simple, rapide et respectueux de l’environnement. En effet, une fois vos documents confidentiels, vos archives, détruits et réduits à l’état de confettis, ils sont recyclés et orientés vers les usines de fabrication du papier !
+                                Le service de Privacia sur la destruction sécurisée de documents confidentiels est
+                                simple, rapide et respectueux de l’environnement. En effet, une fois vos documents
+                                confidentiels, vos archives, détruits et réduits à l’état de confettis, ils sont
+                                recyclés et orientés vers les usines de fabrication du papier !
                             </p>
                             <p>
-                                Le service de destruction sécurisé de Privacia vous garantit la sécurité de vos documents confidentiels.
-                                La destruction sécurisée vous permet de protéger votre entreprise contre d’éventuelles fuites d’informations, alors n’hésitez pas à faire appel à Privacia. Et si votre entreprise mène une politique environnementale, Privacia répond également à vos attentes.
+                                Le service de destruction sécurisé de Privacia vous garantit la sécurité de vos
+                                documents confidentiels.
+                                La destruction sécurisée vous permet de protéger votre entreprise contre d’éventuelles
+                                fuites d’informations, alors n’hésitez pas à faire appel à Privacia. Et si votre
+                                entreprise mène une politique environnementale, Privacia répond également à vos
+                                attentes.
                             </p>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 m-auto m-b-30 text-center type d-lg-block"> {# Ajouter class "d-none" pour cacher l'image sous 992px #}
-                    <img src="{{ asset('build/static/paperplane.png') }}" alt="" class="img-fluid">
+                <div class="col-lg-6 m-auto text-center type d-lg-block d-none"> {# Ajouter class "d-none" pour cacher l'image sous 992px #}
+                    <img src="{{ asset('build/static/privacia_home_1.jpg') }}" alt="" class="img-fluid">
                 </div>
             </div>
 
             <div class="row">
                 <div class="col-12 text-center m-b-30">
                     <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" width="560" height="315" src="https://www.youtube.com/embed/18S8zW2wRD8" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="embed-responsive-item" width="560" height="315"
+                                src="https://www.youtube.com/embed/18S8zW2wRD8" frameborder="0"
+                                allowfullscreen></iframe>
                     </div>
                 </div>
             </div>
 
             <div class="row">
-                <div class="col-lg-6 m-auto m-b-30 text-center type d-lg-block"> {# Ajouter class "d-none" pour cacher l'image sous 992px #}
-                    <img src="{{ asset('build/static/paperplane.png') }}" alt="" class="img-fluid">
+                <div class="col-lg-6 m-auto text-center type d-lg-block d-none"> {# Ajouter class "d-none" pour cacher l'image sous 992px #}
+                    <img src="{{ asset('build/static/privacia_home_2.png') }}" alt="" class="img-fluid">
                 </div>
                 <div class="col-lg-6 type">
                     <div class="type__block">
-                        <div class="type__block__body">
-                            <h1>PRIVACIA, SPECIALISTE DE LA DESTRUCTION CONFIDENTIELLE DE DOCUMENTS</h1>
-                            <h2 class="font-weight-bold m-b-24">DES SOLUTIONS POUR UNE DESTRUCTION SECURISEE ET CONFIDENTIELLE DE VOS DOCUMENTS</h2>
-                            <p>Aujourd’hui, 43 collaborateurs travaillent pour Privacia sur notre site de La Courneuve (93) avec notamment pour spécialité, la destruction confidentielle et sécurisée de documents, sur tous types de support.
-                                Privacia opère sur la région Ile-de-France et permet au groupe Paprec de compléter ainsi les activités de la Corbeille Bleue, sa filiale dédiée à la collecte et au tri des déchets issus du secteur tertiaire.
+                        <div class="type__block__body type__block__body--no-bg">
+                            <h2 class="font-weight-bold m-b-24">
+                                DES OUTILS ADAPTÉS À UNE DESTRUCTION SÉCURISÉE DE VOS DOCUMENTS CONFIDENTIELS
+                            </h2>
+                            <p>
+                                Privacia, fort de son expérience, a mis au point des solutions sur mesure pour la
+                                destruction
+                                sécurisée de documents et d’archives, sur site, tout en vous garantissant d’être en
+                                conformité avec
+                                la législation en vigueur, sur la destruction et la conservation de documents
+                                confidentiels.
                             </p>
                             <p>
-                                Le service de Privacia sur la destruction sécurisée de documents confidentiels est simple, rapide et respectueux de l’environnement. En effet, une fois vos documents confidentiels, vos archives, détruits et réduits à l’état de confettis, ils sont recyclés et orientés vers les usines de fabrication du papier !
+                                En effet, tous nos camions sont équipés de broyeurs qui leur permettent de détruire sur
+                                site, tous
+                                vos documents et archives confidentielles, en toute sécurité.
                             </p>
                             <p>
-                                Le service de destruction sécurisé de Privacia vous garantit la sécurité de vos documents confidentiels.
-                                La destruction sécurisée vous permet de protéger votre entreprise contre d’éventuelles fuites d’informations, alors n’hésitez pas à faire appel à Privacia. Et si votre entreprise mène une politique environnementale, Privacia répond également à vos attentes.
+                                Le tout dans le respect des normes car chez Privacia, la destruction de documents
+                                confidentiels
+                                respecte la norme de sécurité DIN 66399.
+                            </p>
+                            <h2 class="font-weight-bold m-b-24">
+                                UNE OFFRE ADAPTEE POUR CHAQUE ENTREPRISE POUR DETRUIRE VOS DOCUMENTS CONFIDENTIELS
+                            </h2>
+                            <p>
+                                Utilisant les techniques les plus récentes et respectant une chaîne de sécurité
+                                ininterrompue,
+                                Privacia propose des solutions de destruction sécurisées pratiques, rapides et
+                                écologiques,
+                                quelle que soit la taille de votre entreprise.
+                            </p>
+                            <p class="m-b-0">
+                                Vous trouverez forcément le contenant qui vous correspond :
+                            <ul>
+                                <li>Sacs et consoles sécurisées 70L et 140L</li>
+                                <li>Collecteurs sécurisés 90L et 140L</li>
+                                <li>Roll sécurisé 800L</li>
+                            </ul>
+                            </p>
+
+                            <p>
+                                <strong>Privacia propose une offre adaptée à chaque secteur d’activités</strong> en
+                                fonction de la règlementation en vigueur.
+                                <br>
+                                Privacia vous propose un reporting mensuel sur la quantité de déchets collectés et
+                                traités est
+                                effectué pour garantir une traçabilité absolue, et .la prestation donnera également lieu
+                                à la mise à
+                                disposition d’un certificat de destruction pour attester de l’élimination de vos
+                                supports de données.
                             </p>
                         </div>
                     </div>
@@ -164,8 +241,8 @@
             <div class="row">
                 <div class="col-12 text-center">
                     <a type="button"
-                       class="btn btn__light btn__large m-t-24"
-                       href="#">
+                       class="btn btn__primary btn__large m-t-24"
+                       href="https://easyrecyclage.com">
                         Besoin d'une solution pour <br> vos déchets de bureaux ?
                     </a>
                 </div>
