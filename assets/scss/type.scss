@@ -64,4 +64,12 @@
   .flex-1 {
     flex: 1;
   }
+
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"],
+  a {
+    -webkit-appearance: none !important;
+  }
 }

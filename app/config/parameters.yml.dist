@@ -24,7 +24,7 @@ parameters:
     privacia_public_store_url: 'http://dev.easyrecyclage-suisse.com'
     privacia_public_technical_service: 'contact@privacia.ch'
     privacia_salesman_multisite_email: 'digital@eggers-digital.com'
-    privacia_quote_request_email: 'digital@eggers-digital.com'
+    privacia_quote_request_email: 'contact@privacia.fr'
     recaptcha_site_key: 6LeLarcUAAAAAP0bX_qrqmJj2UAjmObQVE_BlRNn
     recaptcha_secret_key: 6LeLarcUAAAAAMIwN-lUrym-Xiy-PvCi6V98jpHz
 
